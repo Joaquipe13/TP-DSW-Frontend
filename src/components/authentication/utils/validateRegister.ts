@@ -1,10 +1,11 @@
-export function validateRegister(userData: any) {
+interface UserData {
+  name: string;
+  surname: string;
+  email: string;
+  password: string;
+}
+export function validateRegister(userData: UserData) {
   const errors: any = {};
-  if (!userData.dni) {
-    errors.dni = ["DNI is required"];
-  } else if (!/^\d{1,8}$/.test(userData.dni)) {
-    errors.dni = ["DNI must be a number with no more than 8 digits"];
-  }
   if (!userData.name) {
     errors.name = ["Name is required"];
   }

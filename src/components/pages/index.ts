@@ -24,12 +24,8 @@ export { SubscriptionCreatePage } from "./subscription/subsCreatePage";
 export { SubscriptionUpdatePage } from "./subscription/subsEditPage";
 //Purchase Pages Exports
 export { PurchasesRecordPage } from "./purchases/purchasesRecordPage";
-export { MyPurchasesPage } from "./purchases/myPurchasesPage";
+export { SubscriptionsRecordPage } from "./purchases/subscriptionsRecordPage";
+
 //Other Pages Exports
 export { InDevelopmentPage } from "./inDevelopment";
 export { MainPage } from "./MainPage";
-
-
-
-
-

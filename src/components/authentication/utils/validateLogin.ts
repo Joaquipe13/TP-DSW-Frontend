@@ -4,6 +4,8 @@ import Cookies from "js-cookie";
 export async function validateLogin(email: string, password: string) {
   const url = porturl + "/api/login";
   try {
+    console.log(JSON.stringify({ email, password }));
+    console.log(url);
     const response = await fetch(url, {
       method: "POST",
       headers: {

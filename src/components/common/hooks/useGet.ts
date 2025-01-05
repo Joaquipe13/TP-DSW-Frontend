@@ -11,6 +11,7 @@ export function useGet<T>(baseUrl: string) {
     setLoading(true);
     try {
       const url = baseUrl;
+
       const response = await fetch(url);
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);

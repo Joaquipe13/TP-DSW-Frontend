@@ -2,14 +2,14 @@ import { useEffect } from "react";
 import { Container, Table } from "react-bootstrap";
 import { useGet } from "../common/hooks/index.ts";
 import { Loading, Error } from "../common/utils/index.ts";
-import { CoursePurchaseRecord } from "../types.tsx";
+import { SubsPurchaseRecord } from "../types.tsx";
 import { getUser } from "../common/authentication/getUser.ts";
 import { NavigationButton } from "../common/buttons";
-interface MyPurchasesListProps {
+interface MySubscriptionsListProps {
   startDate?: Date;
   endDate?: Date;
 }
-export const MyPurchasesList: React.FC<MyPurchasesListProps> = ({
+export const MySubscriptionsList: React.FC<MySubscriptionsListProps> = ({
   startDate,
   endDate,
 }) => {
@@ -23,13 +23,13 @@ export const MyPurchasesList: React.FC<MyPurchasesListProps> = ({
     error,
     loading,
     fetchData,
-  } = useGet<CoursePurchaseRecord>(`/api/CoursePurchaseRecords${queryString}`);
+  } = useGet<SubsPurchaseRecord>(`/api/subsPurchaseRecords${queryString}`);
 
   useEffect(() => {
     fetchData();
     console.log("purchaseRecords:", purchaseRecords);
   }, [fetchData]);
-  const purchaseRecords = response?.coursePurchaseRecords || [];
+  const purchaseRecords = response?.subsPurchaseRecords || [];
 
   if (loading) return <Loading />;
   if (error) return <Error message={error} />;
@@ -40,9 +40,11 @@ export const MyPurchasesList: React.FC<MyPurchasesListProps> = ({
         <thead>
           <tr>
             <th>ID</th>
-            <th>Course Title</th>
+            <th>Subscription Name</th>
+            <th>Duration</th>
             <th>User Name</th>
             <th>Purchase Date</th>
+            <th>Activation Date</th>
             <th>Total Amount</th>
           </tr>
         </thead>
@@ -50,17 +52,9 @@ export const MyPurchasesList: React.FC<MyPurchasesListProps> = ({
           {purchaseRecords.map((record) => (
             <tr key={record.id}>
               <td>{record.id}</td>
-              <td>
-                <NavigationButton
-                  to={`/course/${record.course?.id}`}
-                  label={record.course?.title || "N/A"}
-                  variant="link"
-                  style={{
-                    padding: 0,
-                    color: "inherit",
-                    textDecoration: "none",
-                  }}
-                />
+              <td>{record.subscription?.description || "N/A"}</td>
+              <td className="text-center">
+                {record.subscription?.duration + " days" || "N/A"}
               </td>
               <td>
                 {record.user?.surname || "N/A"}
@@ -69,6 +63,11 @@ export const MyPurchasesList: React.FC<MyPurchasesListProps> = ({
               <td>
                 {record.purchaseAt
                   ? new Date(record.purchaseAt).toLocaleDateString()
+                  : "N/A"}
+              </td>
+              <td>
+                {record.effectiveAt
+                  ? new Date(record.effectiveAt).toLocaleDateString()
                   : "N/A"}
               </td>
               <td>${record.totalAmount.toFixed(2)}</td>

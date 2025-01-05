@@ -1,16 +1,17 @@
 import React, { useState } from "react";
-import { Form, Button, Container, Card, Row, Col } from "react-bootstrap";
-import { useNavigate } from "react-router-dom";
+import { Modal, Form, Button, Row, Col } from "react-bootstrap";
 import { validateRegister } from "./utils/validateRegister";
 import { createUser } from "./utils/createUser";
-
-export function RegisterForm() {
+export const useRegister = (onSwitchToLogin: () => void) => {
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState<any>({});
-  const navigate = useNavigate();
+  const [show, setShow] = useState(false);
+
+  const showRegister = () => setShow(true);
+  const hideRegister = () => setShow(false);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,7 +23,7 @@ export function RegisterForm() {
         const user = await createUser(userData);
         alert("Registration successful!");
         console.log("User successfully registered:", user);
-        navigate("/");
+        hideRegister();
       } catch {
         alert("Registration failed. Please try again.");
       }
@@ -32,34 +33,18 @@ export function RegisterForm() {
     }
   };
 
-  return (
-    <Container className="d-flex justify-content-center align-items-center min-vh-100">
-      <Card
-        style={{
-          width: "500px",
-          height: "600px",
-          backgroundColor: "#c5c5c5",
-          borderColor: "#ccc",
-          borderWidth: "2px",
-        }}
-      >
-        <Card.Body>
-          <h3 className="text-center mb-4 mt-3" style={{ color: "#333" }}>
-            Register
-          </h3>
+  const handleLogin = () => {
+    hideRegister();
+    onSwitchToLogin();
+  };
+  const RegisterModal = () => (
+    <div>
+      <Modal show={show} onHide={hideRegister} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Register</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
           <Form onSubmit={handleSubmit}>
-            {Object.keys(errors).length > 0 && (
-              <div className="alert alert-danger">
-                {Object.keys(errors).map((field, index) => (
-                  <div key={index}>
-                    {errors[field].map((msg: string, i: number) => (
-                      <div key={i}>{msg}</div>
-                    ))}
-                  </div>
-                ))}
-              </div>
-            )}
-
             <Form.Group controlId="formName" className="mb-4">
               <Form.Label>Name</Form.Label>
               <Form.Control
@@ -108,13 +93,14 @@ export function RegisterForm() {
               )}
             </Form.Group>
 
-            <Form.Group controlId="formPassword" className="mb-4" >
+            <Form.Group controlId="formPassword" className="mb-4">
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"
                 placeholder="Enter password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
+                isInvalid={errors.password}
               />
               {errors.password && (
                 <Form.Control.Feedback type="invalid">
@@ -122,7 +108,6 @@ export function RegisterForm() {
                 </Form.Control.Feedback>
               )}
             </Form.Group>
-
             <Row className="text-center">
               <Col>
                 <Button variant="dark" type="submit" className="w-50 mt-3">
@@ -130,9 +115,21 @@ export function RegisterForm() {
                 </Button>
               </Col>
             </Row>
+            <Row className="text-center">
+              <Col>
+                <Button
+                  variant="link"
+                  className="w-50 mt-3"
+                  onClick={handleLogin}
+                >
+                  I already have an account
+                </Button>
+              </Col>
+            </Row>
           </Form>
-        </Card.Body>
-      </Card>
-    </Container>
+        </Modal.Body>
+      </Modal>
+    </div>
   );
-}
+  return { showRegister, RegisterModal };
+};

@@ -1,13 +1,10 @@
 import { useEffect } from "react";
-
 import { useGet } from "../common/hooks/useGet.ts";
 import { Subscription } from "../types.tsx";
 import Container from "react-bootstrap/Container";
-import ListGroup from "react-bootstrap/ListGroup";
-import { NavigationButton } from "../common/buttons/index.ts";
 import { SubscriptionPreview } from "./subscriptionPreview.tsx";
-import { Alert, Card, Col, Row } from "react-bootstrap";
-import { Loading, Error } from "../common/utils";
+import { Alert, Col, Row } from "react-bootstrap";
+import { Loading, Error } from "../common/utils/index.ts";
 
 export const SubscriptionList = () => {
   const {

@@ -22,8 +22,8 @@ import {
   SubscriptionCreatePage,
   SubscriptionUpdatePage,
   PurchasesRecordPage,
-  MyPurchasesPage,
   InDevelopmentPage,
+  SubscriptionsRecordPage,
 } from "./components/pages";
 import { PrivateRoute, AdminRoute } from "./components/common/authentication";
 
@@ -38,8 +38,12 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <PrivateRoute element={<App />} />,
+    element: <App />,
     children: [
+      {
+        path: "/",
+        element: <CourseListPage />,
+      },
       {
         path: "topic/list",
         element: <AdminRoute element={<TopicListPage />} />,
@@ -50,7 +54,7 @@ const router = createBrowserRouter([
       },
       {
         path: "course/list",
-        element: <PrivateRoute element={<CourseListPage />} />,
+        element: <CourseListPage />,
       },
       {
         path: "course/create",
@@ -99,11 +103,11 @@ const router = createBrowserRouter([
       },
       {
         path: "myPurchases",
-        element: <PrivateRoute element={<MyPurchasesPage />} />,
+        element: <PrivateRoute element={<PurchasesRecordPage />} />,
       },
       {
         path: "subscription/list",
-        element: <PrivateRoute element={<SubscriptionListPage />} />,
+        element: <SubscriptionListPage />,
       },
       {
         path: "subscription/create",
@@ -112,6 +116,14 @@ const router = createBrowserRouter([
       {
         path: "subscription/update/:id",
         element: <AdminRoute element={<SubscriptionUpdatePage />} />,
+      },
+      {
+        path: "subscriptionsPurchaseRecords",
+        element: <AdminRoute element={<SubscriptionsRecordPage />} />,
+      },
+      {
+        path: "mySubscriptions",
+        element: <PrivateRoute element={<SubscriptionsRecordPage />} />,
       },
       {
         path: "inDevelopment/:title",

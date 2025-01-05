@@ -39,7 +39,7 @@ export const UnitList: React.FC<UnitListProps> = ({ level, course }) => {
                 style={{ width: "100%" }}
                 variant="light"
               >
-                <UnitPreview id={unit.id} />
+                <UnitPreview name={unit.name} order={unit.order} />
               </NavigationButton>
             </ListGroup.Item>
           ))

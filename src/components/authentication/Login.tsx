@@ -5,7 +5,7 @@ import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { validateLogin } from "./utils";
+import { validateLogin } from "./utils/index.ts";
 import { useNavigate } from "react-router-dom";
 import { getUser } from "../common/authentication/getUser.ts";
 export function LoginForm() {
@@ -24,7 +24,7 @@ export function LoginForm() {
       alert("Login failed. Please check your credentials.");
     }
   };
-  console.log(getUser())
+  console.log(getUser());
   return (
     <Container className="d-flex justify-content-center align-items-center min-vh-100">
       <Card
@@ -65,6 +65,7 @@ export function LoginForm() {
               <Form.Control
                 className="mx-auto"
                 type="password"
+                name="password"
                 placeholder="Enter password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}

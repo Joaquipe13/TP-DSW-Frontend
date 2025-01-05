@@ -1,15 +1,14 @@
 import { porturl } from "../../common/utils/route";
 import Cookies from "js-cookie";
 
-interface userData {
-  dni: string;
+interface UserData {
   name: string;
   surname: string;
   email: string;
   password: string;
 }
 
-export async function createUser(userData: userData) {
+export async function createUser(userData: UserData) {
   const url = porturl + "/api/users";
   try {
     const response = await fetch(url, {

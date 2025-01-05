@@ -1,16 +1,12 @@
 import { porturl } from "../utils/route";
 
-export async function checkPurchase(
-  user: number,
-  course: number
-): Promise<boolean | null> {
-  if (!user || !course) {
-    console.error("Invalid userId or courseId", user, course);
+export async function checkSubscription(user: number): Promise<boolean | null> {
+  if (!user) {
+    console.error("Invalid userId", user);
     return false;
   }
   const userId = user.toString();
-  const courseId = course.toString();
-  const url = `${porturl}/api/coursePurchaseRecords/check/${userId}/${courseId}`;
+  const url = `${porturl}/api/subsPurchaseRecords/check/${userId}`;
 
   try {
     const response = await fetch(url, {

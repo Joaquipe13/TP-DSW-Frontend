@@ -5,7 +5,7 @@ import { Subscription } from "../types.tsx";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { Loading, Error } from "../common/utils";
+import { Loading, Error } from "../common/utils/index.ts";
 import {
   validateDescription,
   validatePrice,

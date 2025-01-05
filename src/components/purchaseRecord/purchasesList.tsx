@@ -3,7 +3,6 @@ import { Container, Table } from "react-bootstrap";
 import { useGet } from "../common/hooks";
 import { Loading, Error } from "../common/utils";
 import { CoursePurchaseRecord } from "../types";
-import { useFilteredPurchases } from "./hooks/useFilteredPurchases";
 import { NavigationButton } from "../common/buttons";
 
 interface PurchasesListProps {
@@ -15,12 +14,18 @@ export const PurchasesList: React.FC<PurchasesListProps> = ({
   startDate,
   endDate,
 }) => {
+  const queryString = startDate
+    ? `?startDate=${startDate.toISOString()}` +
+      (endDate ? `&endDate=${endDate.toISOString()}` : "")
+    : endDate
+    ? `?endDate=${endDate.toISOString()}`
+    : "";
   const {
     data: response,
     error,
     loading,
     fetchData,
-  } = useGet<CoursePurchaseRecord>("/api/CoursePurchaseRecords");
+  } = useGet<CoursePurchaseRecord>(`/api/CoursePurchaseRecords${queryString}`);
 
   useEffect(() => {
     fetchData();
@@ -28,16 +33,10 @@ export const PurchasesList: React.FC<PurchasesListProps> = ({
   }, [fetchData]);
   const purchaseRecords = response?.coursePurchaseRecords || [];
 
-  const filteredPurchases = useFilteredPurchases(
-    purchaseRecords || [],
-    startDate,
-    endDate
-  );
-
   if (loading) return <Loading />;
   if (error) return <Error message={error} />;
 
-  return filteredPurchases.length > 0 ? (
+  return purchaseRecords.length > 0 ? (
     <Container style={{ marginTop: "2rem" }}>
       <Table striped bordered hover responsive>
         <thead>
@@ -50,7 +49,7 @@ export const PurchasesList: React.FC<PurchasesListProps> = ({
           </tr>
         </thead>
         <tbody>
-          {filteredPurchases.map((record) => (
+          {purchaseRecords.map((record) => (
             <tr key={record.id}>
               <td>{record.id}</td>
               <td>
@@ -58,7 +57,11 @@ export const PurchasesList: React.FC<PurchasesListProps> = ({
                   to={`/course/${record.course?.id}`}
                   label={record.course?.title || "N/A"}
                   variant="link"
-                  style={{ padding: 0, color: "inherit", textDecoration: "none" }}
+                  style={{
+                    padding: 0,
+                    color: "inherit",
+                    textDecoration: "none",
+                  }}
                 />
               </td>
               <td>

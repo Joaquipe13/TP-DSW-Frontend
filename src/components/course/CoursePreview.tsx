@@ -3,9 +3,14 @@ import { Course, User } from "../types.tsx";
 import Card from "react-bootstrap/Card";
 import { Topics } from "../topic/topics.tsx";
 import { useGet } from "../common/hooks/useGet.ts";
-import { checkPurchase, getUser } from "../common/authentication";
+import {
+  checkPurchase,
+  checkSubscription,
+  getUser,
+} from "../common/authentication";
 import { Loading, Error, DateComponent } from "./../common/utils";
-import { PurchaseButton, NavigationButton } from "../common/buttons";
+import { NavigationButton } from "../common/buttons";
+import { PurchaseButton } from "./../purchaseRecord/utils/purchaseCourseButton.tsx";
 
 interface CoursePreviewProps {
   id: number;
@@ -27,7 +32,8 @@ export const CoursePreview: React.FC<CoursePreviewProps> = ({ id }) => {
         view = 1;
       } else {
         const purchaseStatus = await checkPurchase(user.id, id);
-        view = purchaseStatus ? 2 : 3;
+        const subscriptionStatus = await checkSubscription(user.id);
+        view = purchaseStatus || subscriptionStatus ? 2 : 3;
       }
     }
 

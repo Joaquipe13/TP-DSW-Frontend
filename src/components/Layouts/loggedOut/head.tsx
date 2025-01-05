@@ -3,8 +3,11 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { UserMenu } from "../userMenu";
+import { useLoginAlert } from "../../common/hooks";
 
-export const MemberHead: React.FC = () => {
+export const LoggedOutHead: React.FC = () => {
+  const { showLoginAlert, LoginAlert } = useLoginAlert();
+
   return (
     <Navbar
       className="py-3 fs-5"
@@ -27,7 +30,9 @@ export const MemberHead: React.FC = () => {
             menuVariant="dark"
           >
             <NavDropdown.Item href="/course/list">View All</NavDropdown.Item>
-            <NavDropdown.Item href="/myCourses">My Courses</NavDropdown.Item>
+            <NavDropdown.Item onClick={() => showLoginAlert()}>
+              My Courses
+            </NavDropdown.Item>
           </NavDropdown>
           <NavDropdown
             title="Subscriptions"
@@ -38,13 +43,14 @@ export const MemberHead: React.FC = () => {
             <NavDropdown.Item href="/subscription/list">
               View All
             </NavDropdown.Item>
-            <NavDropdown.Item href="/mySubscriptions">
+            <NavDropdown.Item onClick={() => showLoginAlert()}>
               My Subscriptions
             </NavDropdown.Item>
           </NavDropdown>
         </Nav>
         <UserMenu />
       </Navbar.Collapse>
+      <LoginAlert />
     </Navbar>
   );
 };

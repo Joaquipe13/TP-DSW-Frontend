@@ -33,7 +33,9 @@ export const SubscriptionPreview: React.FC<SubscriptionPreviewProps> = ({
   if (error) return <Error message={error} />;
   return (
     <Card style={{ width: "18rem", marginTop: "1rem", marginBottom: "1rem" }}>
-      <Card.Header as="h5">{subscription?.description}</Card.Header>
+      <Card.Header as="h4" className="text-center ">
+        {subscription?.description}
+      </Card.Header>
       <Card.Body>
         <Card.Text style={{ textAlign: "left" }}>
           <strong>Price:</strong> {subscription?.price}

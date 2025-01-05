@@ -1,4 +1,3 @@
-
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { Form, Row, Col } from "react-bootstrap";
@@ -17,11 +16,11 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
   setEndDate,
 }) => {
   return (
-    <Form>
+    <Form className="text-center">
       <Row>
         <Col md={6}>
           <Form.Group controlId="start-date">
-            <Form.Label>Start Date:</Form.Label>
+            <Form.Label>Start Date:&nbsp;</Form.Label>
             <DatePicker
               selected={startDate}
               onChange={(date: Date | null) => setStartDate(date ?? undefined)}
@@ -36,7 +35,7 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
 
         <Col md={6}>
           <Form.Group controlId="end-date">
-            <Form.Label>End Date:</Form.Label>
+            <Form.Label>End Date:&nbsp;</Form.Label>
             <DatePicker
               selected={endDate}
               onChange={(date: Date | null) => setEndDate(date ?? undefined)}
