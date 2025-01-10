@@ -1,13 +1,21 @@
-import React, { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import { MemberHead, AdminHead, PageBody } from "../Layouts";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Card } from "react-bootstrap";
 
 import { userType } from "../common/authentication/userType.ts";
 import { LoggedOutHead } from "../Layouts/loggedOut/head.tsx";
+import { useEffect, useState } from "react";
 export function MainPage() {
-  const role = userType();
+  const [role, setRole] = useState<string | null>(null);
+  
+    useEffect(() => {
+      const fetchUserRole = async () => {
+        setRole(null);
+        const fetchedRole = await userType();
+        setRole(fetchedRole);
+      };
+      fetchUserRole();
+    }, []);
   return (
     <Container fluid style={{ paddingTop: "70px" }}>
       {role === "admin" ? <AdminHead /> : ( role === "member" ? <MemberHead /> : <LoggedOutHead /> )}

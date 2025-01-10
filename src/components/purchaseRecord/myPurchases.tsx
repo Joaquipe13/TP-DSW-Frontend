@@ -1,23 +1,34 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Container, Table } from "react-bootstrap";
 import { useGet } from "../common/hooks/index.ts";
 import { Loading, Error } from "../common/utils/index.ts";
 import { CoursePurchaseRecord } from "../types.tsx";
-import { getUser } from "../common/authentication/getUser.ts";
 import { NavigationButton } from "../common/buttons";
 interface MyPurchasesListProps {
   startDate?: Date;
   endDate?: Date;
+  userId: string | null;
 }
 export const MyPurchasesList: React.FC<MyPurchasesListProps> = ({
   startDate,
   endDate,
+  userId,
 }) => {
-  const user = getUser();
-  const queryString =
-    (user ? `?user=${user.id}` : "") +
-    (startDate ? `&startDate=${startDate.toISOString()}` : "") +
-    (endDate ? `&endDate=${endDate.toISOString()}` : "");
+  const [isLoading, setLoading] = useState(true);
+  const [queryString, setQueryString] = useState(`?user=${userId}`);
+
+  useEffect(() => {
+    const query =
+      `?user=${userId}` +
+      (startDate ? `&startDate=${startDate.toISOString()}` : "") +
+      (endDate ? `&endDate=${endDate.toISOString()}` : "");
+    console.log("query" + query);
+    setQueryString(query);
+    console.log(queryString);
+    fetchData();
+    setLoading(loading);
+  }, [startDate, endDate]);
+
   const {
     data: response,
     error,
@@ -25,17 +36,15 @@ export const MyPurchasesList: React.FC<MyPurchasesListProps> = ({
     fetchData,
   } = useGet<CoursePurchaseRecord>(`/api/CoursePurchaseRecords${queryString}`);
 
-  useEffect(() => {
-    fetchData();
-    console.log("purchaseRecords:", purchaseRecords);
-  }, [fetchData]);
   const purchaseRecords = response?.coursePurchaseRecords || [];
 
-  if (loading) return <Loading />;
+  if (isLoading) return <Loading />;
   if (error) return <Error message={error} />;
 
   return purchaseRecords.length > 0 ? (
-    <Container style={{ marginTop: "2rem" }}>
+    <Container
+      style={{ marginTop: "2rem", minHeight: "100vh", paddingBottom: "70px" }}
+    >
       <Table striped bordered hover responsive>
         <thead>
           <tr>

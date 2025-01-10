@@ -4,7 +4,6 @@ import { usePost } from "../common/hooks";
 import { Course } from "../types";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Badge from "react-bootstrap/Badge";
 import { Topics } from "../topic/topics";
@@ -14,7 +13,7 @@ import {
   validatePrice,
   validateTopics,
 } from "./validations/courseValidate";
-import { Loading, Error } from "./../common/utils";
+import { Loading, Error } from "../common/utils";
 
 export const CourseCreate = () => {
   const { loading, error, create } = usePost<Course>("/api/courses/");

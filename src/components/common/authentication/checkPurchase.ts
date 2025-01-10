@@ -1,8 +1,8 @@
-import { porturl } from "../utils/route";
+import { porturl } from "../utils";
 
 export async function checkPurchase(
   user: number,
-  course: number
+  course: number | string
 ): Promise<boolean | null> {
   if (!user || !course) {
     console.error("Invalid userId or courseId", user, course);

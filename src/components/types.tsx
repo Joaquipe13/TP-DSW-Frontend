@@ -31,6 +31,7 @@ export interface Course {
   title: string;
   createAt?: Date;
   price: number;
+  resume: string;
   coursePurchaseRecords?: number[] | CoursePurchaseRecord[];
   topics: number[] | Topic[];
   levels?: number[] | Level[];

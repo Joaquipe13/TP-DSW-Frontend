@@ -1,7 +1,8 @@
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import { Form, Row, Col } from "react-bootstrap";
-
+import Row from "react-bootstrap/Row";
+import Form from "react-bootstrap/Form";
+import Col from "react-bootstrap/Col";
 interface DateRangePickerProps {
   startDate: Date | undefined;
   setStartDate: React.Dispatch<React.SetStateAction<Date | undefined>>;

@@ -22,11 +22,11 @@ export const SubscriptionList = () => {
   if (error) return <Error message={error} />;
 
   return (
-    <Container>
-      <Row className="gy-4">
+    <Container fluid>
+      <Row className="gy-4 justify-content-center">
         {Array.isArray(subscriptions) && subscriptions.length > 0 ? (
           subscriptions.map((subscription) => (
-            <Col key={subscription.id} md={4} lg={3}>
+            <Col key={subscription.id} xs={12} sm={6} md={4} lg={3}>
               <SubscriptionPreview id={subscription.id} />
             </Col>
           ))

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useGet } from "../common/hooks/useGet.ts";
 import { Unit } from "../types.tsx";
 import { NavigationButton } from "../common/buttons";
@@ -17,6 +17,7 @@ export const UnitGetOne: React.FC<UnitGetOneProps> = ({
   courseId,
   levelId,
 }) => {
+  const [role, setRole] = useState<string | null>(null);
   const { data, loading, error, fetchData } = useGet<Unit>(`/api/units/${id}`);
   const unit = Array.isArray(data) ? data[0] : data;
   useEffect(() => {
@@ -25,7 +26,14 @@ export const UnitGetOne: React.FC<UnitGetOneProps> = ({
 
   if (loading) return <Loading />;
   if (error) return <Error message={error} />;
-  const user = userType() ? userType() : "member";
+  useEffect(() => {
+    const fetchUserRole = async () => {
+      setRole(null);
+      const fetchedRole = await userType();
+      setRole(fetchedRole);
+    };
+    fetchUserRole();
+  }, []);
   return (
     <Container>
       <Card
@@ -42,7 +50,7 @@ export const UnitGetOne: React.FC<UnitGetOneProps> = ({
         <Card.Body className="text-justify">
           <Card.Text className="fs-4">{unit?.content}</Card.Text>
         </Card.Body>
-        {user === "admin" && (
+        {role === "admin" && (
           <NavigationButton
             className="d-flex justify-content-center"
             to={`/unit/update/${courseId}/${levelId}/${id}`}

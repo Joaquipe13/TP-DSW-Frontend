@@ -5,20 +5,22 @@ import { getUser } from "../../common/authentication/getUser.ts";
 import { useLoginAlert } from "../../common/hooks/useLoginAlert.tsx";
 import { PurchaseConfirmationModal } from "./PurchaseConfirmationModal";
 
-interface PurchaseButtonProps {
-  courseId: number;
+interface SubscriptionButtonProps {
+  subscriptionId: number;
 }
 
-export function PurchaseButton({ courseId }: PurchaseButtonProps) {
+export function SubscriptionButton({
+  subscriptionId,
+}: SubscriptionButtonProps) {
   const [isConfirming, setIsConfirming] = useState<boolean>(false);
   const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
   const { showLoginAlert, LoginAlert } = useLoginAlert();
-  const { create, loading } = usePost<{ course: number; user: number }>(
-    "/api/coursePurchaseRecords"
+  const { create, loading } = usePost<{ subscription: number; user: number }>(
+    "/api/subsPurchaseRecords"
   );
 
-  const handlePurchase = () => {
-    const user = getUser();
+  const handlePurchase = async () => {
+    const user = await getUser();
     const userId = user ? user.id : null;
 
     if (!userId) {
@@ -26,21 +28,21 @@ export function PurchaseButton({ courseId }: PurchaseButtonProps) {
       return;
     }
 
-    setShowConfirmModal(true); // Mostrar el modal de confirmación
+    setShowConfirmModal(true);
   };
 
-  const handleConfirmPurchase = () => {
-    setShowConfirmModal(false); // Cierra el modal
+  const handleConfirmPurchase = async () => {
+    setShowConfirmModal(false);
     setIsConfirming(true);
 
-    const user = getUser();
+    const user = await getUser();
     const userId = user ? user.id : null;
 
     const purchaseData = {
-      course: courseId,
+      subscription: subscriptionId,
       user: userId,
     };
-
+    console.log("purchaseData:", purchaseData);
     create(purchaseData)
       .then((response) => {
         if (response) {
@@ -59,7 +61,7 @@ export function PurchaseButton({ courseId }: PurchaseButtonProps) {
   };
 
   const handleCancelPurchase = () => {
-    setShowConfirmModal(false); // Cierra el modal
+    setShowConfirmModal(false);
   };
 
   return (
@@ -69,7 +71,7 @@ export function PurchaseButton({ courseId }: PurchaseButtonProps) {
         onClick={handlePurchase}
         disabled={loading || isConfirming}
       >
-        {loading || isConfirming ? "Processing..." : "Buy Course"}
+        {loading || isConfirming ? "Processing..." : "Buy Subscription"}
       </Button>
       <LoginAlert />
 
@@ -79,6 +81,7 @@ export function PurchaseButton({ courseId }: PurchaseButtonProps) {
         onConfirm={handleConfirmPurchase}
         onCancel={handleCancelPurchase}
         isProcessing={isConfirming}
+        purchaseType="subscription"
       />
     </div>
   );

@@ -1,22 +1,21 @@
 import { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
-
-import { useLogin } from "../../authentication/loginModal.tsx";
+import { LoginOverlay } from "../../authentication/";
 
 export const useLoginAlert = () => {
   const [show, setShow] = useState(false);
+  const [showLogin, setShowLogin] = useState(false);
+
   const showLoginAlert = () => setShow(true);
   const hideLoginAlert = () => setShow(false);
 
-  const { showLogin, LoginModal } = useLogin();
-
   const handleLogin = () => {
-    showLogin();
-    hideLoginAlert();
+    setShowLogin(true); // Mostrar el overlay de login
+    setShow(false); // Cerrar el modal cuando se muestra el overlay
   };
 
   const LoginAlert = () => (
-    <div>
+    <>
       <Modal show={show} onHide={hideLoginAlert} centered>
         <Modal.Header closeButton>
           <Modal.Title>Log In Required</Modal.Title>
@@ -31,8 +30,10 @@ export const useLoginAlert = () => {
           </Button>
         </Modal.Footer>
       </Modal>
-      <LoginModal />
-    </div>
+
+      {/* El overlay no se cierra con el modal, sino que se controla independientemente */}
+      <LoginOverlay show={showLogin} setShow={setShowLogin} />
+    </>
   );
 
   return { showLoginAlert, LoginAlert };

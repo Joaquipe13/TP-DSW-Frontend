@@ -9,10 +9,10 @@ import {
   Col,
 } from "react-bootstrap";
 import { Topic } from "../types.tsx";
-import { useCourseEdit, deleteCourse } from "./hooks";
+import { useCourseEdit, deleteCourse } from "./hooks/index.ts";
 import { Topics } from "../topic/topics.tsx";
 import { LevelList } from "../level/levelList.tsx";
-import { Loading, Error } from "../common/utils";
+import { Loading, Error } from "../common/utils/index.ts";
 
 interface CourseUpdateProps {
   courseId: string;

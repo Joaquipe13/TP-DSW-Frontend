@@ -1,4 +1,3 @@
-// src/hooks/useSelectedTopics.ts
 import { useState } from "react";
 import { Topic } from "../../types";
 

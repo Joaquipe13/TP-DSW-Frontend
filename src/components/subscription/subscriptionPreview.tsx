@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import { useGet } from "../common/hooks/index.ts";
 import { Subscription } from "../types.tsx";
 import { NavigationButton } from "../common/buttons/index.ts";
-import { Button, Card } from "react-bootstrap";
+import { Card } from "react-bootstrap";
 import { Loading, Error } from "../common/utils/index.ts";
 import { userType } from "../common/authentication/index.ts";
+import { SubscriptionButton } from "../purchaseRecord/utils/purchaseSubsButton.tsx";
 
 interface SubscriptionPreviewProps {
   id: number;
@@ -13,26 +14,32 @@ interface SubscriptionPreviewProps {
 export const SubscriptionPreview: React.FC<SubscriptionPreviewProps> = ({
   id,
 }) => {
-  const [isConfirming, setIsConfirming] = useState<boolean>(false);
   const {
     data: subscription,
     loading,
     error,
     fetchData,
   } = useGet<Subscription>(`/api/subscriptions/${id}`);
-  const user = userType();
+  const [role, setRole] = useState<string | null>(null);
+  const [loadingButton, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchUserRole = async () => {
+      setLoading(true);
+      const fetchedRole = await userType();
+      setRole(fetchedRole);
+      setLoading(false);
+    };
+    fetchUserRole();
+  }, []);
+
   useEffect(() => {
     fetchData();
   }, [fetchData, id]);
-  const handlePurchase = () => {
-    setIsConfirming(true);
-    alert("The subscription purchase feature is not yet available.");
-    setIsConfirming(false);
-  };
+
   if (loading) return <Loading />;
   if (error) return <Error message={error} />;
   return (
-    <Card style={{ width: "18rem", marginTop: "1rem", marginBottom: "1rem" }}>
+    <Card style={{ width: "14rem", marginTop: "1rem", marginBottom: "1rem", marginLeft: "1rem", marginRight: "1rem" }}>
       <Card.Header as="h4" className="text-center ">
         {subscription?.description}
       </Card.Header>
@@ -45,19 +52,15 @@ export const SubscriptionPreview: React.FC<SubscriptionPreviewProps> = ({
         </Card.Text>
       </Card.Body>
       <Card.Body className="d-flex justify-content-center align-items-end">
-        {user === "admin" ? (
+        {loadingButton ? (
+          <Loading />
+        ) : role === "admin" ? (
           <NavigationButton
             to={`/subscription/update/${subscription?.id}`}
             label="Edit"
           />
         ) : (
-          <Button
-            variant="success"
-            onClick={handlePurchase}
-            disabled={loading || isConfirming}
-          >
-            {loading || isConfirming ? "Processing..." : "Buy"}
-          </Button>
+          <SubscriptionButton subscriptionId={id} />
         )}
       </Card.Body>
     </Card>

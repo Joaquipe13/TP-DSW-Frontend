@@ -15,13 +15,13 @@ export function PurchaseButton({ courseId }: PurchaseButtonProps) {
   const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
 
   const { showLoginAlert, LoginAlert } = useLoginAlert();
-  
+
   const { create, loading } = usePost<{ course: number; user: number }>(
     "/api/coursePurchaseRecords"
   );
 
-  const handlePurchase = () => {
-    const user = getUser();
+  const handlePurchase = async () => {
+    const user = await getUser();
     const userId = user ? user.id : null;
 
     if (!userId) {
@@ -32,11 +32,10 @@ export function PurchaseButton({ courseId }: PurchaseButtonProps) {
     setShowConfirmModal(true); // Mostrar el modal de confirmación
   };
 
-  const handleConfirmPurchase = () => {
-    setShowConfirmModal(false); // Cierra el modal
+  const handleConfirmPurchase = async() => {
+    setShowConfirmModal(false); 
     setIsConfirming(true);
-
-    const user = getUser();
+    const user = await getUser();
     const userId = user ? user.id : null;
 
     const purchaseData = {
@@ -62,7 +61,7 @@ export function PurchaseButton({ courseId }: PurchaseButtonProps) {
   };
 
   const handleCancelPurchase = () => {
-    setShowConfirmModal(false); // Cierra el modal
+    setShowConfirmModal(false);
   };
 
   return (
@@ -81,6 +80,7 @@ export function PurchaseButton({ courseId }: PurchaseButtonProps) {
         onConfirm={handleConfirmPurchase}
         onCancel={handleCancelPurchase}
         isProcessing={isConfirming}
+        purchaseType="course"
       />
     </div>
   );

@@ -3,9 +3,18 @@ import { SubscriptionList } from "../../subscription";
 import { NavigationButton } from "../../common/buttons";
 import { Card } from "react-bootstrap";
 import { userType } from "../../common/authentication";
+import { useEffect, useState } from "react";
 
 export const SubscriptionListPage = () => {
-  const role = userType();
+  const [role, setRole] = useState<string | null>(null);
+  useEffect(() => {
+    const fetchUserRole = async () => {
+      setRole(null);
+      const fetchedRole = await userType();
+      setRole(fetchedRole);
+    };
+    fetchUserRole();
+  }, []);
 
   return (
     <Container
@@ -16,7 +25,7 @@ export const SubscriptionListPage = () => {
       >
         Subscriptions
       </Card.Title>
-      <Card>
+      <Card className="">
         <SubscriptionList />{" "}
         {role === "admin" && (
           <Card.Body className="bg-light text-center p-3">

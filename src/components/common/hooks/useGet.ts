@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import { porturl } from "../utils/route";
+import { porturl } from "../utils";
 
 export function useGet<T>(baseUrl: string) {
   const [data, setData] = useState<T[] | null>(null);
@@ -12,7 +12,13 @@ export function useGet<T>(baseUrl: string) {
     try {
       const url = baseUrl;
 
-      const response = await fetch(url);
+      const response = await fetch(url, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        credentials: "include",
+      });
       if (!response.ok) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
