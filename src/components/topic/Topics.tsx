@@ -33,7 +33,7 @@ export const Topics: React.FC<TopicsProps> = ({
 
   return (
     <div className="d-flex flex-wrap">
-      <ListGroup horizontal>
+      <ListGroup horizontal style={{ display: "flex", flexWrap: "wrap" }}>
         {availableTopics && availableTopics.length > 0 ? (
           availableTopics.map((topic) => (
             <ListGroup.Item
@@ -41,15 +41,23 @@ export const Topics: React.FC<TopicsProps> = ({
               style={{
                 backgroundColor: "#F0F0F0",
                 borderRadius: "20px",
-                padding: "0px 5px",
-                cursor: onSelectTopic ? "pointer" : "default", // Solo hacer clickable si onSelectTopic está definido
-                marginRight: "5px",
-                marginBottom: "5px",
+                padding: "0px 4px",
+                cursor: onSelectTopic ? "pointer" : "default",
+                marginRight: "4px",
                 color: "#000",
+                fontSize: "12px",
+                flex: "0 1 48%", // Dos por fila, ajustable según el espacio
+                marginBottom: "8px",
+                maxWidth: "200px", // Limita el ancho a 200px
+                overflow: "hidden", // Oculta el contenido que exceda el límite
+                textOverflow: "ellipsis", // Muestra "..." si el texto se corta
+                whiteSpace: "nowrap", // Evita que el texto se rompa en varias líneas
               }}
-              onClick={() => onSelectTopic && onSelectTopic(topic)} // Solo ejecutar onClick si onSelectTopic está definido
+              onClick={() => onSelectTopic && onSelectTopic(topic)}
             >
-              {topic.description}
+              {topic.description.length > 20
+                ? topic.description.slice(0, 20) + "..."
+                : topic.description}
             </ListGroup.Item>
           ))
         ) : (

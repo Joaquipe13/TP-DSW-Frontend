@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { Form, FormControl, Button } from "react-bootstrap";
-import { FaSearch } from "react-icons/fa";
+import { Form, FormControl } from "react-bootstrap";
 
 interface SearchBoxProps {
-  onSearch: (query: string) => void;
+  onSearch: (title: string) => void;
 }
 
 export const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
@@ -12,8 +11,12 @@ export const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const input = e.target.value;
     setSearchInput(input);
-    const queryString = `?title=${input.trim()}`;
-    onSearch(queryString); // Llamamos a onSearch en cada cambio
+    onSearch(input);
+  };
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+    }
   };
 
   return (
@@ -25,6 +28,7 @@ export const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
         style={{ fontSize: "20px" }}
         value={searchInput}
         onChange={handleChange}
+        onKeyDown={handleKeyDown}
       />
     </Form>
   );

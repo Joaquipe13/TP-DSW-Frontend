@@ -4,7 +4,6 @@ import { usePost } from "../common/hooks";
 import { Course } from "../types";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Badge from "react-bootstrap/Badge";
 import { Topics } from "../topic/topics";
@@ -14,11 +13,12 @@ import {
   validatePrice,
   validateTopics,
 } from "./validations/courseValidate";
-import { Loading, Error } from "./../common/utils";
+import { Loading, Error } from "../common/utils";
 
 export const CourseCreate = () => {
   const { loading, error, create } = usePost<Course>("/api/courses/");
   const [title, setTitle] = useState<string>("");
+  const [resume, setResume] = useState<string>("");
   const [price, setPrice] = useState<string>("");
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
@@ -28,6 +28,7 @@ export const CourseCreate = () => {
 
   const [formErrors, setFormErrors] = useState<{
     title?: string;
+    resume?: string;
     price?: string;
     topics?: string;
   }>({});
@@ -49,12 +50,14 @@ export const CourseCreate = () => {
 
   const handleClick = () => {
     const titleError = validateTitle(title);
+    const resumeError = validateTitle(resume);
     const priceError = validatePrice(price);
     const topicsError = validateTopics(selectedTopics);
 
-    if (titleError || priceError || topicsError) {
+    if (titleError || resumeError || priceError || topicsError) {
       setFormErrors({
         title: titleError,
+        resume: resumeError,
         price: priceError,
         topics: topicsError,
       });
@@ -67,6 +70,7 @@ export const CourseCreate = () => {
     if (confirmed) {
       const newCourse: Course = {
         title: title,
+        resume: resume,
         price: parseFloat(price),
         topics: selectedTopicsIds,
       };
@@ -106,6 +110,20 @@ export const CourseCreate = () => {
             />
             <Form.Control.Feedback type="invalid">
               {formErrors.title}
+            </Form.Control.Feedback>
+          </Form.Group>
+          <Form.Group className="mb-3">
+            <Form.Label>Resume</Form.Label>
+            <Form.Control
+              ref={inputRef}
+              type="text"
+              placeholder="Course Title"
+              value={title}
+              onChange={(e) => setResume(e.target.value)}
+              isInvalid={!!formErrors.title}
+            />
+            <Form.Control.Feedback type="invalid">
+              {formErrors.resume}
             </Form.Control.Feedback>
           </Form.Group>
 

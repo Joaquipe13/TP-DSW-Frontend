@@ -1,6 +1,18 @@
 export const validateTitle = (title: string) => {
-  if (!title || title.trim() === "") {
+  const trimmedTitle = title.trim();
+  if (!title || trimmedTitle === "") {
     return "Title is required.";
+  }
+  if (trimmedTitle.length > 40) {
+    return "Title cannot be longer than 50 characters.";
+  }
+  return "";
+};
+
+export const validateResume = (resume: string) => {
+  const trimmedResume = resume.trim();
+  if (!resume || trimmedResume === "") {
+    return "Resume cannot be longer than 255 characters.";
   }
   return "";
 };

@@ -1,18 +1,10 @@
-import { getUser } from "./getUser.ts";
-export function userType() {
-  const user = getUser();
+import { getUser } from "./getUser";
+export async function userType() {
+  const user = await getUser();
   if (user) {
-    try {
-      if (user.admin === true) {
-        return "admin";
-      } else {
-        return "member";
-      }
-    } catch (error) {
-      console.error("Error parsing user data from cookie:", error);
-      return null;
-    }
+    return user.admin === true ? "admin" : "member";
   } else {
+    console.log("No user found.");
     return null;
   }
 }

@@ -1,11 +1,9 @@
 import React, { useState } from "react";
 import { Form, Button, Container, Card, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { validateRegister } from "./utils/validateRegister";
-import { createUser } from "./utils/createUser";
+import { validateRegister, createUser } from "./utils";
 
 export function RegisterForm() {
-  const [dni, setDni] = useState("");
   const [name, setName] = useState("");
   const [surname, setSurname] = useState("");
   const [email, setEmail] = useState("");
@@ -15,7 +13,7 @@ export function RegisterForm() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    const userData = { dni, name, surname, email, password };
+    const userData = { name, surname, email, password };
 
     const validateUser = validateRegister(userData);
     if (Object.keys(validateUser).length === 0) {
@@ -45,7 +43,7 @@ export function RegisterForm() {
         }}
       >
         <Card.Body>
-          <h3 className="text-center mb-4" style={{ color: "#333" }}>
+          <h3 className="text-center mb-4 mt-3" style={{ color: "#333" }}>
             Register
           </h3>
           <Form onSubmit={handleSubmit}>
@@ -60,23 +58,8 @@ export function RegisterForm() {
                 ))}
               </div>
             )}
-            <Form.Group controlId="formDni" className="mb-3">
-              <Form.Label>DNI</Form.Label>
-              <Form.Control
-                type="text"
-                placeholder="Enter DNI"
-                value={dni}
-                onChange={(e) => setDni(e.target.value)}
-                isInvalid={errors.dni}
-              />
-              {errors.dni && (
-                <Form.Control.Feedback type="invalid">
-                  {errors.dni.join(", ")}
-                </Form.Control.Feedback>
-              )}
-            </Form.Group>
 
-            <Form.Group controlId="formName" className="mb-3">
+            <Form.Group controlId="formName" className="mb-4">
               <Form.Label>Name</Form.Label>
               <Form.Control
                 type="text"
@@ -92,7 +75,7 @@ export function RegisterForm() {
               )}
             </Form.Group>
 
-            <Form.Group controlId="formSurname" className="mb-3">
+            <Form.Group controlId="formSurname" className="mb-4">
               <Form.Label>Surname</Form.Label>
               <Form.Control
                 type="text"
@@ -108,7 +91,7 @@ export function RegisterForm() {
               )}
             </Form.Group>
 
-            <Form.Group controlId="formEmail" className="mb-3">
+            <Form.Group controlId="formEmail" className="mb-4">
               <Form.Label>Email</Form.Label>
               <Form.Control
                 type="email"
@@ -124,7 +107,7 @@ export function RegisterForm() {
               )}
             </Form.Group>
 
-            <Form.Group controlId="formPassword" className="mb-3">
+            <Form.Group controlId="formPassword" className="mb-4" >
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"

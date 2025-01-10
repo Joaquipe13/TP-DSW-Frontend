@@ -1,17 +1,32 @@
 import { Navigate } from "react-router-dom";
 import { userType } from "./userType.ts";
+import { useEffect, useState } from "react";
+import { Loading } from "../utils";
 export const AdminRoute = ({ element }: { element: JSX.Element }) => {
-  const storedUser = userType();
-  let user = null;
-  try {
-    user = storedUser ? storedUser : null;
-  } catch (error) {
-    console.error(error);
-    user = null;
-  }
-  if (user !== "admin") {
-    return <Navigate to="/" replace />;
+  const [role, setRole] = useState<null | {}>(null);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchRole = async () => {
+      try {
+        const fetchedUser = await userType();
+        setRole(fetchedUser);
+      } catch (error) {
+        console.error("Error fetching user:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    fetchRole();
+  }, []);
+  
+  if (loading) {
+    return <Loading />;
   }
 
+  if (!role || (role !== "admin")) {
+    return <Navigate to="/" replace />;
+  }
+  
   return element;
 };

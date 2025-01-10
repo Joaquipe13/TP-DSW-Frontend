@@ -1,17 +1,67 @@
-import Cookies from "js-cookie";
+import { getCookieValue, setCookieValue, porturl } from "../utils";
+function searchUser() {
+  const userData = getCookieValue("user");
+  if (!userData) {
+    return null;
+  }
+  const user = {
+    id: userData.id,
+    name: userData.name,
+    surname: userData.surname,
+    email: userData.email,
+    admin: userData.admin,
+  };
 
-export function getUser() {
-  const storedUser = Cookies.get("user");
+  return user;
+}
+function getToken() {
+  const token = getCookieValue("token");
+  return token;
+}
 
-  if (storedUser) {
+function handleResponse(response: any) {
+  if (response.ok) {
+    return response.json();
+  } else {
+    return response.json().then((errorData: any) => {
+      throw new Error(`Error: ${errorData.message}`);
+    });
+  }
+}
+
+async function fetchUserData(token: any) {
+  return fetch(porturl + "/api/login/auth", {
+    method: "GET",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    credentials: "include",
+  }).then(handleResponse);
+}
+
+function storeUserData(user: any) {
+  setCookieValue(user, "user", 1);
+}
+
+export async function getUser() {
+  const user = searchUser();
+  if (user) {
+    return user;
+  } else {
+    const token = getToken();
+    if (!token) {
+      return null;
+    }
     try {
-      const user = JSON.parse(storedUser);
+      const data = await fetchUserData(token);
+      const user = data.user;
+      storeUserData(user);
+
       return user;
     } catch (error) {
-      console.error("Error al parsear el usuario desde la cookie:", error);
+      console.error("Error:", error);
       return null;
     }
   }
-
-  return null;
 }

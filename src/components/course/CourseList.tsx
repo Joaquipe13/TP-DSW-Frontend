@@ -4,25 +4,22 @@ import Table from "react-bootstrap/Table";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import { Loading, Error } from "./../common/utils";
-import { CoursePreview } from "./coursePreview";
+import { Loading, Error } from "../common/utils/index.ts";
 import { useGet } from "../common/hooks/index.ts";
 import { Card } from "react-bootstrap";
+import { CoursePreview } from "./CoursePreview.tsx";
 interface CourseListProps {
   view: number;
-  searchQuery: string;
+  title: string;
 }
 
-export const CourseList: React.FC<CourseListProps> = ({
-  view,
-  searchQuery,
-}) => {
+export const CourseList: React.FC<CourseListProps> = ({ view, title }) => {
   const {
     data: courses,
     error,
     loading,
     fetchData,
-  } = useGet<Course>(`/api/courses${searchQuery}`);
+  } = useGet<Course>(`/api/courses?title=${title}`);
 
   useEffect(() => {
     fetchData();
@@ -48,7 +45,7 @@ export const CourseList: React.FC<CourseListProps> = ({
             {courses
               .filter((course) => view === 3 || course.isActive === isActive)
               .reduce((acc, course, index) => {
-                if (index % 3 === 0) acc.push([]);
+                if (index % 2 === 0) acc.push([]);
                 acc[acc.length - 1].push(course);
                 return acc;
               }, [])
@@ -58,9 +55,9 @@ export const CourseList: React.FC<CourseListProps> = ({
                     <Col
                       key={course.id}
                       xs={12}
-                      sm={4}
-                      md={4}
-                      lg={4}
+                      sm={6}
+                      md={6}
+                      lg={6}
                       className="d-flex justify-content-center"
                     >
                       <CoursePreview id={course.id} />

@@ -22,8 +22,8 @@ import {
   SubscriptionCreatePage,
   SubscriptionUpdatePage,
   PurchasesRecordPage,
-  MyPurchasesPage,
   InDevelopmentPage,
+  SubscriptionsRecordPage,
 } from "./components/pages";
 import { PrivateRoute, AdminRoute } from "./components/common/authentication";
 
@@ -38,8 +38,9 @@ const router = createBrowserRouter([
   },
   {
     path: "/",
-    element: <PrivateRoute element={<App />} />,
+    element: <App />,
     children: [
+      //Admin routes
       {
         path: "topic/list",
         element: <AdminRoute element={<TopicListPage />} />,
@@ -49,29 +50,12 @@ const router = createBrowserRouter([
         element: <AdminRoute element={<TopicCreatePage />} />,
       },
       {
-        path: "course/list",
-        element: <PrivateRoute element={<CourseListPage />} />,
+        path: "course/update/:id",
+        element: <AdminRoute element={<CourseUpdatePage />} />,
       },
       {
         path: "course/create",
         element: <AdminRoute element={<CourseCreatePage />} />,
-      },
-      {
-        path: "course/:id",
-        element: <PrivateRoute element={<CoursePage />} />,
-      },
-
-      {
-        path: "course/update/:id",
-        element: <PrivateRoute element={<CourseUpdatePage />} />,
-      },
-      {
-        path: "myCourses",
-        element: <PrivateRoute element={<MyCourseListPage />} />,
-      },
-      {
-        path: "level/:courseId/:id",
-        element: <PrivateRoute element={<LevelPage />} />,
       },
       {
         path: "level/create/:courseId",
@@ -82,10 +66,6 @@ const router = createBrowserRouter([
         element: <AdminRoute element={<LevelUpdatePage />} />,
       },
       {
-        path: "unit/:courseId/:levelId/:id",
-        element: <PrivateRoute element={<UnitPage />} />,
-      },
-      {
         path: "unit/create/:courseId/:levelId",
         element: <AdminRoute element={<UnitCreatePage />} />,
       },
@@ -93,17 +73,10 @@ const router = createBrowserRouter([
         path: "unit/update/:courseId/:levelId/:id",
         element: <AdminRoute element={<UnitUpdatePage />} />,
       },
+
       {
-        path: "coursePurchaseRecords",
-        element: <AdminRoute element={<PurchasesRecordPage />} />,
-      },
-      {
-        path: "myPurchases",
-        element: <PrivateRoute element={<MyPurchasesPage />} />,
-      },
-      {
-        path: "subscription/list",
-        element: <PrivateRoute element={<SubscriptionListPage />} />,
+        path: "subscriptionsPurchaseRecords",
+        element: <AdminRoute element={<SubscriptionsRecordPage />} />,
       },
       {
         path: "subscription/create",
@@ -113,9 +86,54 @@ const router = createBrowserRouter([
         path: "subscription/update/:id",
         element: <AdminRoute element={<SubscriptionUpdatePage />} />,
       },
+
+      // User routes
+      {
+        path: "coursePurchaseRecords",
+        element: <PrivateRoute element={<PurchasesRecordPage />} />,
+      },
+      {
+        path: "myCourses",
+        element: <PrivateRoute element={<MyCourseListPage />} />,
+      },
+      {
+        path: "unit/:courseId/:levelId/:id",
+        element: <PrivateRoute element={<UnitPage />} />,
+      },
+
+      {
+        path: "level/:courseId/:id",
+        element: <PrivateRoute element={<LevelPage />} />,
+      },
+      {
+        path: "myPurchases",
+        element: <PrivateRoute element={<PurchasesRecordPage />} />,
+      },
+      {
+        path: "mySubscriptions",
+        element: <PrivateRoute element={<SubscriptionsRecordPage />} />,
+      },
+      // Public routes
+      {
+        path: "subscription/list",
+        element: <SubscriptionListPage />,
+      },
+      {
+        path: "/",
+        element: <CourseListPage />,
+      },
+
+      {
+        path: "course/list",
+        element: <CourseListPage />,
+      },
+      {
+        path: "course/:id",
+        element: <CoursePage />,
+      },
       {
         path: "inDevelopment/:title",
-        element: <PrivateRoute element={<InDevelopmentPage />} />,
+        element: <InDevelopmentPage />,
       },
     ],
   },

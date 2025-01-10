@@ -5,7 +5,7 @@ import { UnitPreview } from "./unitPreview.tsx";
 import { userType } from "../common/authentication/userType.ts";
 import { Unit } from "../types.tsx";
 import { useGet } from "../common/hooks/index.ts";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Loading, Error } from "../common/utils";
 interface UnitListProps {
   level: string | undefined;
@@ -13,21 +13,28 @@ interface UnitListProps {
 }
 
 export const UnitList: React.FC<UnitListProps> = ({ level, course }) => {
+  const [role, setRole] = useState<string | null>(null);
+
   const {
     data: units,
     error,
     loading,
     fetchData,
   } = useGet<Unit>(`/api/units?level=${level}`);
-  console.log(units);
-  console.log(level);
   useEffect(() => {
     fetchData();
   }, [fetchData]);
-
+  useEffect(() => {
+    const fetchUserRole = async () => {
+      setRole(null);
+      const fetchedRole = await userType();
+      setRole(fetchedRole);
+    };
+    fetchUserRole();
+  }, []);
   if (loading) return <Loading />;
   if (error) return <Error message={error} />;
-  const user = userType() ? userType() : "member";
+
   return (
     <Container>
       <ListGroup style={{ marginBottom: "1rem" }}>
@@ -39,7 +46,7 @@ export const UnitList: React.FC<UnitListProps> = ({ level, course }) => {
                 style={{ width: "100%" }}
                 variant="light"
               >
-                <UnitPreview id={unit.id} />
+                <UnitPreview name={unit.name} order={unit.order} />
               </NavigationButton>
             </ListGroup.Item>
           ))
@@ -47,7 +54,7 @@ export const UnitList: React.FC<UnitListProps> = ({ level, course }) => {
           <p>No units available</p>
         )}
       </ListGroup>
-      {user === "admin" && (
+      {role === "admin" && (
         <Container className="d-flex justify-content-center">
           <NavigationButton
             to={`/unit/create/${course}/${level}`}

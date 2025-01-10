@@ -1,20 +1,34 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import { CourseList, CourseSelector } from "../../course";
 import { NavigationButton } from "../../common/buttons";
 import { Card } from "react-bootstrap";
 import { userType } from "../../common/authentication";
-import { SearchBox } from "../../common/utils";
+import { Loading, SearchBox } from "../../common/utils";
 
 export const CourseListPage = () => {
   const [view, setView] = useState(3);
-  const [searchQuery, setSearchQuery] = useState(""); // Estado para la búsqueda
-  const role = userType();
-
-  const handleSearch = (query: string) => {
-    setSearchQuery(query);
+  const [title, setTitle] = useState("");
+  const [role, setRole] = useState<null | {}>(null);
+  const [loading, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchRole = async () => {
+      try {
+        const fetchedUser = await userType();
+        setRole(fetchedUser);
+      } catch (error) {
+        console.error("Error fetching user:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchRole();
+  }, []);
+  
+  const handleSearch = (title: string) => {
+    setTitle(title);
   };
-
+  if(loading) return <Loading />;
   return (
     <Container
       style={{ marginTop: "1rem", minHeight: "100vh", paddingBottom: "70px" }}
@@ -29,10 +43,7 @@ export const CourseListPage = () => {
       </Card.Body>
       {role === "admin" && <CourseSelector view={view} setView={setView} />}
       <Card>
-        <CourseList
-          view={role === "admin" ? view : 1}
-          searchQuery={searchQuery}
-        />
+        <CourseList view={role === "admin" ? view : 1} title={title} />
       </Card>
       {role === "admin" && (
         <Card.Body className="bg-light text-center p-3">

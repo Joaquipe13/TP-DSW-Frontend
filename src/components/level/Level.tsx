@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useGet } from "../common/hooks";
 import { Level } from "../types";
 import { NavigationButton } from "../common/buttons";
@@ -13,6 +13,21 @@ interface LevelGetOneProps {
 }
 
 export const LevelGetOne: React.FC<LevelGetOneProps> = ({ id, courseId }) => {
+  const [role, setRole] = useState<null | {}>(null);
+  const [loadingButton, setLoading] = useState(true);
+  useEffect(() => {
+    const fetchRole = async () => {
+      try {
+        const fetchedUser = await userType();
+        setRole(fetchedUser);
+      } catch (error) {
+        console.error("Error fetching user:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchRole();
+  }, []);
   const {
     data: level,
     loading,
@@ -27,7 +42,7 @@ export const LevelGetOne: React.FC<LevelGetOneProps> = ({ id, courseId }) => {
 
   if (loading) return <Loading />;
   if (error) return <Error message={error} />;
-  const user = userType() ? userType() : "member";
+
   return (
     <Container>
       <br />
@@ -45,13 +60,17 @@ export const LevelGetOne: React.FC<LevelGetOneProps> = ({ id, courseId }) => {
             </Card.Text>
             <UnitList level={id} course={courseId} />
           </div>
-          {user === "admin" && (
-            <NavigationButton
-              className="d-flex justify-content-center"
-              to={`/level/update/${courseId}/${id}`}
-              label="Edit"
-              style={{ marginTop: "2rem" }}
-            />
+          {loadingButton ? (
+            <Loading />
+          ) : (
+            role === "admin" && (
+              <NavigationButton
+                className="d-flex justify-content-center"
+                to={`/level/update/${courseId}/${id}`}
+                label="Edit"
+                style={{ marginTop: "2rem" }}
+              />
+            )
           )}
         </Card.Body>
       </Card>

@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { porturl } from "../utils/route";
+import { porturl } from "../utils";
 
 export function usePut<T>(baseUrl: string) {
   const [loading, setLoading] = useState<boolean>(false);

@@ -1,8 +1,8 @@
-import { porturl } from "../utils/route";
+import { porturl } from "../utils";
 
 export async function checkPurchase(
   user: number,
-  course: number
+  course: number | string
 ): Promise<boolean | null> {
   if (!user || !course) {
     console.error("Invalid userId or courseId", user, course);
@@ -25,11 +25,11 @@ export async function checkPurchase(
       return data.purchased ?? false;
     } else {
       const errorData = await response.json();
-      console.error("Error al verificar compra:", errorData.message);
+      console.error("Error verifying purchase:", errorData.message);
       return null;
     }
   } catch (error) {
-    console.error("Error en la solicitud de verificación de compra:", error);
+    console.error("Error in the purchase verification request:", error);
     return null;
   }
 }

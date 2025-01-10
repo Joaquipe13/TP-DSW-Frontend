@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Course, User } from "../types.tsx";
+import { Course } from "../types.tsx";
 import Card from "react-bootstrap/Card";
 import { Topics } from "../topic/topics.tsx";
 import { useGet } from "../common/hooks/useGet.ts";
-import { checkPurchase, getUser } from "../common/authentication";
-import { Loading, Error, DateComponent } from "./../common/utils";
-import { PurchaseButton, NavigationButton } from "../common/buttons";
+import { userType } from "../common/authentication/index.ts";
+import { Loading, Error, DateComponent } from "../common/utils/index.ts";
+import { NavigationButton } from "../common/buttons/index.ts";
 
 interface CoursePreviewProps {
   id: number;
@@ -18,52 +18,35 @@ export const CoursePreview: React.FC<CoursePreviewProps> = ({ id }) => {
     error,
     fetchData,
   } = useGet<Course>(`/api/courses/${id}`);
-  const [button, setButton] = useState<number>(2);
 
-  async function determineView(user: User, id: number): Promise<number> {
-    let view = 1;
-    if (user) {
-      if (user.admin) {
-        view = 1;
-      } else {
-        const purchaseStatus = await checkPurchase(user.id, id);
-        view = purchaseStatus ? 2 : 3;
-      }
-    }
-
-    return view;
-  }
+  const [role, setRole] = useState<null | {}>(null);
+  const [loadingButton, setLoading] = useState(true);
   useEffect(() => {
-    const fetchData = async () => {
-      const user = getUser();
-      if (user) {
-        const currentButton = await determineView(user, id);
-        setButton(currentButton);
-      } else {
-        console.log("User is not defined.");
-        setButton(3);
+    const fetchRole = async () => {
+      try {
+        const fetchedUser = await userType();
+        setRole(fetchedUser);
+      } catch (error) {
+        console.error("Error fetching user:", error);
+      } finally {
+        setLoading(false);
       }
     };
-
-    fetchData();
-  }, [id]);
+    fetchRole();
+  }, []);
   useEffect(() => {
     fetchData();
   }, [fetchData, id]);
 
   if (loading) return <Loading />;
+  if (loadingButton) return <Loading />;
   if (error) return <Error message={error} />;
   return (
-    <Card style={{ width: "18rem" }}>
+    <Card style={{ width: "40rem" }}>
       <Card.Header as="h5">{course?.title}</Card.Header>
       <Card.Body>
-        <Card.Text style={{ textAlign: "left" }}>
-          <strong>Created at:</strong>{" "}
-          <DateComponent
-            style={{ display: "inline-block" }}
-            date={course?.createdAt}
-          />
-        </Card.Text>
+        <Card.Text style={{ textAlign: "justify" }}>{course?.resume}</Card.Text>
+
         <Card.Text style={{ textAlign: "left" }}>
           <strong>Price:</strong> ${course?.price}
         </Card.Text>
@@ -71,19 +54,29 @@ export const CoursePreview: React.FC<CoursePreviewProps> = ({ id }) => {
           <strong>Topics:</strong>
         </Card.Text>
         <Topics selectedTopics={course?.topics} />
+        <Card.Text
+          style={{ textAlign: "left" }}
+          className="text-muted fw-light"
+        >
+          <strong>Created at:</strong>{" "}
+          <DateComponent
+            style={{ display: "inline-block" }}
+            date={course?.createdAt}
+          />
+        </Card.Text>
       </Card.Body>
       <Card.Body className="d-flex justify-content-center align-items-end">
-        {button === 1 ? (
+        {loadingButton ? (
+          <Loading />
+        ) : role === "admin" ? (
           <NavigationButton to={`/course/update/${course?.id}`} label="Edit" />
-        ) : button === 3 ? (
-          <PurchaseButton courseId={id} />
-        ) : button === 2 ? (
+        ) : (
           <NavigationButton
             to={`/Course/${course?.id}`}
             label="View"
             variant="secondary"
           />
-        ) : null}
+        )}
       </Card.Body>
     </Card>
   );
