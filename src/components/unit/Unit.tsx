@@ -24,16 +24,15 @@ export const UnitGetOne: React.FC<UnitGetOneProps> = ({
     fetchData();
   }, [fetchData, id]);
 
-  if (loading) return <Loading />;
-  if (error) return <Error message={error} />;
   useEffect(() => {
     const fetchUserRole = async () => {
-      setRole(null);
       const fetchedRole = await userType();
       setRole(fetchedRole);
     };
     fetchUserRole();
   }, []);
+  if (loading) return <Loading />;
+  if (error) return <Error message={error} />;
   return (
     <Container>
       <Card

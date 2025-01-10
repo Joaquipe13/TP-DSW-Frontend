@@ -9,10 +9,10 @@ import {
   Col,
 } from "react-bootstrap";
 import { Topic } from "../types.tsx";
-import { useCourseEdit, deleteCourse } from "./hooks/index.ts";
-import { Topics } from "../topic/topics.tsx";
-import { LevelList } from "../level/levelList.tsx";
-import { Loading, Error } from "../common/utils/index.ts";
+import { useCourseEdit, deleteCourse } from "./hooks";
+import { Topics } from "../topic";
+import { LevelList } from "../level";
+import { Loading, Error } from "../common/utils";
 
 interface CourseUpdateProps {
   courseId: string;
@@ -24,10 +24,12 @@ export const CourseUpdate: React.FC<CourseUpdateProps> = ({ courseId }) => {
     error,
     oldCourse,
     title,
+    resume,
     price,
     selectedTopics,
     formErrors,
     setTitle,
+    setResume,
     setPrice,
     setSelectedTopics,
     handleSave,
@@ -99,7 +101,32 @@ export const CourseUpdate: React.FC<CourseUpdateProps> = ({ courseId }) => {
                 {formErrors.title}
               </Form.Control.Feedback>
             </Form.Group>
-
+            <Form.Group className="mb-3">
+              <Form.Label>Resume</Form.Label>
+              <Form.Control
+                ref={inputRef}
+                as="textarea"
+                type="text"
+                placeholder={oldCourse?.resume || "Course Resume"}
+                value={resume}
+                onChange={(e) => setResume(e.target.value)}
+                isInvalid={!!formErrors.resume}
+                style={{
+                  textAlign: "left",
+                  paddingTop: "10px",
+                  resize: "vertical",
+                  minHeight: "120px",
+                  overflow: "hidden",
+                  display: "flex",
+                  flexDirection: "column",
+                  justifyContent: "flex-start",
+                  alignItems: "flex-start",
+                }}
+              />
+              <Form.Control.Feedback type="invalid">
+                {formErrors.resume}
+              </Form.Control.Feedback>
+            </Form.Group>
             <Form.Group className="mb-3">
               <Form.Label>Price</Form.Label>
               <Form.Control
@@ -126,7 +153,7 @@ export const CourseUpdate: React.FC<CourseUpdateProps> = ({ courseId }) => {
                 bg="primary"
                 className="me-2 mb-2"
                 onClick={() => handleTopicSelection(topic)}
-                style={{ cursor: "pointer" }}
+                style={{ cursor: "pointer", fontSize: "13px" }}
               >
                 {topic.description}
               </Badge>

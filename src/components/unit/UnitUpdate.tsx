@@ -76,10 +76,17 @@ export const UnitUpdate: React.FC<UnitUpdateProps> = ({ id }) => {
               <Form.Label>Content</Form.Label>
               <Form.Control
                 type="text"
+                as="textarea"
+                rows={3}
                 placeholder={oldUnit?.content?.toString() || "0000.00"}
                 value={content}
                 onChange={(e) => setContent(e.target.value)}
                 isInvalid={!!formErrors.content}
+                style={{
+                  textAlign: "left",
+                  paddingTop: "10px",
+                  minHeight: "120px",
+                }}
               />
               <Form.Control.Feedback type="invalid">
                 {formErrors.content}

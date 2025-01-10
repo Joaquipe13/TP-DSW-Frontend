@@ -51,7 +51,7 @@ export const LevelList: React.FC<LevelListProps> = ({ course }) => {
     if (user) {
       const purchaseStatus = await checkPurchase(user.id, course);
       const subscriptionStatus = await checkSubscription(user.id);
-      if (purchaseStatus || subscriptionStatus) {
+      if (purchaseStatus || subscriptionStatus || user.admin) {
         navigate(`/level/${course}/${id}`);
       } else {
         showPurchaseAlert();
