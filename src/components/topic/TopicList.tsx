@@ -22,7 +22,7 @@ export const TopicList = () => {
     error: creatingError,
     handleConfirmAdd,
     handleDescriptionChange,
-  } = useCreateTopic(fetchData); // Usar el hook de creación
+  } = useCreateTopic(fetchData);
 
   const handleAddClick = () => {
     setIsAdding(true);
@@ -48,6 +48,7 @@ export const TopicList = () => {
               marginBottom: "8px",
               boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
               padding: "1rem",
+             
             }}
           >
             {topic?.description}

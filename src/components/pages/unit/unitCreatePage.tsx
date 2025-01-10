@@ -22,7 +22,10 @@ export const UnitCreatePage: React.FC = () => {
           width: "100%",
         }}
       >
-        <NavigationButton to={`/course/${courseId}`} label="Back to Course" />
+        <NavigationButton
+          to={`/level/${courseId}/${levelId}`}
+          label="Back to Level"
+        />
       </Container>
     </Container>
   );

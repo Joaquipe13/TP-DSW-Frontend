@@ -107,9 +107,7 @@ export const UnitCreate: React.FC<UnitCreateProps> = ({ level, course }) => {
             style={{
               textAlign: "left",
               paddingTop: "10px",
-              resize: "vertical",
               minHeight: "120px",
-              overflow: "hidden",
             }}
           />
           <Form.Control.Feedback type="invalid">
