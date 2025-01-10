@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { useGet } from "../common/hooks/useGet.ts";
+import { useGet } from "../common/hooks";
 import { Unit } from "../types.tsx";
 import { NavigationButton } from "../common/buttons";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
-import { userType } from "../common/authentication/userType.ts";
+import { userType } from "../common/authentication";
 import { Loading, Error } from "./../common/utils";
 interface UnitGetOneProps {
   id: string | undefined;

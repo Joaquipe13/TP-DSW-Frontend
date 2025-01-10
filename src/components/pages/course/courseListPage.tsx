@@ -24,11 +24,11 @@ export const CourseListPage = () => {
     };
     fetchRole();
   }, []);
-  
+
   const handleSearch = (title: string) => {
     setTitle(title);
   };
-  if(loading) return <Loading />;
+  if (loading) return <Loading />;
   return (
     <Container
       style={{ marginTop: "1rem", minHeight: "100vh", paddingBottom: "70px" }}
@@ -41,7 +41,7 @@ export const CourseListPage = () => {
       <Card.Body>
         <SearchBox onSearch={handleSearch} />
       </Card.Body>
-      {role === "admin" && <CourseSelector view={view} setView={setView} />}
+      {role === "admin" && <CourseSelector setView={setView} />}
       <Card>
         <CourseList view={role === "admin" ? view : 1} title={title} />
       </Card>

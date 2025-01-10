@@ -4,10 +4,9 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-export const CourseSelector = ({ view, setView }) => {
+export const CourseSelector = ({ setView }) => {
   const [finished, setFinished] = useState(true);
   const [unfinished, setUnfinished] = useState(true);
-  const [allSelected, setAllSelected] = useState(true);
 
   const handleFinishedChange = () => {
     const newFinished = !finished;
@@ -23,19 +22,14 @@ export const CourseSelector = ({ view, setView }) => {
 
   const updateView = (newFinished, newUnfinished) => {
     if (newFinished && newUnfinished) {
-      setAllSelected(true);
       setView(3);
     } else if (!newFinished && !newUnfinished) {
-      setAllSelected(false);
       setView(3);
     } else if (newFinished) {
-      setAllSelected(false);
       setView(1);
     } else if (newUnfinished) {
-      setAllSelected(false);
       setView(2);
     } else {
-      setAllSelected(false);
       setView(null);
     }
   };

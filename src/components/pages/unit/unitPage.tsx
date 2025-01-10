@@ -3,7 +3,7 @@ import Card from "react-bootstrap/Card";
 import { useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import { NavigationButton } from "../../common/buttons";
-import { UnitGetOne } from "../../unit/unit.tsx";
+import { UnitGetOne } from "../../unit";
 
 export const UnitPage: React.FC = () => {
   const { courseId, levelId, id } = useParams<{
