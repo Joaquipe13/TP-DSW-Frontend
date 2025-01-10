@@ -9,6 +9,7 @@ export const SubscriptionListPage = () => {
   const [role, setRole] = useState<string | null>(null);
   useEffect(() => {
     const fetchUserRole = async () => {
+      console.log("fetching user role");
       setRole(null);
       const fetchedRole = await userType();
       setRole(fetchedRole);
@@ -26,7 +27,7 @@ export const SubscriptionListPage = () => {
         Subscriptions
       </Card.Title>
       <Card className="">
-        <SubscriptionList />{" "}
+        <SubscriptionList />
         {role === "admin" && (
           <Card.Body className="bg-light text-center p-3">
             <NavigationButton

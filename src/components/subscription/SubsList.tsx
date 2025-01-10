@@ -16,13 +16,14 @@ export const SubscriptionList = () => {
 
   useEffect(() => {
     fetchData();
+    console.log(subscriptions);
   }, [fetchData]);
 
   if (loading) return <Loading />;
   if (error) return <Error message={error} />;
 
   return (
-    <Container fluid>
+    <Container fluid className="mt-3">
       <Row className="gy-4 justify-content-center">
         {Array.isArray(subscriptions) && subscriptions.length > 0 ? (
           subscriptions.map((subscription) => (

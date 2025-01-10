@@ -14,16 +14,18 @@ interface SubscriptionPreviewProps {
 export const SubscriptionPreview: React.FC<SubscriptionPreviewProps> = ({
   id,
 }) => {
+  const [role, setRole] = useState<string | null>(null);
+  const [loadingButton, setLoading] = useState(true);
   const {
     data: subscription,
     loading,
     error,
     fetchData,
   } = useGet<Subscription>(`/api/subscriptions/${id}`);
-  const [role, setRole] = useState<string | null>(null);
-  const [loadingButton, setLoading] = useState(true);
+
   useEffect(() => {
     const fetchUserRole = async () => {
+      console.log("fetching user role");
       setLoading(true);
       const fetchedRole = await userType();
       setRole(fetchedRole);
@@ -39,7 +41,15 @@ export const SubscriptionPreview: React.FC<SubscriptionPreviewProps> = ({
   if (loading) return <Loading />;
   if (error) return <Error message={error} />;
   return (
-    <Card style={{ width: "14rem", marginTop: "1rem", marginBottom: "1rem", marginLeft: "1rem", marginRight: "1rem" }}>
+    <Card
+      style={{
+        width: "14rem",
+        marginTop: "1rem",
+        marginBottom: "1rem",
+        marginLeft: "1rem",
+        marginRight: "1rem",
+      }}
+    >
       <Card.Header as="h4" className="text-center ">
         {subscription?.description}
       </Card.Header>
