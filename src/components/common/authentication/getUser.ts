@@ -1,6 +1,7 @@
 import { getCookieValue, setCookieValue, porturl } from "../utils";
 function searchUser() {
   const userData = getCookieValue("user");
+  console.log("user cookie",userData)
   if (!userData) {
     return null;
   }

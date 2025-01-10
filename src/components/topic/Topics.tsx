@@ -39,19 +39,19 @@ export const Topics: React.FC<TopicsProps> = ({
             <ListGroup.Item
               key={topic.id}
               style={{
-                backgroundColor: "#6c757d", // Gris similar al fondo del badge
-                borderRadius: "50px", // Bordes redondeados para parecerse más al badge
-                padding: "4px 10px", // Añadí algo más de espacio horizontal
-                cursor: "pointer", // Cambié esto para siempre mostrar el cursor de pointer
+                backgroundColor: "#6c757d", 
+                borderRadius: "50px", 
+                padding: "4px 10px", 
+                cursor: "pointer",
                 marginRight: "4px",
-                color: "#fff", // Cambié el color del texto a blanco para mayor contraste
-                fontSize: "12px", // Tamaño de fuente similar al del badge
-                display: "inline-block", // Asegura que el elemento se acomode junto a otros
+                color: "#fff",
+                fontSize: "12px", 
+                display: "inline-block",
                 marginBottom: "8px",
-                maxWidth: "150px", // Limita el ancho
-                overflow: "hidden", // Evita que el texto sobresalga
-                textOverflow: "ellipsis", // Muestra "..." si el texto se corta
-                whiteSpace: "nowrap", // Evita que el texto se rompa en varias líneas
+                maxWidth: "150px", 
+                overflow: "hidden", 
+                textOverflow: "ellipsis",
+                whiteSpace: "nowrap", 
               }}
               onClick={() => onSelectTopic && onSelectTopic(topic)}
             >
