@@ -1,4 +1,4 @@
-import { porturl } from "../../common/utils";
+import { porturl } from "../../../common/utils";
 
 export async function getPurchasedCourses(
   user: number | null,

@@ -1,4 +1,4 @@
-import { porturl, setCookieValue } from "../../common/utils";
+import { porturl, setCookieValue } from "../../../common/utils";
 export async function validateLogin(email: string, password: string) {
   const url = porturl + "/api/login";
   try {

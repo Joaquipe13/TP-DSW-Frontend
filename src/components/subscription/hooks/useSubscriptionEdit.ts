@@ -1,12 +1,11 @@
 import { useState, useEffect } from "react";
-import { Subscription } from "../../types";
-import { useGet, usePut } from "../../common/hooks";
+import { Subscription } from "../../../common/utils/types";
+import { useGet, usePut } from "../../../common/hooks";
 import {
   validateDescription,
   validatePrice,
   validateDuration,
 } from "../validations/subsValidate";
-
 
 export const useSubscriptionEdit = (subscriptionId: string) => {
   const {

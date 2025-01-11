@@ -1,11 +1,11 @@
 import { useEffect } from "react";
-import { Course } from "../types.tsx";
+import { Course } from "../../common/utils/types.tsx";
 import Table from "react-bootstrap/Table";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import { Loading, Error } from "../common/utils/index.ts";
-import { useGet } from "../common/hooks/index.ts";
+import { Loading, Error } from "../../common/utils/index.ts";
+import { useGet } from "../../common/hooks/index.ts";
 import { Card } from "react-bootstrap";
 import { CoursePreview } from "./coursePreview.tsx";
 interface CourseListProps {

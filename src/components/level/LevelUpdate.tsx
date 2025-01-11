@@ -3,7 +3,7 @@ import { Container, Card, Form, Button, Row, Col } from "react-bootstrap";
 import { useLevelEdit, deleteLevel } from "./hooks";
 import { UnitList } from "../unit/unitList.tsx";
 import { useNavigate } from "react-router-dom";
-import { Loading, Error } from "../common/utils";
+import { Loading, Error } from "../../common/utils/index.ts";
 
 interface LevelUpdateProps {
   courseId: string;

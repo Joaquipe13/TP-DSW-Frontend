@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Container, Table } from "react-bootstrap";
-import { useGet } from "../common/hooks/index.ts";
-import { Loading, Error } from "../common/utils/index.ts";
-import { CoursePurchaseRecord } from "../types.tsx";
-import { NavigationButton } from "../common/buttons";
+import { useGet } from "../../common/hooks/index.ts";
+import { Loading, Error } from "../../common/utils/index.ts";
+import { CoursePurchaseRecord } from "../../common/utils/types.tsx";
+import { NavigationButton } from "../../common/buttons/index.ts";
 interface MyPurchasesListProps {
   startDate?: Date;
   endDate?: Date;

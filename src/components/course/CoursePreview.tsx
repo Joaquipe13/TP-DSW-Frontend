@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Course } from "../types.tsx";
+import { Course } from "../../common/utils/types.tsx";
 import Card from "react-bootstrap/Card";
 import { Topics } from "../topic/topics.tsx";
-import { useGet } from "../common/hooks/useGet.ts";
-import { userType } from "../common/authentication/index.ts";
-import { Loading, Error, DateComponent } from "../common/utils/index.ts";
-import { NavigationButton } from "../common/buttons/index.ts";
+import { useGet } from "../../common/hooks/useGet.ts";
+import { userType } from "../../common/authentication/index.ts";
+import { Loading, Error, DateComponent } from "../../common/utils/index.ts";
+import { NavigationButton } from "../../common/buttons/index.ts";
 
 interface CoursePreviewProps {
   id: number;
@@ -19,7 +19,7 @@ export const CoursePreview: React.FC<CoursePreviewProps> = ({ id }) => {
     fetchData,
   } = useGet<Course>(`/api/courses/${id}`);
 
-  const [role, setRole] = useState<null | {}>(null);
+  const [role, setRole] = useState<null | string>(null);
   const [loadingButton, setLoading] = useState(true);
   useEffect(() => {
     const fetchRole = async () => {

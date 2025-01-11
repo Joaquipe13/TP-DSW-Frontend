@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Unit } from "../../types";
-import { useGet, usePut } from "../../common/hooks";
+import { Unit } from "../../../common/utils/types";
+import { useGet, usePut } from "../../../common/hooks";
 import {
   validateUnitName,
   validateUnitContent,

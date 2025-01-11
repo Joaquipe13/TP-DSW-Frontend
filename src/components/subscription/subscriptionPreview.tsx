@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
-import { useGet } from "../common/hooks/index.ts";
-import { Subscription } from "../types.tsx";
-import { NavigationButton } from "../common/buttons/index.ts";
+import { useGet } from "../../common/hooks/index.ts";
+import { Subscription } from "../../common/utils/types.tsx";
+import { NavigationButton } from "../../common/buttons/index.ts";
 import { Card } from "react-bootstrap";
-import { Loading, Error } from "../common/utils/index.ts";
-import { userType } from "../common/authentication/index.ts";
+import { Loading, Error } from "../../common/utils/index.ts";
+import { userType } from "../../common/authentication/index.ts";
 import { SubscriptionButton } from "../purchaseRecord/utils/purchaseSubsButton.tsx";
 
 interface SubscriptionPreviewProps {

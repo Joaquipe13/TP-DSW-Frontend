@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { Level } from "../../types";
-import { useGet, usePut } from "../../common/hooks";
+import { Level } from "../../../common/utils/types";
+import { useGet, usePut } from "../../../common/hooks";
 import {
   validateLevelName,
   validateLevelDescription,

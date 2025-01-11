@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { usePost } from "../common/hooks";
-import { Course } from "../types";
+import { usePost } from "../../common/hooks";
+import { Course } from "../../common/utils/types";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
@@ -13,7 +13,7 @@ import {
   validatePrice,
   validateTopics,
 } from "./validations/courseValidate";
-import { Loading, Error } from "../common/utils";
+import { Loading, Error } from "../../common/utils";
 
 export const CourseCreate = () => {
   const { loading, error, create } = usePost<Course>("/api/courses/");

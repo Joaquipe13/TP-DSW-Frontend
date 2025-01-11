@@ -1,5 +1,5 @@
 import { useMemo } from "react";
-import { CoursePurchaseRecord } from "../../types";
+import { CoursePurchaseRecord } from "../../../common/utils/types";
 
 export function useFilteredPurchases(
   purchaseRecords: CoursePurchaseRecord[] | undefined,

@@ -1,4 +1,3 @@
-import React from "react";
 import { createBrowserRouter } from "react-router-dom";
 import { App } from "./App";
 
@@ -24,8 +23,8 @@ import {
   PurchasesRecordPage,
   InDevelopmentPage,
   SubscriptionsRecordPage,
-} from "./components/pages";
-import { PrivateRoute, AdminRoute } from "./components/common/authentication";
+} from "./pages";
+import { PrivateRoute, AdminRoute } from "./common/authentication";
 
 const router = createBrowserRouter([
   {

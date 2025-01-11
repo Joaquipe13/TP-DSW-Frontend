@@ -3,8 +3,8 @@ import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
-import { usePost } from "../common/hooks";
-import { Unit } from "../types";
+import { usePost } from "../../common/hooks";
+import { Unit } from "../../common/utils/types";
 import {
   validateUnitName,
   validateUnitContent,

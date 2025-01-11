@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { usePost } from "../../common/hooks/usePost.ts";
-import { Topic } from "../../types.tsx";
+import { usePost } from "../../../common/hooks/usePost.ts";
+import { Topic } from "../../../common/utils/types.tsx";
 
 export const useCreateTopic = (fetchData: () => void) => {
   const [newTopicDescription, setNewTopicDescription] = useState<string>("");
