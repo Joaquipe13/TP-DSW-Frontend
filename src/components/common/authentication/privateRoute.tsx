@@ -1,6 +1,6 @@
 import { Navigate } from "react-router-dom";
 import { getUser } from "./getUser";
-import { Loading } from "../utils/loading.tsx";
+import { Loading } from "../utils";
 import { useEffect, useState } from "react";
 
 export const PrivateRoute = ({ element }: { element: JSX.Element }) => {

@@ -28,7 +28,11 @@ export const SubscriptionList = () => {
         {Array.isArray(subscriptions) && subscriptions.length > 0 ? (
           subscriptions.map((subscription) => (
             <Col key={subscription.id} xs={12} sm={6} md={4} lg={3}>
-              <SubscriptionPreview id={subscription.id} />
+              {!subscription.id ? (
+                <Loading />
+              ) : (
+                <SubscriptionPreview id={subscription.id} />
+              )}
             </Col>
           ))
         ) : (

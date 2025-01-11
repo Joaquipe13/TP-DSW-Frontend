@@ -7,9 +7,9 @@ import { userType } from "../../common/authentication";
 import { Loading, SearchBox } from "../../common/utils";
 
 export const CourseListPage = () => {
-  const [view, setView] = useState(3);
+  const [view, setView] = useState<number>(3);
   const [title, setTitle] = useState("");
-  const [role, setRole] = useState<null | {}>(null);
+  const [role, setRole] = useState<null | string>(null);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
     const fetchRole = async () => {

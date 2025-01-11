@@ -8,18 +8,18 @@ import Container from "react-bootstrap/Container";
 import { userType } from "../common/authentication";
 import { Loading, Error } from "../common/utils";
 interface LevelGetOneProps {
-  id: string | undefined;
-  courseId: string | undefined;
+  id: string;
+  courseId: string;
 }
 
 export const LevelGetOne: React.FC<LevelGetOneProps> = ({ id, courseId }) => {
-  const [role, setRole] = useState<null | {}>(null);
+  const [role, setRole] = useState<null | string>(null);
   const [loadingButton, setLoading] = useState(true);
   useEffect(() => {
     const fetchRole = async () => {
       try {
-        const fetchedUser = await userType();
-        setRole(fetchedUser);
+        const userRole = await userType();
+        setRole(userRole);
       } catch (error) {
         console.error("Error fetching user:", error);
       } finally {
@@ -33,7 +33,7 @@ export const LevelGetOne: React.FC<LevelGetOneProps> = ({ id, courseId }) => {
     loading,
     error,
     fetchData,
-  } = useGet<Level>(`/api/levels/${id}`);
+  } = useGet<Level>(`/api/levels/${id}`, false);
   console.log(level);
 
   useEffect(() => {
@@ -47,19 +47,28 @@ export const LevelGetOne: React.FC<LevelGetOneProps> = ({ id, courseId }) => {
     <Container>
       <br />
       <Card>
-        <Card.Header as="h3">
-          Level {level?.order}: {level?.name}
-        </Card.Header>
+        {Array.isArray(level) || level == null ? (
+          <Loading />
+        ) : (
+            <Card.Header as="h3">
+              Level {level.order}: {level.name}
+            </Card.Header>
+        )}
+
         <Card.Body>
-          <div style={{ textAlign: "left" }}>
-            <Card.Text className="fs-4">
-              <strong>Description:</strong> {level?.description}
-            </Card.Text>
-            <Card.Text className="fs-4">
-              <strong>Units:</strong>
-            </Card.Text>
-            <UnitList level={id} course={courseId} />
-          </div>
+          {Array.isArray(level) || level == null ? (
+            <Loading />
+          ) : (
+            <div style={{ textAlign: "left" }}>
+              <Card.Text className="fs-4">
+                <strong>Description:</strong> {level.description}
+              </Card.Text>
+              <Card.Text className="fs-4">
+                <strong>Units:</strong>
+              </Card.Text>
+              <UnitList level={id} course={courseId} />
+            </div>
+          )}
           {loadingButton ? (
             <Loading />
           ) : (

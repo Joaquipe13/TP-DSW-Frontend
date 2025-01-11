@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { Container, Table } from "react-bootstrap";
-import { useGet } from "../common/hooks/index.ts";
-import { Loading, Error } from "../common/utils/index.ts";
+import { useGet } from "../common/hooks";
+import { Loading, Error } from "../common/utils";
 import { SubsPurchaseRecord } from "../types.tsx";
-import { getUser } from "../common/authentication/getUser.ts";
 interface MySubscriptionsListProps {
   startDate?: Date;
   endDate?: Date;

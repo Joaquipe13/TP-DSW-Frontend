@@ -2,7 +2,7 @@ import Container from "react-bootstrap/Container";
 import ListGroup from "react-bootstrap/ListGroup";
 import { NavigationButton } from "../common/buttons";
 import { Level } from "../types.tsx";
-import { useGet } from "../common/hooks/useGet.ts";
+import { useGet } from "../common/hooks";
 import { useEffect, useState } from "react";
 import { Loading, Error } from "../common/utils";
 import { LevelPreview } from "./levelPreview.tsx";
@@ -70,13 +70,19 @@ export const LevelList: React.FC<LevelListProps> = ({ course }) => {
         {Array.isArray(levels) ? (
           levels.map((level) => (
             <ListGroup.Item key={level.id}>
-              <Button
-                onClick={() => handleLevel(level.id)}
-                style={{ width: "100%" }}
-                variant="light"
-              >
-                <LevelPreview id={level.id} />
-              </Button>
+              {level.id === undefined ? (
+                <Button>
+                  <Loading />
+                </Button>
+              ) : (
+                <Button
+                  onClick={() => handleLevel(level.id)}
+                  style={{ width: "100%" }}
+                  variant="light"
+                >
+                  <LevelPreview id={level.id} />
+                </Button>
+              )}
             </ListGroup.Item>
           ))
         ) : (

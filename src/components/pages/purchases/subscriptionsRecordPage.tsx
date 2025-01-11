@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Card, Container } from "react-bootstrap";
-import { DateRangePicker, Loading } from "../../common/utils/index.ts";
-import {
-  MySubscriptionsList,
-  SubscriptionsList,
-} from "../../purchaseRecord/index.ts";
+import { DateRangePicker, Loading } from "../../common/utils";
+import { MySubscriptionsList, SubscriptionsList } from "../../purchaseRecord";
 import { userType, getUser } from "../../common/authentication";
 
 export const SubscriptionsRecordPage: React.FC = () => {

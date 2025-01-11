@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Card, Container } from "react-bootstrap";
-import { DateRangePicker, Loading } from "../../common/utils/index.ts";
-import { MyPurchasesList, PurchasesList } from "../../purchaseRecord/index.ts";
-import { userType } from "../../common/authentication/userType.ts";
-import { getUser } from "../../common/authentication/getUser.ts";
+import { DateRangePicker, Loading } from "../../common/utils";
+import { MyPurchasesList, PurchasesList } from "../../purchaseRecord";
+import { userType, getUser } from "../../common/authentication";
 
 export const PurchasesRecordPage: React.FC = () => {
   const [startDate, setStartDate] = useState<Date | undefined>(undefined);

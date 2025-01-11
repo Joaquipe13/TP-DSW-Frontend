@@ -3,10 +3,10 @@ import { usePost } from "../../common/hooks/usePost.ts";
 import Button from "react-bootstrap/Button";
 import { getUser } from "../../common/authentication/getUser.ts";
 import { useLoginAlert } from "../../common/hooks/useLoginAlert.tsx";
-import { PurchaseConfirmationModal } from "./PurchaseConfirmationModal";
+import { PurchaseConfirmationModal } from "./purchaseConfirmationModal";
 
 interface PurchaseButtonProps {
-  courseId: number;
+  courseId: number | string;
 }
 
 export function PurchaseButton({ courseId }: PurchaseButtonProps) {
@@ -16,7 +16,7 @@ export function PurchaseButton({ courseId }: PurchaseButtonProps) {
 
   const { showLoginAlert, LoginAlert } = useLoginAlert();
 
-  const { create, loading } = usePost<{ course: number; user: number }>(
+  const { create, loading } = usePost<{ course: number | string; user: number }>(
     "/api/coursePurchaseRecords"
   );
 
@@ -29,11 +29,11 @@ export function PurchaseButton({ courseId }: PurchaseButtonProps) {
       return;
     }
 
-    setShowConfirmModal(true); // Mostrar el modal de confirmación
+    setShowConfirmModal(true);
   };
 
-  const handleConfirmPurchase = async() => {
-    setShowConfirmModal(false); 
+  const handleConfirmPurchase = async () => {
+    setShowConfirmModal(false);
     setIsConfirming(true);
     const user = await getUser();
     const userId = user ? user.id : null;

@@ -1,20 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { useGet } from "../common/hooks/index.ts";
+import { useGet } from "../common/hooks";
 import { Course, User } from "../types.tsx";
-import { NavigationButton } from "../common/buttons/index.ts";
-import { Topics } from "../topic/topics.tsx";
-import { LevelList } from "../level/levelList.tsx";
+import { NavigationButton } from "../common/buttons";
+import { Topics } from "../topic";
+import { LevelList } from "../level";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
-import { Loading, Error, DateComponent } from "../common/utils/index.ts";
-import { PurchaseButton } from "../purchaseRecord/utils/index.ts";
+import { Loading, Error, DateComponent } from "../common/utils";
+import { PurchaseButton } from "../purchaseRecord/utils";
 import {
   checkSubscription,
   checkPurchase,
   getUser,
-} from "../common/authentication/index.ts";
+} from "../common/authentication";
 interface CourseGetOneProps {
-  id: string | undefined;
+  id: string;
 }
 
 export const CourseGetOne: React.FC<CourseGetOneProps> = ({ id }) => {
@@ -23,19 +23,20 @@ export const CourseGetOne: React.FC<CourseGetOneProps> = ({ id }) => {
     loading,
     error,
     fetchData,
-  } = useGet<Course>(`/api/courses/${id}`);
+  } = useGet<Course>(`/api/courses/${id}`, false);
 
   const [button, setButton] = useState<number>(2);
-  async function determineView(user: User, id: number): Promise<number> {
+  async function determineView(user: User, id: string): Promise<number> {
     let view = 1;
     if (user) {
       if (user.admin) {
         view = 1;
       } else {
-        console.log("user", user.id,"course", id);
         const purchaseStatus =
-          id && user ? await checkPurchase(user.id, id) : false;
-        const subscriptionStatus = await checkSubscription(user.id);
+          id && user.id ? await checkPurchase(user.id, id) : false;
+        const subscriptionStatus = user.id
+          ? await checkSubscription(user.id)
+          : false;
         view = purchaseStatus || subscriptionStatus ? 2 : 3;
       }
     }
@@ -67,33 +68,41 @@ export const CourseGetOne: React.FC<CourseGetOneProps> = ({ id }) => {
     <Container>
       <br />
       <Card>
-        <Card.Header as="h3">{course?.title}</Card.Header>
+        {Array.isArray(course) || course == null ? (
+          <Loading />
+        ) : (
+          <Card.Header as="h3">{course.title}</Card.Header>
+        )}
         <Card.Body>
-          <div style={{ textAlign: "left" }}>
-            <Card.Text className="fs-4">{course?.resume}</Card.Text>
-            <Card.Text className="fs-4">
-              <strong>Price:</strong> ${course?.price}
-            </Card.Text>
-            <Card.Text className="fs-4">
-              <strong>Topics:</strong>
-            </Card.Text>
-            <Topics selectedTopics={course?.topics} />
-            <Card.Text
-              style={{ textAlign: "left" }}
-              className="text-muted fw-light"
-            >
-              <strong>Created at:</strong>{" "}
-              <DateComponent
-                style={{ display: "inline-block" }}
-                date={course?.createdAt}
-              />
-            </Card.Text>
-            <Card.Text className="fs-4">
-              <strong>Levels:</strong>
-            </Card.Text>
+          {Array.isArray(course) || course == null ? (
+            <Loading />
+          ) : (
+            <div style={{ textAlign: "left" }}>
+              <Card.Text className="fs-4">{course.resume}</Card.Text>
+              <Card.Text className="fs-4">
+                <strong>Price:</strong> ${course.price}
+              </Card.Text>
+              <Card.Text className="fs-4">
+                <strong>Topics:</strong>
+              </Card.Text>
+              <Topics selectedTopics={course.topics} />
+              <Card.Text
+                style={{ textAlign: "left" }}
+                className="text-muted fw-light"
+              >
+                <strong>Created at:</strong>{" "}
+                <DateComponent
+                  style={{ display: "inline-block" }}
+                  date={course.createdAt}
+                />
+              </Card.Text>
+              <Card.Text className="fs-4">
+                <strong>Levels:</strong>
+              </Card.Text>
 
-            <LevelList course={id} />
-          </div>
+              <LevelList course={id} />
+            </div>
+          )}
         </Card.Body>
         <Card.Body className="d-flex justify-content-center align-items-end">
           {button === 1 ? (

@@ -3,7 +3,7 @@ import { usePost } from "../../common/hooks/usePost.ts";
 import Button from "react-bootstrap/Button";
 import { getUser } from "../../common/authentication/getUser.ts";
 import { useLoginAlert } from "../../common/hooks/useLoginAlert.tsx";
-import { PurchaseConfirmationModal } from "./PurchaseConfirmationModal";
+import { PurchaseConfirmationModal } from "./purchaseConfirmationModal";
 
 interface SubscriptionButtonProps {
   subscriptionId: number;
@@ -75,7 +75,6 @@ export function SubscriptionButton({
       </Button>
       <LoginAlert />
 
-      {/* Modal de confirmación */}
       <PurchaseConfirmationModal
         show={showConfirmModal}
         onConfirm={handleConfirmPurchase}

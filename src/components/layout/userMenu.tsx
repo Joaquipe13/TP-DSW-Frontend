@@ -4,7 +4,7 @@ import NavDropdown from "react-bootstrap/NavDropdown";
 import { FaUserCircle } from "react-icons/fa";
 import { userType } from "../common/authentication/userType";
 import { useLogout } from "../common/hooks";
-import { RegisterOverlay, LoginOverlay } from "../authentication/";
+import { RegisterOverlay, LoginOverlay } from "../authentication";
 export const UserMenu: React.FC = () => {
   const { handleLogout } = useLogout();
   const [showLogin, setShowLogin] = useState(false);

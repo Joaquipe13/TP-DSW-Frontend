@@ -7,7 +7,7 @@ import Row from "react-bootstrap/Row";
 import { Loading, Error } from "../common/utils/index.ts";
 import { useGet } from "../common/hooks/index.ts";
 import { Card } from "react-bootstrap";
-import { CoursePreview } from "./CoursePreview.tsx";
+import { CoursePreview } from "./coursePreview.tsx";
 interface CourseListProps {
   view: number;
   title: string;

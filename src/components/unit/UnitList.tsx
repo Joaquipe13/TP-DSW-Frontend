@@ -1,10 +1,10 @@
 import Container from "react-bootstrap/Container";
 import ListGroup from "react-bootstrap/ListGroup";
 import { NavigationButton } from "../common/buttons";
-import { UnitPreview } from "./unitPreview.tsx";
-import { userType } from "../common/authentication/userType.ts";
+import { UnitPreview } from "./unitPreview";
+import { userType } from "../common/authentication";
 import { Unit } from "../types.tsx";
-import { useGet } from "../common/hooks/index.ts";
+import { useGet } from "../common/hooks";
 import { useEffect, useState } from "react";
 import { Loading, Error } from "../common/utils";
 interface UnitListProps {

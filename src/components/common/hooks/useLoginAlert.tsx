@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
-import { LoginOverlay } from "../../authentication/";
+import { LoginOverlay } from "../../authentication";
 
 export const useLoginAlert = () => {
   const [show, setShow] = useState(false);

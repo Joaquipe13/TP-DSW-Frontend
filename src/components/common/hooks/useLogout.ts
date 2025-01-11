@@ -1,5 +1,5 @@
 import { removeSessionCookies, removeToken } from "../authentication";
-import { getCookieValue } from "../utils/getCookiesValue.ts";
+import { getCookieValue } from "../utils";
 
 export function useLogout() {
   const handleLogout = async () => {

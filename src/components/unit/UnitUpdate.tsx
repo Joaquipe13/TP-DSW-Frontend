@@ -4,12 +4,16 @@ import { useUnitEdit, deleteUnit } from "./hooks";
 import { useNavigate } from "react-router-dom";
 
 interface UnitUpdateProps {
-  courseId: string | undefined;
-  unitId: string | undefined;
-  id: string | undefined;
+  courseId: string;
+  levelId: string;
+  id: string;
 }
 
-export const UnitUpdate: React.FC<UnitUpdateProps> = ({ id }) => {
+export const UnitUpdate: React.FC<UnitUpdateProps> = ({
+  courseId,
+  levelId,
+  id,
+}) => {
   const navigate = useNavigate();
   const {
     loading,
