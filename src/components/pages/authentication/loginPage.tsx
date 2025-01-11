@@ -1,5 +1,5 @@
 import { Container } from "react-bootstrap";
-import { LoginForm } from "../../authentication/login.tsx";
+import { LoginForm } from "../../authentication";
 
 export function LoginPage() {
   return (

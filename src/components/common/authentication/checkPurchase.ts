@@ -1,7 +1,7 @@
 import { porturl } from "../utils";
 
 export async function checkPurchase(
-  user: number,
+  user: number | string,
   course: number | string
 ): Promise<boolean | null> {
   if (!user || !course) {

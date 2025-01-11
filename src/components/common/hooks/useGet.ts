@@ -1,8 +1,8 @@
 import { useState, useEffect, useCallback } from "react";
 import { porturl } from "../utils";
 
-export function useGet<T>(baseUrl: string) {
-  const [data, setData] = useState<T[] | null>(null);
+export function useGet<T>(baseUrl: string, expectArray: boolean = true) {
+  const [data, setData] = useState<T[] | T | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   baseUrl = porturl + baseUrl;
@@ -23,7 +23,7 @@ export function useGet<T>(baseUrl: string) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const result = await response.json();
-      setData(result.data);
+      setData(expectArray ? (result.data as T[]) : (result.data as T));
     } catch (err: any) {
       setError(err.message);
     } finally {

@@ -4,7 +4,11 @@ import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-export const CourseSelector = ({ setView }) => {
+interface CourseSelectorProps {
+  setView: React.Dispatch<React.SetStateAction<number>>;
+}
+
+export const CourseSelector: React.FC<CourseSelectorProps> = ({ setView }) => {
   const [finished, setFinished] = useState(true);
   const [unfinished, setUnfinished] = useState(true);
 
@@ -20,17 +24,15 @@ export const CourseSelector = ({ setView }) => {
     updateView(finished, newUnfinished);
   };
 
-  const updateView = (newFinished, newUnfinished) => {
+  const updateView = (newFinished: boolean, newUnfinished: boolean) => {
     if (newFinished && newUnfinished) {
       setView(3);
     } else if (!newFinished && !newUnfinished) {
       setView(3);
     } else if (newFinished) {
       setView(1);
-    } else if (newUnfinished) {
-      setView(2);
     } else {
-      setView(null);
+      setView(2);
     }
   };
 

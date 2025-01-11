@@ -5,7 +5,7 @@ import { NavigationButton } from "../common/buttons";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import { userType } from "../common/authentication";
-import { Loading, Error } from "./../common/utils";
+import { Loading, Error } from "../common/utils";
 interface UnitGetOneProps {
   id: string | undefined;
   courseId: string | undefined;

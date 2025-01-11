@@ -21,7 +21,7 @@ export const SubscriptionPreview: React.FC<SubscriptionPreviewProps> = ({
     loading,
     error,
     fetchData,
-  } = useGet<Subscription>(`/api/subscriptions/${id}`);
+  } = useGet<Subscription>(`/api/subscriptions/${id}`, false);
 
   useEffect(() => {
     const fetchUserRole = async () => {

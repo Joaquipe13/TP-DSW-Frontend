@@ -5,10 +5,13 @@ import { userType } from "../authentication";
 export function useAdminRedirect(navigateTo: string) {
   const navigate = useNavigate();
 
-  /* useEffect(() => {
-    const role = await userType();
-    if (role === "admin") {
-      navigate(navigateTo, { replace: true });
+  useEffect(() => {
+    async function checkRole() {
+      const role = await userType();
+      if (role === "admin") {
+        navigate(navigateTo, { replace: true });
+      }
     }
-  }, [navigate]); */
+    checkRole();
+  }, [navigate]);
 }

@@ -1,6 +1,8 @@
 import { porturl } from "../utils";
 
-export async function checkSubscription(user: number): Promise<boolean | null> {
+export async function checkSubscription(
+  user: number | string
+): Promise<boolean | null> {
   if (!user) {
     console.error("Invalid userId", user);
     return false;

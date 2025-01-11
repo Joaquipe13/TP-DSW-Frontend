@@ -107,7 +107,7 @@ export function RegisterForm() {
               )}
             </Form.Group>
 
-            <Form.Group controlId="formPassword" className="mb-4" >
+            <Form.Group controlId="formPassword" className="mb-4">
               <Form.Label>Password</Form.Label>
               <Form.Control
                 type="password"

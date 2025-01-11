@@ -1,19 +1,16 @@
 import { useRef, useEffect } from "react";
 import { Container, Card, Form, Button, Row, Col } from "react-bootstrap";
-import { useLevelEdit, deleteLevel } from "./hooks/index.ts";
+import { useLevelEdit, deleteLevel } from "./hooks";
 import { UnitList } from "../unit/unitList.tsx";
 import { useNavigate } from "react-router-dom";
-import { Loading, Error } from "../common/utils/index.ts";
+import { Loading, Error } from "../common/utils";
 
 interface LevelUpdateProps {
-  courseId: string | undefined;
-  levelId: string | undefined;
+  courseId: string;
+  id: string;
 }
 
-export const LevelUpdate: React.FC<LevelUpdateProps> = ({
-  courseId,
-  levelId,
-}) => {
+export const LevelUpdate: React.FC<LevelUpdateProps> = ({ courseId, id }) => {
   const navigate = useNavigate();
   const {
     loading,
@@ -25,7 +22,7 @@ export const LevelUpdate: React.FC<LevelUpdateProps> = ({
     setName,
     setDescription,
     handleSave,
-  } = useLevelEdit(levelId);
+  } = useLevelEdit(id);
   const inputRef = useRef<HTMLInputElement>(null);
   useEffect(() => {
     if (inputRef.current) {
@@ -45,10 +42,9 @@ export const LevelUpdate: React.FC<LevelUpdateProps> = ({
   const handleRemoveClick = async () => {
     if (confirm(`Are you sure you want to delete the level "${name}"?`)) {
       try {
-        await deleteLevel(levelId!);
+        await deleteLevel(id!);
         alert("Level removed successfully.");
         navigate(`course/${courseId}`);
-        window.location.reload();
       } catch {
         alert("Error removing level.");
       }
@@ -94,7 +90,7 @@ export const LevelUpdate: React.FC<LevelUpdateProps> = ({
           <Card.Title as="h5" className="mb-3">
             Units:
           </Card.Title>
-          <UnitList level={levelId} course={courseId} />
+          <UnitList level={id} course={courseId} />
 
           <Row className="justify-content-center mt-4">
             <Col xs={10} md={3} className="d-flex justify-content-center">

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { useGet } from "../common/hooks/useGet.ts";
+import { useGet } from "../common/hooks";
 import Row from "react-bootstrap/Row";
 import { Col } from "react-bootstrap";
 import { Level } from "../types.tsx";

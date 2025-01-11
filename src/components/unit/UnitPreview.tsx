@@ -2,8 +2,8 @@ import Row from "react-bootstrap/Row";
 import { Col } from "react-bootstrap";
 
 interface UnitPreviewProps {
-  order: number | string;
-  name: string;
+  order: number | undefined;
+  name: string | undefined;
 }
 
 export const UnitPreview: React.FC<UnitPreviewProps> = ({ order, name }) => {

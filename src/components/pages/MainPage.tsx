@@ -1,9 +1,9 @@
 import Container from "react-bootstrap/Container";
-import { MemberHead, AdminHead, PageBody } from "../Layouts";
+import { MemberHead, AdminHead, PageBody } from "../layout/index.ts";
 import { Card } from "react-bootstrap";
 
 import { userType } from "../common/authentication/userType.ts";
-import { LoggedOutHead } from "../Layouts/loggedOut/head.tsx";
+import { LoggedOutHead } from "../layout/loggedOut/head.tsx";
 import { useEffect, useState } from "react";
 export function MainPage() {
   const [role, setRole] = useState<string | null>(null);

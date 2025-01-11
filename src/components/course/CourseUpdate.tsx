@@ -9,10 +9,10 @@ import {
   Col,
 } from "react-bootstrap";
 import { Topic } from "../types.tsx";
-import { useCourseEdit, deleteCourse } from "./hooks";
-import { Topics } from "../topic";
-import { LevelList } from "../level";
-import { Loading, Error } from "../common/utils";
+import { useCourseEdit, deleteCourse } from "./hooks/index.ts";
+import { Topics } from "../topic/index.ts";
+import { LevelList } from "../level/index.tsx";
+import { Loading, Error } from "../common/utils/index.ts";
 
 interface CourseUpdateProps {
   courseId: string;
@@ -35,13 +35,18 @@ export const CourseUpdate: React.FC<CourseUpdateProps> = ({ courseId }) => {
     handleSave,
   } = useCourseEdit(courseId);
   const inputRef = useRef<HTMLInputElement>(null);
+  const textAreaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
     if (inputRef.current) {
       inputRef.current.focus();
     }
   }, []);
-
+  useEffect(() => {
+    if (textAreaRef.current) {
+      textAreaRef.current.focus();
+    }
+  }, []);
   const handleTopicSelection = (topic: Topic) => {
     setSelectedTopics((prevTopics) =>
       prevTopics.some((t) => t.id === topic.id)
@@ -74,7 +79,7 @@ export const CourseUpdate: React.FC<CourseUpdateProps> = ({ courseId }) => {
         await deleteCourse(courseId!);
         alert("Course removed successfully.");
         window.location.reload();
-      } catch (error) {
+      } catch {
         alert("Error removing course.");
       }
     }
@@ -104,7 +109,7 @@ export const CourseUpdate: React.FC<CourseUpdateProps> = ({ courseId }) => {
             <Form.Group className="mb-3">
               <Form.Label>Resume</Form.Label>
               <Form.Control
-                ref={inputRef}
+                ref={textAreaRef}
                 as="textarea"
                 type="text"
                 placeholder={oldCourse?.resume || "Course Resume"}
