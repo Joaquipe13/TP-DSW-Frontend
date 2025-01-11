@@ -1,8 +1,8 @@
 import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { usePost } from "../common/hooks";
-import { Topic } from "../types";
-import { NavigationButton } from "../common/buttons";
+import { usePost } from "../../common/hooks";
+import { Topic } from "../../common/utils/types";
+import { NavigationButton } from "../../common/buttons";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import InputGroup from "react-bootstrap/InputGroup";

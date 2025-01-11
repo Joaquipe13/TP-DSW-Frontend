@@ -1,8 +1,8 @@
 import { useEffect } from "react";
-import { useGet } from "../common/hooks/useGet";
-import { Topic } from "../types";
+import { useGet } from "../../common/hooks/useGet";
+import { Topic } from "../../common/utils/types";
 import ListGroup from "react-bootstrap/ListGroup";
-import { Loading, Error } from "../common/utils";
+import { Loading, Error } from "../../common/utils";
 interface TopicsProps {
   selectedTopics: Topic[];
   onSelectTopic?: (topic: Topic) => void;
@@ -39,19 +39,19 @@ export const Topics: React.FC<TopicsProps> = ({
             <ListGroup.Item
               key={topic.id}
               style={{
-                backgroundColor: "#6c757d", 
-                borderRadius: "50px", 
-                padding: "4px 10px", 
+                backgroundColor: "#6c757d",
+                borderRadius: "50px",
+                padding: "4px 10px",
                 cursor: "pointer",
                 marginRight: "4px",
                 color: "#fff",
-                fontSize: "12px", 
+                fontSize: "12px",
                 display: "inline-block",
                 marginBottom: "8px",
-                maxWidth: "150px", 
-                overflow: "hidden", 
+                maxWidth: "150px",
+                overflow: "hidden",
                 textOverflow: "ellipsis",
-                whiteSpace: "nowrap", 
+                whiteSpace: "nowrap",
               }}
               onClick={() => onSelectTopic && onSelectTopic(topic)}
             >

@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { useGet } from "../common/hooks";
-import { Unit } from "../types.tsx";
-import { NavigationButton } from "../common/buttons";
+import { useGet } from "../../common/hooks/index.ts";
+import { Unit } from "../../common/utils/types.tsx";
+import { NavigationButton } from "../../common/buttons/index.ts";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
-import { userType } from "../common/authentication";
-import { Loading, Error } from "../common/utils";
+import { userType } from "../../common/authentication/index.ts";
+import { Loading, Error } from "../../common/utils/index.ts";
 interface UnitGetOneProps {
   id: string | undefined;
   courseId: string | undefined;

@@ -1,11 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { usePost } from "../common/hooks/usePost.ts";
-import { Subscription } from "../types.tsx";
+import { usePost } from "../../common/hooks/usePost.ts";
+import { Subscription } from "../../common/utils/types.tsx";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { Loading, Error } from "../common/utils/index.ts";
+import { Loading, Error } from "../../common/utils/index.ts";
 import {
   validateDescription,
   validatePrice,

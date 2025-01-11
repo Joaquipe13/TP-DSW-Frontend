@@ -1,4 +1,4 @@
-import { porturl } from "../../common/utils/route";
+import { porturl } from "../../../common/utils/route";
 import Cookies from "js-cookie";
 
 interface UserData {

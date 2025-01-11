@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { useGet } from "../common/hooks";
-import { Level } from "../types";
-import { NavigationButton } from "../common/buttons";
+import { useGet } from "../../common/hooks";
+import { Level } from "../../common/utils/types";
+import { NavigationButton } from "../../common/buttons";
 import { UnitList } from "../unit";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
-import { userType } from "../common/authentication";
-import { Loading, Error } from "../common/utils";
+import { userType } from "../../common/authentication";
+import { Loading, Error } from "../../common/utils";
 interface LevelGetOneProps {
   id: string;
   courseId: string;
@@ -50,9 +50,9 @@ export const LevelGetOne: React.FC<LevelGetOneProps> = ({ id, courseId }) => {
         {Array.isArray(level) || level == null ? (
           <Loading />
         ) : (
-            <Card.Header as="h3">
-              Level {level.order}: {level.name}
-            </Card.Header>
+          <Card.Header as="h3">
+            Level {level.order}: {level.name}
+          </Card.Header>
         )}
 
         <Card.Body>
