@@ -27,5 +27,5 @@ export {
 } from "./purchases/index.ts";
 
 //Other Pages Exports
-export { InDevelopmentPage } from "./inDevelopment";
-export { MainPage } from "./MainPage";
+export { InDevelopmentPage } from "./inDevelopment.tsx";
+export { MainPage } from "./MainPage.tsx";

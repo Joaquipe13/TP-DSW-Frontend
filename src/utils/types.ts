@@ -68,4 +68,15 @@ interface PurchaseRecord {
   user?: User;
   purchaseAt?: Date;
 }
-export type { Topic, Level, File, Unit, Course, Subscription, CoursePurchaseRecord, SubsPurchaseRecord, User, PurchaseRecord };
+export type {
+  Topic,
+  Level,
+  File,
+  Unit,
+  Course,
+  Subscription,
+  CoursePurchaseRecord,
+  SubsPurchaseRecord,
+  User,
+  PurchaseRecord,
+};

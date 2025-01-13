@@ -1,3 +1,3 @@
 //Purchase Pages Exports
-export { PurchasesRecordPage } from "./purchasesRecordPage";
-export { SubscriptionsRecordPage } from "./subscriptionsRecordPage";
+export { PurchasesRecordPage } from "./purchasesRecordPage.tsx";
+export { SubscriptionsRecordPage } from "./subscriptionsRecordPage.tsx";

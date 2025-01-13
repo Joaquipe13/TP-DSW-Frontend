@@ -1,2 +1,2 @@
-export { usePurchaseAlert } from "./usePurchaseAlert";
-export { useFilteredPurchases } from "./useFilteredPurchases";
+export { usePurchaseAlert } from "./usePurchaseAlert.tsx";
+export { useFilteredPurchases } from "./useFilteredPurchases.ts";

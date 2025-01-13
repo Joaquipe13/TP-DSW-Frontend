@@ -1,3 +1,3 @@
-export { PurchaseButton } from "./purchaseCourseButton";
-export { SubscriptionButton } from "./purchaseSubsButton";
-export { NavigationButton } from "./navigationButton";
+export { PurchaseButton } from "./purchaseCourseButton.tsx";
+export { SubscriptionButton } from "./purchaseSubsButton.tsx";
+export { NavigationButton } from "./navigationButton.tsx";

@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { Loading, Error, NavigationButton } from "@components/index.ts";
 import { useGet } from "@hooks/index.ts";
 import { userType, Unit } from "@utils/index.ts";
-import UnitPreview from "./unitPreview";
+import UnitPreview from "./unitPreview.tsx";
 
 interface UnitListProps {
   level: string | undefined;

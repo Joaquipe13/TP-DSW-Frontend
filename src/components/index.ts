@@ -28,7 +28,12 @@ export {
 } from "./course/index.ts";
 
 // level components
-export { LevelGetOne, LevelList, LevelCreate, LevelUpdate } from "./level/index.ts";
+export {
+  LevelGetOne,
+  LevelList,
+  LevelCreate,
+  LevelUpdate,
+} from "./level/index.ts";
 
 // purchaseRecord components
 export {
@@ -50,9 +55,4 @@ export {
 export { Topics, TopicList, TopicCreate } from "./topic/index.ts";
 
 // unit components
-export {
-  UnitGetOne,
-  UnitCreate,
-  UnitUpdate,
-  UnitList,
-} from "./unit/index.ts";
+export { UnitGetOne, UnitCreate, UnitUpdate, UnitList } from "./unit/index.ts";

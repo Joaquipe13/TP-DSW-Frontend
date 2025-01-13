@@ -40,7 +40,7 @@ export type {
   SubsPurchaseRecord,
   User,
   PurchaseRecord,
-} from "./types";
+} from "./types.ts";
 
 export { porturl } from "./route";
 
