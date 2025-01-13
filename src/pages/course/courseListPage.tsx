@@ -1,10 +1,14 @@
 import { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
-import { CourseList, CourseSelector } from "../../components/course";
-import { NavigationButton } from "../../common/buttons";
 import { Card } from "react-bootstrap";
-import { userType } from "../../common/authentication";
-import { Loading, SearchBox } from "../../common/utils";
+import { userType } from "@utils/index.ts";
+import {
+  Loading,
+  SearchBox,
+  NavigationButton,
+  CourseList,
+  CourseSelector,
+} from "@components/index.ts";
 
 export const CourseListPage = () => {
   const [view, setView] = useState<number>(3);

@@ -1,16 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { usePost } from "../../common/hooks/usePost.ts";
-import { Subscription } from "../../common/utils/types.tsx";
+import { Subscription } from "../../utils/types.tsx";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { Loading, Error } from "../../common/utils/index.ts";
+import { Loading, Error } from "@components/index.ts";
+import { usePost } from "@hooks/index.ts";
 import {
-  validateDescription,
-  validatePrice,
-  validateDuration,
-} from "./validations/subsValidate.ts";
+  validateSubsDescription,
+  validateSubsPrice,
+  validateSubsDuration,
+} from "@utils/index.ts";
 
 export const SubscriptionCreate = () => {
   const { loading, error, create } = usePost<Subscription>(
@@ -35,9 +35,9 @@ export const SubscriptionCreate = () => {
   }, []);
 
   const handleClick = () => {
-    const descriptionError = validateDescription(description);
-    const priceError = validatePrice(price);
-    const durationError = validateDuration(duration);
+    const descriptionError = validateSubsDescription(description);
+    const priceError = validateSubsPrice(price);
+    const durationError = validateSubsDuration(duration);
 
     if (descriptionError || priceError || durationError) {
       setFormErrors({

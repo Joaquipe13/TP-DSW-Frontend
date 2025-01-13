@@ -3,12 +3,10 @@ import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
-import { usePost } from "../../common/hooks";
-import { Unit } from "../../common/utils/types";
-import {
-  validateUnitName,
-  validateUnitContent,
-} from "./validations/validateUnit";
+import { Loading, Error } from "@components/index.ts";
+import { usePost } from "@hooks/index.ts";
+import { validateUnitName, validateUnitContent, Unit } from "@utils/index.ts";
+
 interface UnitCreateProps {
   level: string | undefined;
   course: string | undefined;
@@ -76,7 +74,8 @@ export const UnitCreate: React.FC<UnitCreateProps> = ({ level, course }) => {
       console.log(`Creation of unit "${name}" was cancelled.`);
     }
   };
-
+  if (loading) return <Loading />;
+  if (error) return <Error message={error} />;
   return (
     <Card body className="mb-4">
       <Form>

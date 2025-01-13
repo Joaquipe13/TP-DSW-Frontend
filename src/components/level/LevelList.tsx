@@ -1,20 +1,19 @@
 import Container from "react-bootstrap/Container";
 import ListGroup from "react-bootstrap/ListGroup";
-import { NavigationButton } from "../../common/buttons/index.ts";
-import { Level } from "../../common/utils/types.tsx";
-import { useGet } from "../../common/hooks/index.ts";
 import { useEffect, useState } from "react";
-import { Loading, Error } from "../../common/utils/index.ts";
-import { LevelPreview } from "./levelPreview.tsx";
+import { useNavigate } from "react-router-dom";
+import { Button } from "react-bootstrap";
+import { NavigationButton, Loading, Error } from "@components/index.ts";
+import { usePurchaseAlert, useGet } from "@hooks/index.ts";
 import {
   checkSubscription,
   checkPurchase,
   userType,
   getUser,
-} from "../../common/authentication/index.ts";
-import { useNavigate } from "react-router-dom";
-import { Button } from "react-bootstrap";
-import { usePurchaseAlert } from "../purchaseRecord";
+  Level,
+} from "@utils/index.ts";
+import LevelPreview from "./levelPreview.tsx";
+
 interface LevelListProps {
   course: string | undefined;
 }

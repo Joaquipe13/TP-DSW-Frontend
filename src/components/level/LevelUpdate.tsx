@@ -1,9 +1,8 @@
 import { useRef, useEffect } from "react";
 import { Container, Card, Form, Button, Row, Col } from "react-bootstrap";
-import { useLevelEdit, deleteLevel } from "./hooks";
-import { UnitList } from "../unit/unitList.tsx";
 import { useNavigate } from "react-router-dom";
-import { Loading, Error } from "../../common/utils/index.ts";
+import { Loading, Error, UnitList } from "@components/index.ts";
+import { useLevelEdit, deleteLevel } from "@hooks/index.ts";
 
 interface LevelUpdateProps {
   courseId: string;

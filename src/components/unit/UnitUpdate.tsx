@@ -1,7 +1,8 @@
 import { useRef, useEffect } from "react";
 import { Container, Card, Form, Button, Row, Col } from "react-bootstrap";
-import { useUnitEdit, deleteUnit } from "./hooks";
 import { useNavigate } from "react-router-dom";
+import { Loading, Error } from "@components/index.ts";
+import { useUnitEdit, deleteUnit } from "@hooks/index.ts";
 
 interface UnitUpdateProps {
   courseId: string;
@@ -55,6 +56,8 @@ export const UnitUpdate: React.FC<UnitUpdateProps> = ({
     }
   };
 
+  if (loading) return <Loading />;
+  if (error) return <Error message={error} />;
   return (
     <Container style={{ marginTop: "1rem" }}>
       <Card>

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form, Container, Row, Col } from "react-bootstrap";
-import { validateRegister, createUser } from "./utils";
+import { validateRegister, createUser } from "@utils/index.ts";
 
 interface RegisterOverlayProps {
   show: boolean;

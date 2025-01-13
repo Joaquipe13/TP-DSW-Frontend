@@ -1,5 +1,5 @@
 import { Card, Container } from "react-bootstrap";
-import { TopicList } from "../../components/topic";
+import { TopicList } from "@components/index.ts";
 
 export const TopicListPage = () => {
   return (

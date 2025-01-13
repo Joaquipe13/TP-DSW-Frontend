@@ -1,10 +1,10 @@
-import { CoursePreview } from "./coursePreview.tsx";
 import { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import { Col, Container, Row } from "react-bootstrap";
-import { getPurchasedCourses } from "./hooks";
-import { Loading, Error } from "../../common/utils/index.ts";
-import { getUser } from "../../common/authentication/index.ts";
+import { Loading, Error } from "@components/index.ts";
+import { getPurchasedCourses } from "@hooks/index.ts";
+import { getUser } from "@utils/index.ts";
+import CoursePreview from "./coursePreview.tsx";
 interface MyCourseListProps {
   title: string;
 }

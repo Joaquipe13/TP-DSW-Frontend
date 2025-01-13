@@ -1,17 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { Course } from "../../common/utils/types.tsx";
+import { Course } from "../../utils/types.tsx";
 import Card from "react-bootstrap/Card";
-import { Topics } from "../topic/topics.tsx";
-import { useGet } from "../../common/hooks/useGet.ts";
-import { userType } from "../../common/authentication/index.ts";
-import { Loading, Error, DateComponent } from "../../common/utils/index.ts";
-import { NavigationButton } from "../../common/buttons/index.ts";
+import { Topics, Loading, Error, NavigationButton } from "@components/index.ts";
+import { useGet } from "@hooks/index.ts";
+import { userType, DateComponent } from "@utils/index.ts";
 
 interface CoursePreviewProps {
   id: number;
 }
 
-export const CoursePreview: React.FC<CoursePreviewProps> = ({ id }) => {
+const CoursePreview: React.FC<CoursePreviewProps> = ({ id }) => {
   const {
     data: course,
     loading,
@@ -81,3 +79,5 @@ export const CoursePreview: React.FC<CoursePreviewProps> = ({ id }) => {
     </Card>
   );
 };
+
+export default CoursePreview

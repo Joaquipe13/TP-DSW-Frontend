@@ -6,7 +6,7 @@ interface UnitPreviewProps {
   name: string | undefined;
 }
 
-export const UnitPreview: React.FC<UnitPreviewProps> = ({ order, name }) => {
+const UnitPreview: React.FC<UnitPreviewProps> = ({ order, name }) => {
   return (
     <Row className="align-items-center">
       <Col xs="auto" className="text-left">
@@ -18,3 +18,4 @@ export const UnitPreview: React.FC<UnitPreviewProps> = ({ order, name }) => {
     </Row>
   );
 };
+export default UnitPreview;

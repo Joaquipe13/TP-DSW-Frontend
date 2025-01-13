@@ -1,10 +1,12 @@
 import { useState } from "react";
 import Container from "react-bootstrap/Container";
-import { NavigationButton } from "../../common/buttons";
 import { Card } from "react-bootstrap";
-import { MyCourseList } from "../../components/course";
-import { useAdminRedirect } from "../../common/hooks";
-import { SearchBox } from "../../common/utils";
+import {
+  SearchBox,
+  MyCourseList,
+  NavigationButton,
+} from "@components/index.ts";
+import { useAdminRedirect } from "@hooks/index.ts";
 
 export const MyCourseListPage = () => {
   useAdminRedirect("/course/list");

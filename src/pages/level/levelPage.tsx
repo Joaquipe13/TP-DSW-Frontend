@@ -2,9 +2,7 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import { useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
-import { NavigationButton } from "../../common/buttons";
-import { LevelGetOne } from "../../components/level";
-import { Error } from "../../common/utils";
+import { LevelGetOne, Error, NavigationButton } from "@components/index.ts";
 
 export const LevelPage: React.FC = () => {
   const { courseId, id } = useParams<{ id: string; courseId: string }>();

@@ -2,9 +2,7 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import { useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
-import { NavigationButton } from "../../common/buttons";
-import { CourseUpdate } from "../../components/course";
-import { Error } from "../../common/utils";
+import { Error, NavigationButton, CourseUpdate } from "@components/index.ts";
 
 export const CourseUpdatePage: React.FC = () => {
   const { id } = useParams<{ id: string }>();

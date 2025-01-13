@@ -1,6 +1,5 @@
 import Container from "react-bootstrap/Container";
-import { SubscriptionCreate } from "../../components/subscription";
-import { NavigationButton } from "../../common/buttons";
+import { SubscriptionCreate, NavigationButton } from "@components/index.ts";
 
 export const SubscriptionCreatePage = () => {
   return (

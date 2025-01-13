@@ -1,30 +1,27 @@
 //Course Pages Exports
-export { CoursePage } from "./course/coursePage";
-export { CourseListPage } from "./course/courseListPage";
-export { CourseCreatePage } from "./course/courseCreatePage";
-export { CourseUpdatePage } from "./course/courseEditPage";
-export { MyCourseListPage } from "./course/myCoursePage";
+export {
+  CoursePage,
+  CourseListPage,
+  CourseCreatePage,
+  CourseUpdatePage,
+  MyCourseListPage,
+} from "./course";
 //Level Pages Exports
-export { LevelPage } from "./level/levelPage";
-export { LevelCreatePage } from "./level/levelCreatePage";
-export { LevelUpdatePage } from "./level/levelEditPage";
+export { LevelPage, LevelCreatePage, LevelUpdatePage } from "./level";
 //Unit Pages Exports
-export { UnitPage } from "./unit/unitPage";
-export { UnitCreatePage } from "./unit/unitCreatePage";
-export { UnitUpdatePage } from "./unit/unitEditPage";
+export { UnitPage, UnitCreatePage, UnitUpdatePage } from "./unit";
 //Topic Pages Exports
-export { TopicListPage } from "./topic/topicListPage";
-export { TopicCreatePage } from "./topic/topicCreatePage";
+export { TopicListPage, TopicCreatePage } from "./topic";
 //Authentication Pages Exports
-export { LoginPage } from "./authentication/loginPage";
-export { RegisterPage } from "./authentication/registerPage";
+export { LoginPage, RegisterPage } from "./authentication";
 //Subscription Pages Exports
-export { SubscriptionListPage } from "./subscription/subsListPage";
-export { SubscriptionCreatePage } from "./subscription/subsCreatePage";
-export { SubscriptionUpdatePage } from "./subscription/subsEditPage";
+export {
+  SubscriptionListPage,
+  SubscriptionCreatePage,
+  SubscriptionUpdatePage,
+} from "./subscription";
 //Purchase Pages Exports
-export { PurchasesRecordPage } from "./purchases/purchasesRecordPage";
-export { SubscriptionsRecordPage } from "./purchases/subscriptionsRecordPage";
+export { PurchasesRecordPage, SubscriptionsRecordPage } from "./purchases";
 
 //Other Pages Exports
 export { InDevelopmentPage } from "./inDevelopment";

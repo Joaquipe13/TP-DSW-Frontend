@@ -1,8 +1,9 @@
 import { useEffect } from "react";
-import { useGet } from "../../common/hooks/useGet";
-import { Topic } from "../../common/utils/types";
 import ListGroup from "react-bootstrap/ListGroup";
-import { Loading, Error } from "../../common/utils";
+import { Loading, Error } from "@components/index.ts";
+import { useGet } from "@hooks/index.ts";
+import { Topic } from "@utils/index.ts";
+
 interface TopicsProps {
   selectedTopics: Topic[];
   onSelectTopic?: (topic: Topic) => void;

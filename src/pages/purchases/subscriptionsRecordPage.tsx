@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Card, Container } from "react-bootstrap";
-import { DateRangePicker, Loading } from "../../common/utils";
 import {
+  DateRangePicker,
+  Loading,
   MySubscriptionsList,
   SubscriptionsList,
-} from "../../components/purchaseRecord";
-import { userType, getUser } from "../../common/authentication";
+} from "@components/index.ts";
+import { userType, getUser } from "@utils/index.ts";
 
 export const SubscriptionsRecordPage: React.FC = () => {
   const [startDate, setStartDate] = useState<Date | undefined>(undefined);

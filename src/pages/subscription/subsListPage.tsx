@@ -1,9 +1,8 @@
 import Container from "react-bootstrap/Container";
-import { SubscriptionList } from "../../components/subscription";
-import { NavigationButton } from "../../common/buttons";
 import { Card } from "react-bootstrap";
-import { userType } from "../../common/authentication";
 import { useEffect, useState } from "react";
+import { SubscriptionList, NavigationButton } from "@components/index.ts";
+import { userType } from "@utils/index.ts";
 
 export const SubscriptionListPage = () => {
   const [role, setRole] = useState<string | null>(null);
