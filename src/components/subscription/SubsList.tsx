@@ -4,7 +4,7 @@ import { Alert, Col, Row } from "react-bootstrap";
 import { Loading, Error } from "@components/index.ts";
 import { useGet } from "@hooks/index.ts";
 import { Subscription } from "@utils/index.ts";
-import SubscriptionPreview from "./subscriptionPreview";
+import SubscriptionPreview from "./subscriptionPreview.tsx";
 export const SubscriptionList = () => {
   const {
     data: subscriptions,

@@ -1,4 +1,4 @@
-export { AdminHead } from "./admin/head";
-export { MemberHead } from "./member/head";
-export { LoggedOutHead } from "./loggedOut/head";
-export { PageBody } from "./body";
+export { AdminHead } from "./admin/head.tsx";
+export { MemberHead } from "./member/head.tsx";
+export { LoggedOutHead } from "./loggedOut/head.tsx";
+export { PageBody } from "./body.tsx";

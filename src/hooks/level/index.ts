@@ -1,2 +1,2 @@
-export { deleteLevel } from "./useLevelDelete";
-export { useLevelEdit } from "./useLevelEdit";
+export { deleteLevel } from "./useLevelDelete.ts";
+export { useLevelEdit } from "./useLevelEdit.ts";

@@ -1,5 +1,4 @@
 export { UnitGetOne } from "./unit.tsx";
-export { UnitCreate } from "./unitCreate";
-export { UnitUpdate } from "./unitUpdate";
-export { UnitPreview } from "./unitPreview";
-export { UnitList } from "./unitList";
+export { UnitCreate } from "./unitCreate.tsx";
+export { UnitUpdate } from "./unitUpdate.tsx";
+export { UnitList } from "./unitList.tsx";

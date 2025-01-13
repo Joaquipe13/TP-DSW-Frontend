@@ -4,21 +4,24 @@ export {
   validateCourseResume,
   validateCoursePrice,
   validateCourseTopics,
-} from "./courseValidate";
+} from "./courseValidate.ts";
 
 // subs validations
 export {
   validateSubsDescription,
   validateSubsPrice,
   validateSubsDuration,
-} from "./subsValidate";
+} from "./subsValidate.ts";
 
 //level validations
-export { validateLevelName, validateLevelDescription } from "./levelValidate";
+export {
+  validateLevelName,
+  validateLevelDescription,
+} from "./levelValidate.ts";
 
 //unit validations
-export { validateUnitName, validateUnitContent } from "./unitValidate";
+export { validateUnitName, validateUnitContent } from "./unitValidate.ts";
 
 //session validations
-export { validateLogin } from "./validateLogin";
-export { validateRegister } from "./validateRegister";
+export { validateLogin } from "./validateLogin.ts";
+export { validateRegister } from "./validateRegister.ts";

@@ -1,4 +1,4 @@
-import { MainPage } from "./pages/MainPage";
+import { MainPage } from "@pages/index.ts";
 
 export function App() {
   return (
