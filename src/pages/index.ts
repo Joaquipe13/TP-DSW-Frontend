@@ -7,21 +7,24 @@ export {
   MyCourseListPage,
 } from "./course";
 //Level Pages Exports
-export { LevelPage, LevelCreatePage, LevelUpdatePage } from "./level";
+export { LevelPage, LevelCreatePage, LevelUpdatePage } from "./level/index.ts";
 //Unit Pages Exports
-export { UnitPage, UnitCreatePage, UnitUpdatePage } from "./unit";
+export { UnitPage, UnitCreatePage, UnitUpdatePage } from "./unit/index.ts";
 //Topic Pages Exports
-export { TopicListPage, TopicCreatePage } from "./topic";
+export { TopicListPage, TopicCreatePage } from "./topic/index.ts";
 //Authentication Pages Exports
-export { LoginPage, RegisterPage } from "./authentication";
+export { LoginPage, RegisterPage } from "./authentication/index.ts";
 //Subscription Pages Exports
 export {
   SubscriptionListPage,
   SubscriptionCreatePage,
   SubscriptionUpdatePage,
-} from "./subscription";
+} from "./subscription/index.ts";
 //Purchase Pages Exports
-export { PurchasesRecordPage, SubscriptionsRecordPage } from "./purchases";
+export {
+  PurchasesRecordPage,
+  SubscriptionsRecordPage,
+} from "./purchases/index.ts";
 
 //Other Pages Exports
 export { InDevelopmentPage } from "./inDevelopment";

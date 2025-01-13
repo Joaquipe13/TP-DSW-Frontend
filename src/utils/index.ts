@@ -26,7 +26,7 @@ export {
   validateUnitContent,
   validateLogin,
   validateRegister,
-} from "./validations";
+} from "./validations/index.ts";
 
 // other utils
 export type {
