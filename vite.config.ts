@@ -39,5 +39,6 @@ export default defineConfig({
         "src/middlewares/"
       ),
     },
+    extensions: [".js", ".ts", ".jsx", ".tsx", ".json"],
   },
 });
