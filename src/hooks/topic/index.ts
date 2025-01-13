@@ -1,2 +1,2 @@
-export { useCreateTopic } from "./useCreateTopic.ts";
-export { useDeleteTopic } from "./useDeleteTopic.ts";
+export { useCreateTopic } from "./useCreateTopic";
+export { useDeleteTopic } from "./useDeleteTopic";

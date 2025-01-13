@@ -1,4 +1,4 @@
 //Subscription Pages Exports
-export { SubscriptionListPage } from "./subsListPage.tsx";
-export { SubscriptionCreatePage } from "./subsCreatePage.tsx";
-export { SubscriptionUpdatePage } from "./subsEditPage.tsx";
+export { SubscriptionListPage } from "./subsListPage";
+export { SubscriptionCreatePage } from "./subsCreatePage";
+export { SubscriptionUpdatePage } from "./subsEditPage";

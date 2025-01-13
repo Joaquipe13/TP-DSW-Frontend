@@ -1,4 +1,4 @@
-export { LoginForm } from "./login.tsx";
-export { RegisterForm } from "./register.tsx";
-export { LoginOverlay } from "./loginOverlay.tsx";
-export { RegisterOverlay } from "./registerOverlay.tsx";
+export { LoginForm } from "./login";
+export { RegisterForm } from "./register";
+export { LoginOverlay } from "./loginOverlay";
+export { RegisterOverlay } from "./registerOverlay";

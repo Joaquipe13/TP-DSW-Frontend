@@ -1,3 +1,3 @@
-export { SubscriptionCreate } from "./subsCreate.tsx";
-export { SubscriptionList } from "./subsList.tsx";
-export { SubscriptionUpdate } from "./subsUpdate.tsx";
+export { SubscriptionCreate } from "./subsCreate";
+export { SubscriptionList } from "./subsList";
+export { SubscriptionUpdate } from "./subsUpdate";

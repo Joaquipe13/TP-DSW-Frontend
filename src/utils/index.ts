@@ -26,7 +26,7 @@ export {
   validateUnitContent,
   validateLogin,
   validateRegister,
-} from "@utils/validations/index.ts";
+} from "@utils/validations/index";
 
 // other utils
 export type {
@@ -40,7 +40,7 @@ export type {
   SubsPurchaseRecord,
   User,
   PurchaseRecord,
-} from "@utils/types.ts";
+} from "@utils/types";
 
 export { porturl } from "@utils/route";
 

@@ -1,4 +1,4 @@
-export { AdminHead } from "@layouts/admin/head.tsx";
-export { MemberHead } from "@layouts/member/head.tsx";
-export { LoggedOutHead } from "@layouts/loggedOut/head.tsx";
-export { PageBody } from "@layouts/body.tsx";
+export { AdminHead } from "@layouts/admin/head";
+export { MemberHead } from "@layouts/member/head";
+export { LoggedOutHead } from "@layouts/loggedOut/head";
+export { PageBody } from "@layouts/body";

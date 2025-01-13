@@ -1,12 +1,8 @@
 // auth hooks
-export {
-  useAdminRedirect,
-  useLogout,
-  useLoginAlert,
-} from "@hooks/auth/index.ts";
+export { useAdminRedirect, useLogout, useLoginAlert } from "@hooks/auth/index";
 
 // crud hooks
-export { usePost, useGet, usePut, remove } from "@hooks/crud/index.ts";
+export { usePost, useGet, usePut, remove } from "@hooks/crud/index";
 
 // course hooks
 export {
@@ -14,25 +10,25 @@ export {
   useCourseEdit,
   useSelectedTopics,
   getPurchasedCourses,
-} from "@hooks/course/index.ts";
+} from "@hooks/course/index";
 
 //level hooks
-export { deleteLevel, useLevelEdit } from "@hooks/level/index.ts";
+export { deleteLevel, useLevelEdit } from "@hooks/level/index";
 
 //purchaseRecord hooks
 export {
   usePurchaseAlert,
   useFilteredPurchases,
-} from "@hooks/purchaseRecord/index.ts";
+} from "@hooks/purchaseRecord/index";
 
 //subscription hooks
 export {
   deleteSubscription,
   useSubscriptionEdit,
-} from "@hooks/subscription/index.ts";
+} from "@hooks/subscription/index";
 
 //topic hooks
-export { useCreateTopic, useDeleteTopic } from "@hooks/topic/index.ts";
+export { useCreateTopic, useDeleteTopic } from "@hooks/topic/index";
 
 //unit hooks
-export { deleteUnit, useUnitEdit } from "@hooks/unit/index.ts";
+export { deleteUnit, useUnitEdit } from "@hooks/unit/index";

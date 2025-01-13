@@ -1,2 +1,2 @@
-export { deleteSubscription } from "./useSubscriptionDelete.ts";
-export { useSubscriptionEdit } from "./useSubscriptionEdit.ts";
+export { deleteSubscription } from "./useSubscriptionDelete";
+export { useSubscriptionEdit } from "./useSubscriptionEdit";

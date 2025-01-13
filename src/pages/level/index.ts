@@ -1,4 +1,4 @@
 // Level Pages Exports
-export { LevelPage } from "./levelPage.tsx";
-export { LevelCreatePage } from "./levelCreatePage.tsx";
-export { LevelUpdatePage } from "./levelEditPage.tsx";
+export { LevelPage } from "./levelPage";
+export { LevelCreatePage } from "./levelCreatePage";
+export { LevelUpdatePage } from "./levelEditPage";

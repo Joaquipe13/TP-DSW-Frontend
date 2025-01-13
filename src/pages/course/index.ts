@@ -1,6 +1,6 @@
 //Course Pages Exports
-export { CoursePage } from "./coursePage.tsx";
-export { CourseListPage } from "./courseListPage.tsx";
-export { CourseCreatePage } from "./courseCreatePage.tsx";
-export { CourseUpdatePage } from "./courseEditPage.tsx";
-export { MyCourseListPage } from "./myCoursePage.tsx";
+export { CoursePage } from "./coursePage";
+export { CourseListPage } from "./courseListPage";
+export { CourseCreatePage } from "./courseCreatePage";
+export { CourseUpdatePage } from "./courseEditPage";
+export { MyCourseListPage } from "./myCoursePage";

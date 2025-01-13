@@ -6,7 +6,7 @@ export {
 } from "./buttons";
 
 // Others
-export { Loading } from "./loading.tsx";
-export { Error } from "./error.tsx";
-export { DateRangePicker } from "./dateRangePicker.tsx";
-export { SearchBox } from "./searchBox.tsx";
+export { Loading } from "./loading";
+export { Error } from "./error";
+export { DateRangePicker } from "./dateRangePicker";
+export { SearchBox } from "./searchBox";

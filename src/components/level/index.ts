@@ -1,4 +1,4 @@
-export { LevelGetOne } from "./level.tsx";
-export { LevelList } from "./levelList.tsx";
-export { LevelCreate } from "./levelCreate.tsx";
-export { LevelUpdate } from "./levelUpdate.tsx";
+export { LevelGetOne } from "./level";
+export { LevelList } from "./levelList";
+export { LevelCreate } from "./levelCreate";
+export { LevelUpdate } from "./levelUpdate";

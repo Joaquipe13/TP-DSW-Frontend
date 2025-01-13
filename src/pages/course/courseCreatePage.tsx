@@ -1,5 +1,5 @@
 import Container from "react-bootstrap/Container";
-import { CourseCreate, NavigationButton } from "@components/index.ts";
+import { CourseCreate, NavigationButton } from "@components/index";
 
 export const CourseCreatePage = () => {
   return (
