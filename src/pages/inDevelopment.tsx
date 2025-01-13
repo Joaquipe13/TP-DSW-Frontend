@@ -11,7 +11,7 @@ export const InDevelopmentPage = () => {
       <h3>{title} page is in development</h3>
       <br />
       <br />
-      <NavigationButton to="/" label="Back to mian page" />
+      <NavigationButton to="/" label="Back to main page" />
     </div>
   );
 };
