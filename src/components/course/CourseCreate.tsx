@@ -1,19 +1,17 @@
 import { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { usePost } from "../../common/hooks";
-import { Course } from "../../common/utils/types";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Badge from "react-bootstrap/Badge";
-import { Topics } from "../topic/topics";
-import { useSelectedTopics } from "./hooks/useSelectedTopics";
+import { Topics, Loading, Error } from "@components/index.ts";
+import { usePost, useSelectedTopics } from "@hooks/index.ts";
 import {
-  validateTitle,
-  validatePrice,
-  validateTopics,
-} from "./validations/courseValidate";
-import { Loading, Error } from "../../common/utils";
+  Course,
+  validateCoursePrice,
+  validateCourseTitle,
+  validateCourseTopics,
+} from "@utils/index.ts";
 
 export const CourseCreate = () => {
   const { loading, error, create } = usePost<Course>("/api/courses/");
@@ -49,10 +47,10 @@ export const CourseCreate = () => {
   }, [loading, error]);
 
   const handleClick = () => {
-    const titleError = validateTitle(title);
-    const resumeError = validateTitle(resume);
-    const priceError = validatePrice(price);
-    const topicsError = validateTopics(selectedTopics);
+    const titleError = validateCourseTitle(title);
+    const resumeError = validateCourseTitle(resume);
+    const priceError = validateCoursePrice(price);
+    const topicsError = validateCourseTopics(selectedTopics);
 
     if (titleError || resumeError || priceError || topicsError) {
       setFormErrors({

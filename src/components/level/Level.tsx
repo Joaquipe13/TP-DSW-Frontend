@@ -1,12 +1,15 @@
 import React, { useEffect, useState } from "react";
-import { useGet } from "../../common/hooks";
-import { Level } from "../../common/utils/types";
-import { NavigationButton } from "../../common/buttons";
-import { UnitList } from "../unit";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
-import { userType } from "../../common/authentication";
-import { Loading, Error } from "../../common/utils";
+import {
+  Loading,
+  Error,
+  NavigationButton,
+  UnitList,
+} from "@components/index.ts";
+import { useGet } from "@hooks/index.ts";
+import { userType, Level } from "@utils/index.ts";
+
 interface LevelGetOneProps {
   id: string;
   courseId: string;

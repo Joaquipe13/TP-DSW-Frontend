@@ -1,19 +1,19 @@
 import { useEffect, useState } from "react";
-import { useGet } from "../../common/hooks/index.ts";
-import { Subscription } from "../../common/utils/types.tsx";
-import { NavigationButton } from "../../common/buttons/index.ts";
 import { Card } from "react-bootstrap";
-import { Loading, Error } from "../../common/utils/index.ts";
-import { userType } from "../../common/authentication/index.ts";
-import { SubscriptionButton } from "../purchaseRecord/utils/purchaseSubsButton.tsx";
+import {
+  Loading,
+  Error,
+  NavigationButton,
+  SubscriptionButton,
+} from "@components/index.ts";
+import { useGet } from "@hooks/index.ts";
+import { userType, Subscription } from "@utils/index.ts";
 
 interface SubscriptionPreviewProps {
   id: number;
 }
 
-export const SubscriptionPreview: React.FC<SubscriptionPreviewProps> = ({
-  id,
-}) => {
+const SubscriptionPreview: React.FC<SubscriptionPreviewProps> = ({ id }) => {
   const [role, setRole] = useState<string | null>(null);
   const [loadingButton, setLoading] = useState(true);
   const {
@@ -76,3 +76,5 @@ export const SubscriptionPreview: React.FC<SubscriptionPreviewProps> = ({
     </Card>
   );
 };
+
+export default SubscriptionPreview;

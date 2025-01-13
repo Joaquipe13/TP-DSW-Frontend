@@ -1,18 +1,24 @@
 import React, { useEffect, useState } from "react";
-import { useGet } from "../../common/hooks/index.ts";
-import { Course, User } from "../../common/utils/types.tsx";
-import { NavigationButton } from "../../common/buttons/index.ts";
-import { Topics } from "../topic";
-import { LevelList } from "../level";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
-import { Loading, Error, DateComponent } from "../../common/utils/index.ts";
-import { PurchaseButton } from "../purchaseRecord/utils";
 import {
-  checkSubscription,
+  Loading,
+  LevelList,
+  Topics,
+  Error,
+  NavigationButton,
+  PurchaseButton,
+} from "@components/index.ts";
+import { useGet } from "@hooks/index.ts";
+import {
   checkPurchase,
+  checkSubscription,
+  DateComponent,
   getUser,
-} from "../../common/authentication/index.ts";
+  Course,
+  User,
+} from "@utils/index.ts";
+
 interface CourseGetOneProps {
   id: string;
 }

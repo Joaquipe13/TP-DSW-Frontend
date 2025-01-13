@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, Container, Row, Col } from "react-bootstrap";
-import { validateLogin } from "./utils";
-import { RegisterOverlay } from "./registerOverlay.tsx";
+import { RegisterOverlay } from "@components/index.ts";
+import { validateLogin } from "@utils/index.ts";
 
 interface LoginOverlayProps {
   show: boolean;

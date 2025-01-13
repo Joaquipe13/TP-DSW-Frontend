@@ -1,14 +1,14 @@
 import { useEffect } from "react";
-import { useGet } from "../../common/hooks/index.ts";
 import Row from "react-bootstrap/Row";
 import { Col } from "react-bootstrap";
-import { Level } from "../../common/utils/types.tsx";
+import { useGet } from "@hooks/index.ts";
+import { Level } from "@utils/index.tsx";
 
 interface LevelPreviewProps {
   id: number | string;
 }
 
-export const LevelPreview: React.FC<LevelPreviewProps> = ({ id }) => {
+const LevelPreview: React.FC<LevelPreviewProps> = ({ id }) => {
   const levelId = typeof id === "string" ? parseInt(id) : id;
   const {
     data: level,
@@ -33,3 +33,5 @@ export const LevelPreview: React.FC<LevelPreviewProps> = ({ id }) => {
     </Row>
   );
 };
+
+export default LevelPreview;

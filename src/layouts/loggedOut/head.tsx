@@ -2,8 +2,8 @@ import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { UserMenu } from "../userMenu";
-import { useLoginAlert } from "../../common/hooks";
+import { useLoginAlert } from "@hooks/index.ts";
+import { UserMenu } from "@layouts/userMenu";
 
 export const LoggedOutHead: React.FC = () => {
   const { showLoginAlert, LoginAlert } = useLoginAlert();

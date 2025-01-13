@@ -1,12 +1,12 @@
 import React, { useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-import { usePost } from "../../common/hooks";
-import { Topic } from "../../common/utils/types";
-import { NavigationButton } from "../../common/buttons";
 import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
+import { Loading, Error, NavigationButton } from "@components/index.ts";
+import { usePost } from "@hooks/index.ts";
+import { Topic } from "@utils/index.ts";
 
 export const TopicCreate = () => {
   const { loading, error, create } = usePost<Topic>("/api/topics");
@@ -57,6 +57,9 @@ export const TopicCreate = () => {
       handleClick();
     }
   };
+
+  if (loading) return <Loading />;
+  if (error) return <Error message={error} />;
   return (
     <Container
       className="topic mt-4 p-4"

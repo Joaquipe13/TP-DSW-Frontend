@@ -5,8 +5,9 @@ import Container from "react-bootstrap/Container";
 import Card from "react-bootstrap/Card";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
-import { validateLogin } from "./utils";
 import { useNavigate } from "react-router-dom";
+import { validateLogin } from "@utils/index.ts";
+
 export function LoginForm() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
