@@ -1,44 +1,24 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
+
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/", // Define la ruta base; cámbiala si usas subdominios.
+  base: "/", // Define the base URL for your app.
   build: {
-    outDir: "dist", // Asegúrate de que el directorio de salida sea 'dist', compatible con Vercel.
+    outDir: "dist", // Ensure the build output directory is set.
   },
   resolve: {
     alias: {
-      "@assets": path.resolve(
-        path.dirname(new URL(import.meta.url).pathname),
-        "src/assets/"
-      ),
-      "@components": path.resolve(
-        path.dirname(new URL(import.meta.url).pathname),
-        "src/components/"
-      ),
-      "@hooks": path.resolve(
-        path.dirname(new URL(import.meta.url).pathname),
-        "src/hooks/"
-      ),
-      "@layouts": path.resolve(
-        path.dirname(new URL(import.meta.url).pathname),
-        "src/layouts/"
-      ),
-      "@pages": path.resolve(
-        path.dirname(new URL(import.meta.url).pathname),
-        "src/pages/"
-      ),
-      "@utils": path.resolve(
-        path.dirname(new URL(import.meta.url).pathname),
-        "src/utils/"
-      ),
-      "@middlewares": path.resolve(
-        path.dirname(new URL(import.meta.url).pathname),
-        "src/middlewares/"
-      ),
+      "@assets": path.resolve(__dirname, "src/assets/"),
+      "@components": path.resolve(__dirname, "src/components/"),
+      "@hooks": path.resolve(__dirname, "src/hooks/"),
+      "@layouts": path.resolve(__dirname, "src/layouts/"),
+      "@pages": path.resolve(__dirname, "src/pages/"),
+      "@utils": path.resolve(__dirname, "src/utils/"),
+      "@middlewares": path.resolve(__dirname, "src/middlewares/"),
     },
-    extensions: [".js", ".ts", ".jsx", ".tsx", ".json"],
+    extensions: [".js", ".ts", ".jsx", ".tsx", ".json"], // Add extensions to avoid explicit extensions in imports.
   },
 });
