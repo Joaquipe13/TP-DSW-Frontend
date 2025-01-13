@@ -9,7 +9,7 @@ export {
   removeToken,
   setCookieValue,
   userType,
-} from "./auth";
+} from "@utils/auth";
 
 // validation utils
 export {
@@ -26,7 +26,7 @@ export {
   validateUnitContent,
   validateLogin,
   validateRegister,
-} from "./validations/index.ts";
+} from "@utils/validations/index.ts";
 
 // other utils
 export type {
@@ -40,8 +40,8 @@ export type {
   SubsPurchaseRecord,
   User,
   PurchaseRecord,
-} from "./types.ts";
+} from "@utils/types.ts";
 
-export { porturl } from "./route";
+export { porturl } from "@utils/route";
 
-export { DateComponent } from "./date";
+export { DateComponent } from "@utils/date";

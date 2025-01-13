@@ -4,7 +4,7 @@ export {
   RegisterForm,
   LoginOverlay,
   RegisterOverlay,
-} from "./authentication/index.ts";
+} from "@components/authentication/index.ts";
 
 // common components
 export {
@@ -15,7 +15,7 @@ export {
   Error,
   DateRangePicker,
   SearchBox,
-} from "./common/index.ts";
+} from "@components/common/index.ts";
 
 // course components
 export {
@@ -25,7 +25,7 @@ export {
   CourseSelector,
   CourseGetOne,
   MyCourseList,
-} from "./course/index.ts";
+} from "@components/course/index.ts";
 
 // level components
 export {
@@ -33,7 +33,7 @@ export {
   LevelList,
   LevelCreate,
   LevelUpdate,
-} from "./level/index.ts";
+} from "@components/level/index.ts";
 
 // purchaseRecord components
 export {
@@ -42,17 +42,22 @@ export {
   MySubscriptionsList,
   SubscriptionsList,
   PurchaseConfirmationModal,
-} from "./purchaseRecord/index.ts";
+} from "@components/purchaseRecord/index.ts";
 
 // subscription components
 export {
   SubscriptionCreate,
   SubscriptionList,
   SubscriptionUpdate,
-} from "./subscription/index.ts";
+} from "@components/subscription/index.ts";
 
 // topic components
-export { Topics, TopicList, TopicCreate } from "./topic/index.ts";
+export { Topics, TopicList, TopicCreate } from "@components/topic/index.ts";
 
 // unit components
-export { UnitGetOne, UnitCreate, UnitUpdate, UnitList } from "./unit/index.ts";
+export {
+  UnitGetOne,
+  UnitCreate,
+  UnitUpdate,
+  UnitList,
+} from "@components/unit/index.ts";
