@@ -26,7 +26,7 @@ export {
   validateUnitContent,
   validateLogin,
   validateRegister,
-} from "@utils/validations/index";
+} from "@utils/validations";
 
 // other utils
 export type {
