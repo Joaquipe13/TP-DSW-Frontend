@@ -1,10 +1,5 @@
 // auth components
-export {
-  LoginForm,
-  RegisterForm,
-  LoginOverlay,
-  RegisterOverlay,
-} from "@components/authentication";
+export { LoginOverlay, RegisterOverlay } from "@components/authentication";
 
 // common components
 export {

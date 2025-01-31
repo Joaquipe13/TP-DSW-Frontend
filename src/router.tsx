@@ -14,8 +14,6 @@ import {
   UnitUpdatePage,
   TopicListPage,
   TopicCreatePage,
-  LoginPage,
-  RegisterPage,
   SubscriptionListPage,
   SubscriptionCreatePage,
   SubscriptionUpdatePage,
@@ -26,14 +24,6 @@ import {
 import { PrivateRoute, AdminRoute } from "@middlewares/index";
 
 const router = createBrowserRouter([
-  {
-    path: "/login",
-    element: <LoginPage />,
-  },
-  {
-    path: "/register",
-    element: <RegisterPage />,
-  },
   {
     path: "/",
     element: <App />,

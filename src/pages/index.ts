@@ -12,8 +12,6 @@ export { LevelPage, LevelCreatePage, LevelUpdatePage } from "@pages/level";
 export { UnitPage, UnitCreatePage, UnitUpdatePage } from "@pages/unit";
 //Topic Pages Exports
 export { TopicListPage, TopicCreatePage } from "@pages/topic";
-//Authentication Pages Exports
-export { LoginPage, RegisterPage } from "@pages/authentication";
 //Subscription Pages Exports
 export {
   SubscriptionListPage,
