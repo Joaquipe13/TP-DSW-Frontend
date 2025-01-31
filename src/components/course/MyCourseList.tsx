@@ -51,7 +51,7 @@ export const MyCourseList: React.FC<MyCourseListProps> = ({ title }) => {
           <tbody>
             {courses
               .reduce((acc, course, index) => {
-                if (index % 3 === 0) acc.push([]);
+                if (index % 2 === 0) acc.push([]);
                 acc[acc.length - 1].push(course);
                 return acc;
               }, [])
@@ -60,10 +60,10 @@ export const MyCourseList: React.FC<MyCourseListProps> = ({ title }) => {
                   {rowCourses.map((course) => (
                     <Col
                       key={course.id}
-                      xs={10}
-                      sm={4}
-                      md={4}
-                      lg={4}
+                      xs={12}
+                      sm={12}
+                      md={12}
+                      lg={6}
                       className="d-flex justify-content-center"
                     >
                       <CoursePreview id={course.id} />

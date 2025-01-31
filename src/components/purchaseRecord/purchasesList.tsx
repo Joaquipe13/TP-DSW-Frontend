@@ -1,7 +1,8 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { Container, Table } from "react-bootstrap";
+import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
 import { Loading, Error, NavigationButton } from "@components/index.ts";
-import { useGet } from "@hooks/index.ts";
+import { useGet, useSortList } from "@hooks/index.ts";
 import { CoursePurchaseRecord } from "@utils/index.ts";
 
 interface PurchasesListProps {
@@ -25,12 +26,72 @@ export const PurchasesList: React.FC<PurchasesListProps> = ({
     loading,
     fetchData,
   } = useGet<CoursePurchaseRecord>(`/api/CoursePurchaseRecords${queryString}`);
+  const [isIdSortedDesc, setSortedDesc] = useState(false);
+  const [isCourseSortedDesc, setCourseSortedDesc] = useState(false);
+  const [isUserSortedDesc, setUserSortedDesc] = useState(false);
+  const [isPurchDateSortedDesc, setPurchDateSortedDesc] = useState(false);
+  const [isAmountSortedDesc, setAmountSortedDesc] = useState(false);
+  const setSortStarteDesc = (key: keyof CoursePurchaseRecord) => {
+    switch (key) {
+      case "id":
+        setSortedDesc(!isIdSortedDesc);
+        setCourseSortedDesc(false);
+        setPurchDateSortedDesc(false);
+        setUserSortedDesc(false);
+        setAmountSortedDesc(false);
+        break;
+
+      case "course":
+        setCourseSortedDesc(!isCourseSortedDesc);
+        setSortedDesc(false);
+        setPurchDateSortedDesc(false);
+        setUserSortedDesc(false);
+        setAmountSortedDesc(false);
+        break;
+      case "user":
+        setUserSortedDesc(!isUserSortedDesc);
+        setSortedDesc(false);
+        setCourseSortedDesc(false);
+        setPurchDateSortedDesc(false);
+        setAmountSortedDesc(false);
+        break;
+      case "purchaseAt":
+        setPurchDateSortedDesc(!isPurchDateSortedDesc);
+        setSortedDesc(false);
+        setCourseSortedDesc(false);
+        setUserSortedDesc(false);
+        setAmountSortedDesc(false);
+        break;
+
+      case "totalAmount":
+        setAmountSortedDesc(!isAmountSortedDesc);
+        setSortedDesc(false);
+        setCourseSortedDesc(false);
+        setPurchDateSortedDesc(false);
+        setUserSortedDesc(false);
+        break;
+      default:
+        break;
+    }
+  };
 
   useEffect(() => {
     fetchData();
-    console.log("purchaseRecords:", purchaseRecords);
   }, [fetchData]);
-  const purchaseRecords = response?.coursePurchaseRecords || [];
+  const [purchaseRecords, setPurchaseRecords] = useState<
+    CoursePurchaseRecord[]
+  >([]);
+  const { sortList } = useSortList<CoursePurchaseRecord>();
+  const handleSort = (key: keyof CoursePurchaseRecord) => {
+    const sortedRecords = sortList(key, response?.coursePurchaseRecords);
+    setSortStarteDesc(key)
+    setPurchaseRecords(sortedRecords);
+  };
+  useEffect(() => {
+    if (response?.coursePurchaseRecords) {
+      setPurchaseRecords(response.coursePurchaseRecords);
+    }
+  }, [response]);
 
   if (loading) return <Loading />;
   if (error) return <Error message={error} />;
@@ -40,11 +101,63 @@ export const PurchasesList: React.FC<PurchasesListProps> = ({
       <Table striped bordered hover responsive>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Course Title</th>
-            <th>User Name</th>
-            <th>Purchase Date</th>
-            <th>Total Amount</th>
+            <th>
+              ID
+              <span
+                onClick={() => handleSort("id")}
+                style={{ cursor: "pointer" }}
+              >
+                {isIdSortedDesc ? <TiArrowSortedUp /> : <TiArrowSortedDown />}
+              </span>
+            </th>
+            <th>
+              Course Title
+              <span
+                onClick={() => handleSort("course")}
+                style={{ cursor: "pointer" }}
+              >
+                {isCourseSortedDesc ? (
+                  <TiArrowSortedUp />
+                ) : (
+                  <TiArrowSortedDown />
+                )}
+              </span>
+            </th>
+            <th>
+              User Name
+              <span
+                onClick={() => handleSort("user")}
+                style={{ cursor: "pointer" }}
+              >
+                {isUserSortedDesc ? <TiArrowSortedUp /> : <TiArrowSortedDown />}
+              </span>
+            </th>
+            <th>
+              Purchase Date
+              <span
+                onClick={() => handleSort("purchaseAt")}
+                style={{ cursor: "pointer" }}
+              >
+                {isPurchDateSortedDesc ? (
+                  <TiArrowSortedUp />
+                ) : (
+                  <TiArrowSortedDown />
+                )}
+              </span>
+            </th>
+            <th>
+              Total Amount
+              <span
+                onClick={() => handleSort("totalAmount")}
+                style={{ cursor: "pointer" }}
+              >
+                {isAmountSortedDesc ? (
+                  <TiArrowSortedUp />
+                ) : (
+                  <TiArrowSortedDown />
+                )}
+              </span>
+            </th>
           </tr>
         </thead>
         <tbody>

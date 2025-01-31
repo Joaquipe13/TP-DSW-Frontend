@@ -103,7 +103,7 @@ export const SubscriptionUpdate: React.FC<SubscriptionUpdateProps> = ({
               </Form.Control.Feedback>
             </Form.Group>
             <Form.Group className="mb-3">
-              <Form.Label>Duration</Form.Label>
+              <Form.Label>Duration (days)</Form.Label>
               <Form.Control
                 type="text"
                 placeholder={oldSubscription?.duration?.toString() || "0000.00"}

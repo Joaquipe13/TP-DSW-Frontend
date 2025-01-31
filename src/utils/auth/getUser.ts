@@ -2,7 +2,6 @@ import { getCookieValue, setCookieValue, porturl } from "@utils/index.ts";
 
 function searchUser() {
   const userData = getCookieValue("user");
-  console.log("user cookie", userData);
   if (!userData) {
     return null;
   }

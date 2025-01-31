@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
+import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
 import { FaUserCircle } from "react-icons/fa";
 import { RegisterOverlay, LoginOverlay } from "@components/index.ts";
 import { useLogout } from "@hooks/index.ts";
@@ -35,20 +36,19 @@ export const UserMenu: React.FC = () => {
         align="end"
         title={<FaUserCircle size={35} />}
         id="user-nav-dropdown"
-        menuVariant="dark"
-        style={{ marginLeft: "1rem" }}
+        style={{ marginLeft: "1rem", color: "#34A853" }}
       >
         {role !== null ? (
           <>
             {role === "member" && (
               <>
-                <NavDropdown.Item href="/coursePurchaseRecords">
+                <NavDropdown.Item style={{ color: "#FFFFFF" }} href="/coursePurchaseRecords">
                   My Purchases
                 </NavDropdown.Item>
                 <NavDropdown.Divider />
               </>
             )}
-            <NavDropdown.Item
+            <NavDropdown.Item style={{ color: "#FFFFFF" }}
               className="text-danger fw-bold"
               onClick={handleLogout}
             >
@@ -57,10 +57,10 @@ export const UserMenu: React.FC = () => {
           </>
         ) : (
           <>
-            <NavDropdown.Item onClick={handleRegister}>
+            <NavDropdown.Item style={{ color: "#FFFFFF" }} onClick={handleRegister}>
               Register
             </NavDropdown.Item>
-            <NavDropdown.Item onClick={handleLogin}>Login</NavDropdown.Item>
+            <NavDropdown.Item style={{ color: "#FFFFFF" }}  onClick={handleLogin}>Login</NavDropdown.Item>
           </>
         )}
       </NavDropdown>

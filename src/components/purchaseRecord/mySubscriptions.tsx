@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react";
+import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
 import { Container, Table } from "react-bootstrap";
 import { Loading, Error } from "@components/index.ts";
-import { useGet } from "@hooks/index.ts";
+import { useGet, useSortList } from "@hooks/index.ts";
 import { SubsPurchaseRecord } from "@utils/index.ts";
 
 interface MySubscriptionsListProps {
@@ -16,7 +17,53 @@ export const MySubscriptionsList: React.FC<MySubscriptionsListProps> = ({
 }) => {
   const [isLoading, setLoading] = useState(true);
   const [queryString, setQueryString] = useState(`?user=${userId}`);
+  const [isIdSortedDesc, setIdSortedDesc] = useState(false);
+  const [isDurationSortedDesc, setDurationSortedDesc] = useState(false);
+  const [isPurchDateSortedDesc, setPurchDateSortedDesc] = useState(false);
+  const [isActDateSortedDesc, setActDateSortedDesc] = useState(false);
+  const [isAmountSortedDesc, setAmountSortedDesc] = useState(false);
+  const setSortStarteDesc = (key: keyof SubsPurchaseRecord) => {
+    switch (key) {
+      case "id":
+        setIdSortedDesc(!isIdSortedDesc);
+        setDurationSortedDesc(false);
+        setPurchDateSortedDesc(false);
+        setActDateSortedDesc(false);
+        setAmountSortedDesc(false);
+        break;
 
+      case "subscription":
+        setDurationSortedDesc(!isDurationSortedDesc);
+        setIdSortedDesc(false);
+        setPurchDateSortedDesc(false);
+        setActDateSortedDesc(false);
+        setAmountSortedDesc(false);
+        break;
+      case "purchaseAt":
+        setPurchDateSortedDesc(!isPurchDateSortedDesc);
+        setIdSortedDesc(false);
+        setDurationSortedDesc(false);
+        setActDateSortedDesc(false);
+        setAmountSortedDesc(false);
+        break;
+      case "effectiveAt":
+        setActDateSortedDesc(!isActDateSortedDesc);
+        setIdSortedDesc(false);
+        setDurationSortedDesc(false);
+        setPurchDateSortedDesc(false);
+        setAmountSortedDesc(false);
+        break;
+      case "totalAmount":
+        setAmountSortedDesc(!isAmountSortedDesc);
+        setIdSortedDesc(false);
+        setDurationSortedDesc(false);
+        setPurchDateSortedDesc(false);
+        setActDateSortedDesc(false);
+        break;
+      default:
+        break;
+    }
+  };
   useEffect(() => {
     const query =
       `?user=${userId}` +
@@ -24,7 +71,6 @@ export const MySubscriptionsList: React.FC<MySubscriptionsListProps> = ({
       (endDate ? `&endDate=${endDate.toISOString()}` : "");
     console.log("query" + query);
     setQueryString(query);
-    console.log(queryString);
     fetchData();
     setLoading(loading);
   }, [startDate, endDate]);
@@ -36,7 +82,21 @@ export const MySubscriptionsList: React.FC<MySubscriptionsListProps> = ({
     fetchData,
   } = useGet<SubsPurchaseRecord>(`/api/subsPurchaseRecords${queryString}`);
 
-  const purchaseRecords = response || [];
+  const [purchaseRecords, setPurchaseRecords] = useState<SubsPurchaseRecord[]>(
+    []
+  );
+  const { sortList } = useSortList<SubsPurchaseRecord>();
+  const handleSort = (key: keyof SubsPurchaseRecord) => {
+    const sortedRecords = sortList(key, response);
+    setSortStarteDesc(key);
+    setPurchaseRecords(sortedRecords);
+  };
+  useEffect(() => {
+    console.log(response);
+    if (response) {
+      setPurchaseRecords(response);
+    }
+  }, [response]);
 
   if (isLoading) return <Loading />;
   if (error) return <Error message={error} />;
@@ -49,13 +109,69 @@ export const MySubscriptionsList: React.FC<MySubscriptionsListProps> = ({
       <Table striped bordered hover responsive>
         <thead>
           <tr>
-            <th>ID</th>
+            <th>
+              ID
+              <span
+                onClick={() => handleSort("id")}
+                style={{ cursor: "pointer" }}
+              >
+                {isIdSortedDesc ? <TiArrowSortedUp /> : <TiArrowSortedDown />}
+              </span>
+            </th>
             <th>Subscription Name</th>
-            <th>Duration</th>
+            <th>
+              Duration
+              <span
+                onClick={() => handleSort("subscription")}
+                style={{ cursor: "pointer" }}
+              >
+                {isDurationSortedDesc ? (
+                  <TiArrowSortedUp />
+                ) : (
+                  <TiArrowSortedDown />
+                )}
+              </span>
+            </th>
             <th>User Name</th>
-            <th>Purchase Date</th>
-            <th>Activation Date</th>
-            <th>Total Amount</th>
+            <th>
+              Purchase Date
+              <span
+                onClick={() => handleSort("purchaseAt")}
+                style={{ cursor: "pointer" }}
+              >
+                {isPurchDateSortedDesc ? (
+                  <TiArrowSortedUp />
+                ) : (
+                  <TiArrowSortedDown />
+                )}
+              </span>
+            </th>
+            <th>
+              Activation Date
+              <span
+                onClick={() => handleSort("effectiveAt")}
+                style={{ cursor: "pointer" }}
+              >
+                {isActDateSortedDesc ? (
+                  <TiArrowSortedUp />
+                ) : (
+                  <TiArrowSortedDown />
+                )}
+              </span>
+            </th>
+            <th>
+              Total Amount
+              <span
+                onClick={() => handleSort("totalAmount")}
+                style={{ cursor: "pointer" }}
+              >
+                {isAmountSortedDesc ? (
+                  <TiArrowSortedUp />
+                ) : (
+                  <TiArrowSortedDown />
+                )}
+              </span>
+            </th>
           </tr>
         </thead>
         <tbody>

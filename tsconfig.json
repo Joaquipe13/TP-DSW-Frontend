@@ -4,10 +4,7 @@
     "module": "ESNext",
     "strict": true
   },
-  "references": [
-    { "path": "./tsconfig.app.json" },
-    { "path": "./tsconfig.node.json" }
-  ],
-  "include": ["src/**/*"], 
-  "exclude": ["node_modules", "dist"] 
+  "references": [],
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

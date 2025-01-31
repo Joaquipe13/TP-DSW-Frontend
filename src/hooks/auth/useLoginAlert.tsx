@@ -1,19 +1,24 @@
 import { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
-import { LoginOverlay } from "@components/index.ts";
+import { LoginOverlay, RegisterOverlay } from "@components/index.ts";
 
 export const useLoginAlert = () => {
   const [show, setShow] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
+  const [showRegister, setShowRegister] = useState(false);
 
   const showLoginAlert = () => setShow(true);
   const hideLoginAlert = () => setShow(false);
+  const hideLogin = () => setShowLogin(false);
 
   const handleLogin = () => {
-    setShowLogin(true); // Mostrar el overlay de login
-    setShow(false); // Cerrar el modal cuando se muestra el overlay
+    setShowLogin(true);
+    setShow(false);
   };
-
+  const handleRegister = () => {
+    setShowRegister(true);
+    setShow(false);
+  };
   const LoginAlert = () => (
     <>
       <Modal show={show} onHide={hideLoginAlert} centered>
@@ -21,18 +26,22 @@ export const useLoginAlert = () => {
           <Modal.Title>Log In Required</Modal.Title>
         </Modal.Header>
         <Modal.Body>You must log in to proceed.</Modal.Body>
-        <Modal.Footer>
+        <Modal.Footer className="d-flex justify-content-between">
           <Button variant="primary" onClick={handleLogin}>
             Log In
           </Button>
-          <Button variant="secondary" onClick={hideLoginAlert}>
-            Continue Without Logging In
+          <Button variant="secondary" onClick={handleRegister}>
+            Register
           </Button>
         </Modal.Footer>
       </Modal>
-
-      {/* El overlay no se cierra con el modal, sino que se controla independientemente */}
       <LoginOverlay show={showLogin} setShow={setShowLogin} />
+      <RegisterOverlay
+        show={showRegister}
+        setShow={setShowRegister}
+        onSwitchToLogin={handleLogin}
+        hideLogin={hideLogin}
+      />
     </>
   );
 

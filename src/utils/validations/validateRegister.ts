@@ -3,6 +3,7 @@ interface UserData {
   surname: string;
   email: string;
   password: string;
+  repeatPassword: string;
 }
 export function validateRegister(userData: UserData) {
   const errors: any = {};
@@ -24,6 +25,11 @@ export function validateRegister(userData: UserData) {
     errors.password = ["Password is required"];
   } else if (userData.password.length < 8) {
     errors.password = ["Password must be at least 8 characters long"];
+  }
+  if (!userData.repeatPassword) {
+    errors.repeatPassword = ["Password is required"];
+  } else if (userData.repeatPassword !== userData.password) {
+    errors.repeatPassword = ["Password does not match"];
   }
 
   return errors;

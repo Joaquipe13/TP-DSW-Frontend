@@ -56,8 +56,8 @@ export const CourseList: React.FC<CourseListProps> = ({ view, title }) => {
                     <Col
                       key={course.id}
                       xs={12}
-                      sm={6}
-                      md={6}
+                      sm={12}
+                      md={12}
                       lg={6}
                       className="d-flex justify-content-center"
                     >

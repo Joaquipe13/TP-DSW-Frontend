@@ -11,7 +11,6 @@ export function useGet<T>(baseUrl: string, expectArray: boolean = true) {
     setLoading(true);
     try {
       const url = baseUrl;
-      console.log(url);
       const response = await fetch(url, {
         method: "GET",
         headers: {

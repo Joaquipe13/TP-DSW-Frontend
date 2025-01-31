@@ -113,7 +113,7 @@ export const SubscriptionCreate = () => {
             </Form.Control.Feedback>
           </Form.Group>
           <Form.Group className="mb-3">
-            <Form.Label>Duration "(days)"</Form.Label>
+            <Form.Label>Duration (days)</Form.Label>
             <Form.Control
               type="text"
               placeholder="00"

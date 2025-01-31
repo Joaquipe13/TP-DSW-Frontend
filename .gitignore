@@ -26,3 +26,5 @@ node_modules
 
 #Configuracion de prettier
 .prettierc.json
+# Local Netlify folder
+.netlify

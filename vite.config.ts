@@ -1,13 +1,14 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
+//import { defineConfig as vitestDefineConfig } from "vitest/config";
 
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/", // Define the base URL for your app.
+  base: "/",
   build: {
-    outDir: "dist", // Ensure the build output directory is set.
+    outDir: "dist",
   },
   resolve: {
     alias: {
@@ -19,6 +20,6 @@ export default defineConfig({
       "@utils": path.resolve(__dirname, "src/utils/"),
       "@middlewares": path.resolve(__dirname, "src/middlewares/"),
     },
-    extensions: [".js", ".ts", ".jsx", ".tsx", ".json"], // Add extensions to avoid explicit extensions in imports.
+    extensions: [".js", ".ts", ".jsx", ".tsx", ".json"],
   },
 });

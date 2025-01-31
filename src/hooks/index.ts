@@ -19,6 +19,7 @@ export { deleteLevel, useLevelEdit } from "@hooks/level/index";
 export {
   usePurchaseAlert,
   useFilteredPurchases,
+  useSortList,
 } from "@hooks/purchaseRecord/index";
 
 //subscription hooks

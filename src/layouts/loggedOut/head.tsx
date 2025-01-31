@@ -2,22 +2,29 @@ import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { useLoginAlert } from "@hooks/index.ts";
+import { useLoginAlert } from "@hooks/index.js";
 import { UserMenu } from "@layouts/userMenu";
+import { Logo } from "@utils/logo.js";
 
 export const LoggedOutHead: React.FC = () => {
   const { showLoginAlert, LoginAlert } = useLoginAlert();
 
   return (
     <Navbar
-      className="py-3 fs-5"
-      bg="dark"
-      variant="dark"
+      className="py-3 fs-5 w-100"
+      style={{
+        backgroundColor: "#34A853", // Color azul del logo
+        borderBottom: "3px solid #34A853", // Línea inferior verde para contraste
+      }}
       expand="lg"
       fixed="top"
     >
-      <Navbar.Brand href="/" className="ms-2">
-        My App
+      <Navbar.Brand
+        href="/"
+        className="ms-2"
+        style={{ marginLeft: "2rem", color: "#FFFFFF" }}
+      >
+        <Logo />
       </Navbar.Brand>
 
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
@@ -26,24 +33,43 @@ export const LoggedOutHead: React.FC = () => {
           <NavDropdown
             title="Courses"
             id="course-dropdown"
-            style={{ marginLeft: "1rem" }}
+            style={{
+              color: "#34A853",
+              marginLeft: "1rem",
+              backgroundColor: "#34A853",
+            }}
             menuVariant="dark"
           >
-            <NavDropdown.Item href="/course/list">View All</NavDropdown.Item>
-            <NavDropdown.Item onClick={() => showLoginAlert()}>
+            <NavDropdown.Item style={{ color: "#FFFFFF" }} href="/course/list">
+              View All
+            </NavDropdown.Item>
+            <NavDropdown.Item
+              style={{ color: "#FFFFFF" }}
+              onClick={() => showLoginAlert()}
+            >
               My Courses
             </NavDropdown.Item>
           </NavDropdown>
           <NavDropdown
             title="Subscriptions"
             id="subscriptions-dropdown"
-            style={{ marginLeft: "1rem" }}
+            style={{
+              color: "#FFFFFF",
+              backgroundColor: "#34A853",
+              marginLeft: "1rem",
+            }}
             menuVariant="dark"
           >
-            <NavDropdown.Item href="/subscription/list">
+            <NavDropdown.Item
+              style={{ color: "#FFFFFF" }}
+              href="/subscription/list"
+            >
               View All
             </NavDropdown.Item>
-            <NavDropdown.Item onClick={() => showLoginAlert()}>
+            <NavDropdown.Item
+              style={{ color: "#FFFFFF" }}
+              onClick={() => showLoginAlert()}
+            >
               My Subscriptions
             </NavDropdown.Item>
           </NavDropdown>

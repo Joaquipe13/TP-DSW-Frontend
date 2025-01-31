@@ -25,18 +25,18 @@ export const SubscriptionListPage = () => {
       >
         Subscriptions
       </Card.Title>
-      <Card className="">
+      <Card className="mt-4">
         <SubscriptionList />
-        {role === "admin" && (
-          <Card.Body className="bg-light text-center p-3">
-            <NavigationButton
-              to={`/subscription/create`}
-              label="Add Subscription"
-              variant="success"
-            />
-          </Card.Body>
-        )}
       </Card>
+      {role === "admin" && (
+        <Card.Body className="bg-light text-center p-3">
+          <NavigationButton
+            to={`/subscription/create`}
+            label="Add Subscription"
+            variant="success"
+          />
+        </Card.Body>
+      )}
       <Card.Body className="bg-light text-center p-3">
         <NavigationButton
           to={`/`}
