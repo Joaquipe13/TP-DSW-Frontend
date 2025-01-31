@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter, Router } from "react-router-dom";
 import { App } from "./App";
 import {
   CoursePage,
@@ -23,7 +23,7 @@ import {
 } from "@pages/index";
 import { PrivateRoute, AdminRoute } from "@middlewares/index";
 
-const router = createBrowserRouter([
+const router: Router = createBrowserRouter([
   {
     path: "/",
     element: <App />,
