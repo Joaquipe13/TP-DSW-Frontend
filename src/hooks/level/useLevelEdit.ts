@@ -1,10 +1,10 @@
 import { useState, useEffect } from "react";
-import { useGet, usePut } from "@hooks/index.ts";
+import { useGet, usePut } from "@hooks/index";
 import {
   validateLevelName,
   validateLevelDescription,
   Level,
-} from "@utils/index.ts";
+} from "@utils/index";
 
 export const useLevelEdit = (levelId: string | undefined) => {
   const {

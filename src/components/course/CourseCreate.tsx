@@ -4,14 +4,14 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Badge from "react-bootstrap/Badge";
-import { Topics, Loading, Error } from "@components/index.ts";
-import { usePost, useSelectedTopics } from "@hooks/index.ts";
+import { Topics, Loading, Error } from "@components/index";
+import { usePost, useSelectedTopics } from "@hooks/index";
 import {
   Course,
   validateCoursePrice,
   validateCourseTitle,
   validateCourseTopics,
-} from "@utils/index.ts";
+} from "@utils/index";
 
 export const CourseCreate = () => {
   const { loading, error, create } = usePost<Course>("/api/courses/");

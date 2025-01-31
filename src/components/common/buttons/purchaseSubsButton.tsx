@@ -1,8 +1,8 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
-import { PurchaseConfirmationModal } from "@components/index.ts";
-import { useLoginAlert, usePost } from "@hooks/index.ts";
-import { getUser } from "@utils/index.ts";
+import { PurchaseConfirmationModal } from "@components/index";
+import { useLoginAlert, usePost } from "@hooks/index";
+import { getUser } from "@utils/index";
 
 interface SubscriptionButtonProps {
   subscriptionId: number;

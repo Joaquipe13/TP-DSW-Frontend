@@ -5,8 +5,8 @@ import {
   PurchasesList,
   DateRangePicker,
   Loading,
-} from "@components/index.ts";
-import { userType, getUser } from "@utils/index.ts";
+} from "@components/index";
+import { userType, getUser } from "@utils/index";
 
 export const PurchasesRecordPage: React.FC = () => {
   const [startDate, setStartDate] = useState<Date | undefined>(undefined);

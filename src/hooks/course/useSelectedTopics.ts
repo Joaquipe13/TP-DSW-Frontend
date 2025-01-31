@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Topic } from "@utils/index.ts";
+import { Topic } from "@utils/index";
 
 export const useSelectedTopics = () => {
   const [selectedTopics, setSelectedTopics] = useState<Topic[]>([]);

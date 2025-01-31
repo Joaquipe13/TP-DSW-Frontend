@@ -1,7 +1,7 @@
 import { useRef, useEffect } from "react";
 import { Container, Card, Form, Button, Row, Col } from "react-bootstrap";
-import { Loading, Error } from "@components/index.ts";
-import { useSubscriptionEdit, deleteSubscription } from "@hooks/index.ts";
+import { Loading, Error } from "@components/index";
+import { useSubscriptionEdit, deleteSubscription } from "@hooks/index";
 
 interface SubscriptionUpdateProps {
   subscriptionId: string;

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form, Container } from "react-bootstrap";
-import { validateRegister, createUser } from "@utils/index.ts";
+import { validateRegister, createUser } from "@utils/index";
 
 interface RegisterOverlayProps {
   show: boolean;
@@ -83,7 +83,7 @@ export const RegisterOverlay: React.FC<RegisterOverlayProps> = ({
             </Button>
             <h3 className="text-center mb-4">Register</h3>
             <Form onSubmit={handleSubmit}>
-              <Form.Group controlId="formName" >
+              <Form.Group controlId="formName">
                 <Form.Label>Name</Form.Label>
                 <Form.Control
                   type="text"
@@ -128,7 +128,7 @@ export const RegisterOverlay: React.FC<RegisterOverlayProps> = ({
                   </Form.Control.Feedback>
                 )}
               </Form.Group>
-              <Form.Group controlId="formPassword" >
+              <Form.Group controlId="formPassword">
                 <Form.Label>Password</Form.Label>
                 <Form.Control
                   type="password"
@@ -143,7 +143,7 @@ export const RegisterOverlay: React.FC<RegisterOverlayProps> = ({
                   </Form.Control.Feedback>
                 )}
               </Form.Group>
-              <Form.Group controlId="formRepeatPassword" >
+              <Form.Group controlId="formRepeatPassword">
                 <Form.Label>Repeat Password</Form.Label>
                 <Form.Control
                   type="password"

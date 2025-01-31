@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import Row from "react-bootstrap/Row";
 import { Col } from "react-bootstrap";
-import { useGet } from "@hooks/index.ts";
-import { Level } from "@utils/index.tsx";
+import { useGet } from "@hooks/index";
+import { Level } from "@utils/index";
 
 interface LevelPreviewProps {
   id: number | string;

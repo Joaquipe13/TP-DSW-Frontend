@@ -1,4 +1,4 @@
-import { remove } from "@hooks/index.ts";
+import { remove } from "@hooks/index";
 
 export const useDeleteTopic = (fetchData: () => void) => {
   const handleDeleteClick = async (topicId: number) => {

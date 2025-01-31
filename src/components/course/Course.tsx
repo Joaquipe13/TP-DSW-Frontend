@@ -8,8 +8,8 @@ import {
   Error,
   NavigationButton,
   PurchaseButton,
-} from "@components/index.ts";
-import { useGet } from "@hooks/index.ts";
+} from "@components/index";
+import { useGet } from "@hooks/index";
 import {
   checkPurchase,
   checkSubscription,
@@ -17,7 +17,7 @@ import {
   getUser,
   Course,
   User,
-} from "@utils/index.ts";
+} from "@utils/index";
 
 interface CourseGetOneProps {
   id: string;

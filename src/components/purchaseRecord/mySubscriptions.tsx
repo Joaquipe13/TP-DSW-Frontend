@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
 import { Container, Table } from "react-bootstrap";
-import { Loading, Error } from "@components/index.ts";
-import { useGet, useSortList } from "@hooks/index.ts";
-import { SubsPurchaseRecord } from "@utils/index.ts";
+import { Loading, Error } from "@components/index";
+import { useGet, useSortList } from "@hooks/index";
+import { SubsPurchaseRecord } from "@utils/index";
 
 interface MySubscriptionsListProps {
   startDate?: Date;

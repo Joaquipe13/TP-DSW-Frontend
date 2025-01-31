@@ -3,7 +3,7 @@ import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { UserMenu } from "@layouts/userMenu";
-import { Logo } from "@utils/logo.js";
+import { Logo } from "@utils/logo";
 
 export const AdminHead: React.FC = () => {
   return (

@@ -1,4 +1,4 @@
-import { porturl } from "@utils/index.ts";
+import { porturl } from "@utils/index";
 import Cookies from "js-cookie";
 
 interface UserData {

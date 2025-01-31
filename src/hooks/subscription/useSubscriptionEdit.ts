@@ -1,11 +1,11 @@
 import { useState, useEffect } from "react";
-import { useGet, usePut } from "@hooks/index.ts";
+import { useGet, usePut } from "@hooks/index";
 import {
   validateSubsDescription,
   validateSubsPrice,
   validateSubsDuration,
   Subscription,
-} from "@utils/index.ts";
+} from "@utils/index";
 
 export const useSubscriptionEdit = (subscriptionId: string) => {
   const {

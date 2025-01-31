@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Loading } from "@components/index.ts";
-import { userType } from "@utils/index.ts";
+import { Loading } from "@components/index";
+import { userType } from "@utils/index";
 
 export const AdminRoute = ({ element }: { element: JSX.Element }) => {
   const [role, setRole] = useState<null | {}>(null);

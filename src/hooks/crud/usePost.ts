@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { porturl } from "@utils/index.ts";
+import { porturl } from "@utils/index";
 
 export function usePost<T>(baseUrl: string) {
   const [loading, setLoading] = useState<boolean>(false);

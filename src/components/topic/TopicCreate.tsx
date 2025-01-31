@@ -4,9 +4,9 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
-import { Loading, Error, NavigationButton } from "@components/index.ts";
-import { usePost } from "@hooks/index.ts";
-import { Topic } from "@utils/index.ts";
+import { Loading, Error, NavigationButton } from "@components/index";
+import { usePost } from "@hooks/index";
+import { Topic } from "@utils/index";
 
 export const TopicCreate = () => {
   const { loading, error, create } = usePost<Topic>("/api/topics");

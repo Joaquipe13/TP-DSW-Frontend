@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { userType } from "@utils/index.ts";
+import { userType } from "@utils/index";
 
 export function useAdminRedirect(navigateTo: string) {
   const navigate = useNavigate();

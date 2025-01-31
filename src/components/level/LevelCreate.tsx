@@ -3,13 +3,13 @@ import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
-import { Loading, Error } from "@components/index.ts";
-import { usePost } from "@hooks/index.ts";
+import { Loading, Error } from "@components/index";
+import { usePost } from "@hooks/index";
 import {
   Level,
   validateLevelName,
   validateLevelDescription,
-} from "@utils/index.ts";
+} from "@utils/index";
 
 interface LevelCreateProps {
   course: string | undefined;

@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { useGet, usePut } from "@hooks/index.ts";
+import { useGet, usePut } from "@hooks/index";
 import {
   validateCourseTitle,
   validateCourseResume,
@@ -7,7 +7,7 @@ import {
   validateCourseTopics,
   Course,
   Topic,
-} from "@utils/index.ts";
+} from "@utils/index";
 
 export const useCourseEdit = (courseId: string) => {
   const {

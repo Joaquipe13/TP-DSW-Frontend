@@ -1,4 +1,4 @@
-import { setCookieValue, porturl } from "@utils/index.ts";
+import { setCookieValue, porturl } from "@utils/index";
 
 export async function validateLogin(email: string, password: string) {
   const url = porturl + "/api/login";

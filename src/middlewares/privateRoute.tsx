@@ -1,7 +1,7 @@
 import { Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Loading } from "@components/index.ts";
-import { User, getUser } from "@utils/index.ts";
+import { Loading } from "@components/index";
+import { User, getUser } from "@utils/index";
 
 export const PrivateRoute = ({ element }: { element: JSX.Element }) => {
   const [user, setUser] = useState<null | User>(null);

@@ -1,16 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Subscription } from "../../utils/types.tsx";
+import { Subscription } from "@utils/index";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { Loading, Error } from "@components/index.ts";
-import { usePost } from "@hooks/index.ts";
+import { Loading, Error } from "@components/index";
+import { usePost } from "@hooks/index";
 import {
   validateSubsDescription,
   validateSubsPrice,
   validateSubsDuration,
-} from "@utils/index.ts";
+} from "@utils/index";
 
 export const SubscriptionCreate = () => {
   const { loading, error, create } = usePost<Subscription>(

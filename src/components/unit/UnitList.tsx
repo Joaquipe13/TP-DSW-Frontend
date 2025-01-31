@@ -1,14 +1,14 @@
 import Container from "react-bootstrap/Container";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useEffect, useState } from "react";
-import { Loading, Error, NavigationButton } from "@components/index.ts";
-import { useGet } from "@hooks/index.ts";
-import { userType, Unit } from "@utils/index.ts";
-import UnitPreview from "./unitPreview.tsx";
+import { Loading, Error, NavigationButton } from "@components/index";
+import { useGet } from "@hooks/index";
+import { userType, Unit } from "@utils/index";
+import UnitPreview from "./unitPreview";
 
 interface UnitListProps {
-  level: string | undefined;
-  course: string | undefined;
+  level: string;
+  course: string;
 }
 
 export const UnitList: React.FC<UnitListProps> = ({ level, course }) => {

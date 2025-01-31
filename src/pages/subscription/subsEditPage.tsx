@@ -2,11 +2,7 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import { useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
-import {
-  SubscriptionUpdate,
-  Error,
-  NavigationButton,
-} from "@components/index.ts";
+import { SubscriptionUpdate, Error, NavigationButton } from "@components/index";
 
 export const SubscriptionUpdatePage: React.FC = () => {
   const { id } = useParams<{ id: string }>();

@@ -1,6 +1,6 @@
 import { useParams } from "react-router-dom";
 import Container from "react-bootstrap/Container";
-import { LevelCreate, NavigationButton } from "@components/index.ts";
+import { LevelCreate, NavigationButton } from "@components/index";
 
 export const LevelCreatePage: React.FC = () => {
   const { courseId } = useParams<{ courseId: string }>();

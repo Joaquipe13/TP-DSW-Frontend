@@ -5,8 +5,8 @@ import {
   Loading,
   MySubscriptionsList,
   SubscriptionsList,
-} from "@components/index.ts";
-import { userType, getUser } from "@utils/index.ts";
+} from "@components/index";
+import { userType, getUser } from "@utils/index";
 
 export const SubscriptionsRecordPage: React.FC = () => {
   const [startDate, setStartDate] = useState<Date | undefined>(undefined);

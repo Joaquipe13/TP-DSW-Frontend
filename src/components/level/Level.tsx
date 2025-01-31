@@ -1,14 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
-import {
-  Loading,
-  Error,
-  NavigationButton,
-  UnitList,
-} from "@components/index.ts";
-import { useGet } from "@hooks/index.ts";
-import { userType, Level } from "@utils/index.ts";
+import { Loading, Error, NavigationButton, UnitList } from "@components/index";
+import { useGet } from "@hooks/index";
+import { userType, Level } from "@utils/index";
 
 interface LevelGetOneProps {
   id: string;

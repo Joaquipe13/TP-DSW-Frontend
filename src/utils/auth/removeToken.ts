@@ -1,4 +1,4 @@
-import { porturl } from "@utils/index.ts";
+import { porturl } from "@utils/index";
 export async function removeToken(token: string) {
   const url = porturl + "/api/login/revoke-token";
   try {

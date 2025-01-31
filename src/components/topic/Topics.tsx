@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
-import { Loading, Error } from "@components/index.ts";
-import { useGet } from "@hooks/index.ts";
-import { Topic } from "@utils/index.ts";
+import { Loading, Error } from "@components/index";
+import { useGet } from "@hooks/index";
+import { Topic } from "@utils/index";
 
 interface TopicsProps {
   selectedTopics: Topic[];

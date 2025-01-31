@@ -1,5 +1,5 @@
 import { createBrowserRouter } from "react-router-dom";
-import { App } from "./App.tsx";
+import { App } from "./App";
 import {
   CoursePage,
   CourseListPage,
@@ -22,8 +22,8 @@ import {
   PurchasesRecordPage,
   InDevelopmentPage,
   SubscriptionsRecordPage,
-} from "@pages/index.ts";
-import { PrivateRoute, AdminRoute } from "@middlewares/index.ts";
+} from "@pages/index";
+import { PrivateRoute, AdminRoute } from "@middlewares/index";
 
 const router = createBrowserRouter([
   {

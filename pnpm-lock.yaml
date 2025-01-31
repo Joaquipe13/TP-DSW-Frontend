@@ -8,9 +8,6 @@ importers:
 
   .:
     dependencies:
-      '@types/react-router-dom':
-        specifier: ^5.3.3
-        version: 5.3.3
       bootstrap:
         specifier: ^5.3.3
         version: 5.3.3(@popperjs/core@2.11.8)
@@ -60,6 +57,9 @@ importers:
       '@types/react-router-bootstrap':
         specifier: ^0.26.6
         version: 0.26.6
+      '@types/react-router-dom':
+        specifier: ^5.3.3
+        version: 5.3.3
       '@vitejs/plugin-react':
         specifier: ^4.3.4
         version: 4.3.4(vite@5.4.11(@types/node@22.10.6))

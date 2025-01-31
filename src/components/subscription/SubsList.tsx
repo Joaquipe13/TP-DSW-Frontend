@@ -1,10 +1,10 @@
 import { useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import { Alert, Col, Row, Table } from "react-bootstrap";
-import { Loading, Error } from "@components/index.ts";
-import { useGet } from "@hooks/index.ts";
-import { Subscription } from "@utils/index.ts";
-import SubscriptionPreview from "./subscriptionPreview.tsx";
+import { Loading, Error } from "@components/index";
+import { useGet } from "@hooks/index";
+import { Subscription } from "@utils/index";
+import SubscriptionPreview from "./subscriptionPreview";
 export const SubscriptionList = () => {
   const {
     data: subscriptions,

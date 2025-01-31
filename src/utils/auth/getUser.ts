@@ -1,4 +1,4 @@
-import { getCookieValue, setCookieValue, porturl } from "@utils/index.ts";
+import { getCookieValue, setCookieValue, porturl } from "@utils/index";
 
 function searchUser() {
   const userData = getCookieValue("user");

@@ -2,7 +2,7 @@ import {
   getCookieValue,
   removeSessionCookies,
   removeToken,
-} from "@utils/index.ts";
+} from "@utils/index";
 
 export function useLogout() {
   const handleLogout = async () => {

@@ -1,4 +1,4 @@
-import { getUser } from "@utils/index.ts";
+import { getUser } from "@utils/index";
 
 export async function userType() {
   const user = await getUser();

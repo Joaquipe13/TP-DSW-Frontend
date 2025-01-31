@@ -4,10 +4,10 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
-import { Loading, Error } from "@components/index.ts";
-import { useGet } from "@hooks/index.ts";
-import { Course } from "@utils/index.ts";
-import CoursePreview from "./coursePreview.tsx";
+import { Loading, Error } from "@components/index";
+import { useGet } from "@hooks/index";
+import { Course } from "@utils/index";
+import CoursePreview from "./coursePreview";
 
 interface CourseListProps {
   view: number;

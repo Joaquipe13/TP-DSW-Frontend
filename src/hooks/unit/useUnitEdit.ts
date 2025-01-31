@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
-import { useGet, usePut } from "@hooks/index.ts";
-import { validateUnitName, validateUnitContent, Unit } from "@utils/index.ts";
+import { useGet, usePut } from "@hooks/index";
+import { validateUnitName, validateUnitContent, Unit } from "@utils/index";
 
 export const useUnitEdit = (unitId: string | undefined) => {
   const {

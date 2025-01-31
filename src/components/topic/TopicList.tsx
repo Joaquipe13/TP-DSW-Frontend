@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Button, Card, ListGroup, Form } from "react-bootstrap";
 import { FaTrash, FaCheck } from "react-icons/fa";
-import { Loading, Error } from "@components/index.ts";
-import { useDeleteTopic, useCreateTopic, useGet } from "@hooks/index.ts";
-import { Topic } from "@utils/index.ts";
+import { Loading, Error } from "@components/index";
+import { useDeleteTopic, useCreateTopic, useGet } from "@hooks/index";
+import { Topic } from "@utils/index";
 
 export const TopicList = () => {
   const {
@@ -49,6 +49,7 @@ export const TopicList = () => {
               padding: "1rem",
             }}
           >
+            ({creatingError !== null} ? <Error message={creatingError} />:
             {topic?.description}
             <Button
               variant="danger"
@@ -60,6 +61,7 @@ export const TopicList = () => {
             >
               <FaTrash />
             </Button>
+            )
           </ListGroup.Item>
         ))
       ) : (

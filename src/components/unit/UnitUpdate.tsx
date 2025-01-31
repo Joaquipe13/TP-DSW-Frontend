@@ -1,8 +1,8 @@
 import { useRef, useEffect } from "react";
 import { Container, Card, Form, Button, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { Loading, Error } from "@components/index.ts";
-import { useUnitEdit, deleteUnit } from "@hooks/index.ts";
+import { Loading, Error } from "@components/index";
+import { useUnitEdit, deleteUnit } from "@hooks/index";
 
 interface UnitUpdateProps {
   courseId: string;

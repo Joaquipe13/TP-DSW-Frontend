@@ -1,10 +1,10 @@
 import { useEffect, useState } from "react";
 import { Container, Table } from "react-bootstrap";
 import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
-import { Loading, Error, NavigationButton } from "@components/index.ts";
-import { useGet } from "@hooks/index.ts";
-import { CoursePurchaseRecord } from "@utils/index.ts";
-import { useSortList } from "@hooks/index.ts";
+import { Loading, Error, NavigationButton } from "@components/index";
+import { useGet } from "@hooks/index";
+import { CoursePurchaseRecord } from "@utils/index";
+import { useSortList } from "@hooks/index";
 
 interface MyPurchasesListProps {
   startDate?: Date;

@@ -1,14 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
-import { Loading, Error, NavigationButton } from "@components/index.ts";
-import { useGet } from "@hooks/index.ts";
-import { userType, Unit } from "@utils/index.ts";
+import { Loading, Error, NavigationButton } from "@components/index";
+import { useGet } from "@hooks/index";
+import { userType, Unit } from "@utils/index";
 
 interface UnitGetOneProps {
-  id: string | undefined;
-  courseId: string | undefined;
-  levelId: string | undefined;
+  id: string;
+  courseId: string;
+  levelId: string;
 }
 
 export const UnitGetOne: React.FC<UnitGetOneProps> = ({

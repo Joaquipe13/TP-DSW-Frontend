@@ -1,4 +1,4 @@
-import { porturl } from "@utils/index.ts";
+import { porturl } from "@utils/index";
 
 export async function getPurchasedCourses(
   user: number | null,

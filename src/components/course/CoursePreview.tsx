@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Course } from "../../utils/types.tsx";
+import { Course } from "../../utils/types";
 import Card from "react-bootstrap/Card";
-import { Topics, Loading, Error, NavigationButton } from "@components/index.ts";
-import { useGet } from "@hooks/index.ts";
-import { userType, DateComponent } from "@utils/index.ts";
+import { Topics, Loading, Error, NavigationButton } from "@components/index";
+import { useGet } from "@hooks/index";
+import { userType, DateComponent } from "@utils/index";
 import { Container } from "react-bootstrap";
 
 interface CoursePreviewProps {

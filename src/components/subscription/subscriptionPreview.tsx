@@ -5,9 +5,9 @@ import {
   Error,
   NavigationButton,
   SubscriptionButton,
-} from "@components/index.ts";
-import { useGet } from "@hooks/index.ts";
-import { userType, Subscription } from "@utils/index.ts";
+} from "@components/index";
+import { useGet } from "@hooks/index";
+import { userType, Subscription } from "@utils/index";
 
 interface SubscriptionPreviewProps {
   id: number;

@@ -3,16 +3,16 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import { NavigationButton, Loading, Error } from "@components/index.ts";
-import { usePurchaseAlert, useGet } from "@hooks/index.ts";
+import { NavigationButton, Loading, Error } from "@components/index";
+import { usePurchaseAlert, useGet } from "@hooks/index";
 import {
   checkSubscription,
   checkPurchase,
   userType,
   getUser,
   Level,
-} from "@utils/index.ts";
-import LevelPreview from "./levelPreview.tsx";
+} from "@utils/index";
+import LevelPreview from "./levelPreview";
 
 interface LevelListProps {
   course: string | undefined;
