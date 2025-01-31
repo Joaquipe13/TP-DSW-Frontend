@@ -8,6 +8,9 @@ importers:
 
   .:
     dependencies:
+      '@types/node':
+        specifier: ^22.12.0
+        version: 22.12.0
       bootstrap:
         specifier: ^5.3.3
         version: 5.3.3(@popperjs/core@2.11.8)
@@ -42,9 +45,6 @@ importers:
       '@types/js-cookie':
         specifier: ^3.0.6
         version: 3.0.6
-      '@types/node':
-        specifier: ^22.12.0
-        version: 22.12.0
       '@types/react':
         specifier: ^18.3.18
         version: 18.3.18
@@ -54,9 +54,6 @@ importers:
       '@types/react-router-bootstrap':
         specifier: ^0.26.6
         version: 0.26.6
-      '@types/react-router-dom':
-        specifier: ^5.3.3
-        version: 5.3.3
       '@vitejs/plugin-react':
         specifier: ^4.3.4
         version: 4.3.4(vite@5.4.14(@types/node@22.12.0))
@@ -634,9 +631,6 @@ packages:
   '@types/estree@1.0.6':
     resolution: {integrity: sha512-AYnb1nQyY49te+VRAVgmzfcgjYS91mY5P0TKUDCLEM+gNnA+3T6rWITXRLYCpahpqSQbN5cE+gHpnPyXjHWxcw==}
 
-  '@types/history@4.7.11':
-    resolution: {integrity: sha512-qjDJRrmvBMiTx+jyLxvLfJU7UznFuokDv4f3WRuriHKERccVpFU+8XMQUAbDzoiJCsmexxRExQeMwwCdamSKDA==}
-
   '@types/js-cookie@3.0.6':
     resolution: {integrity: sha512-wkw9yd1kEXOPnvEeEV1Go1MmxtBJL0RR79aOTAApecWFVu7w0NNXNqhcWgvw2YgZDYadliXkl14pa3WXw5jlCQ==}
 
@@ -656,12 +650,6 @@ packages:
 
   '@types/react-router-bootstrap@0.26.6':
     resolution: {integrity: sha512-uqDwCdHp/qkXUPd8iOgZ92HQnTfyjpIwqgvbenW5SejrN3l6bkcObZQ/kkirHk39AQK4MJVpQBvcSu/SE6Crnw==}
-
-  '@types/react-router-dom@5.3.3':
-    resolution: {integrity: sha512-kpqnYK4wcdm5UaWI3fLcELopqLrHgLqNsdpHauzlQktfkHL3npOSwtj1Uz9oKBAzs7lFtVkV8j83voAz2D8fhw==}
-
-  '@types/react-router@5.1.20':
-    resolution: {integrity: sha512-jGjmu/ZqS7FjSH6owMcD5qpq19+1RS9DeVRqfl1FeBMxTDQAGwlMWOcs52NDoXaNKyG3d1cYQFMs9rCrb88o9Q==}
 
   '@types/react-transition-group@4.4.12':
     resolution: {integrity: sha512-8TV6R3h2j7a91c+1DXdJi3Syo69zzIZbz7Lg5tORM5LEJG7X/E6a1V3drRyBRZq7/utz7A+c4OgYLiLcYGHG6w==}
@@ -1832,8 +1820,6 @@ snapshots:
 
   '@types/estree@1.0.6': {}
 
-  '@types/history@4.7.11': {}
-
   '@types/js-cookie@3.0.6': {}
 
   '@types/json-schema@7.0.15': {}
@@ -1850,17 +1836,6 @@ snapshots:
 
   '@types/react-router-bootstrap@0.26.6':
     dependencies:
-      '@types/react': 18.3.18
-
-  '@types/react-router-dom@5.3.3':
-    dependencies:
-      '@types/history': 4.7.11
-      '@types/react': 18.3.18
-      '@types/react-router': 5.1.20
-
-  '@types/react-router@5.1.20':
-    dependencies:
-      '@types/history': 4.7.11
       '@types/react': 18.3.18
 
   '@types/react-transition-group@4.4.12(@types/react@18.3.18)':
