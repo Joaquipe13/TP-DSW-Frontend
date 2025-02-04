@@ -13,7 +13,7 @@ export { SearchBox } from "./common/searchBox";
 
 // course components
 
-export { CourseUpdate } from "./course/courseUpdate";
+export { default as CourseUpdate } from "./course/courseUpdate";
 export { CourseCreate } from "./course/courseCreate";
 export { CourseList } from "./course/courseList";
 export { CourseSelector } from "./course/courseSelector";

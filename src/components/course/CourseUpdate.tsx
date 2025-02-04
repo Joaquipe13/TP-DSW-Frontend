@@ -16,7 +16,7 @@ interface CourseUpdateProps {
   courseId: string;
 }
 
-export const CourseUpdate: React.FC<CourseUpdateProps> = ({ courseId }) => {
+const CourseUpdate: React.FC<CourseUpdateProps> = ({ courseId }) => {
   const {
     loading,
     error,
@@ -217,3 +217,5 @@ export const CourseUpdate: React.FC<CourseUpdateProps> = ({ courseId }) => {
     </Container>
   );
 };
+
+export default CourseUpdate;
