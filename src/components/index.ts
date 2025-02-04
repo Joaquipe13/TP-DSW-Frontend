@@ -1,5 +1,5 @@
 // auth components
-export { LoginOverlay, RegisterOverlay } from "@components/authentication";
+export { LoginOverlay, RegisterOverlay } from "./authentication";
 
 // common components
 export {
@@ -10,7 +10,7 @@ export {
   Error,
   DateRangePicker,
   SearchBox,
-} from "@components/common";
+} from "./common";
 
 // course components
 export {
@@ -20,15 +20,10 @@ export {
   CourseSelector,
   CourseGetOne,
   MyCourseList,
-} from "@components/course";
+} from "./course";
 
 // level components
-export {
-  LevelGetOne,
-  LevelList,
-  LevelCreate,
-  LevelUpdate,
-} from "@components/level";
+export { LevelGetOne, LevelList, LevelCreate, LevelUpdate } from "./level";
 
 // purchaseRecord components
 export {
@@ -37,17 +32,17 @@ export {
   MySubscriptionsList,
   SubscriptionsList,
   PurchaseConfirmationModal,
-} from "@components/purchaseRecord";
+} from "./purchaseRecord";
 
 // subscription components
 export {
   SubscriptionCreate,
   SubscriptionList,
   SubscriptionUpdate,
-} from "@components/subscription";
+} from "./subscription";
 
 // topic components
-export { Topics, TopicList, TopicCreate } from "@components/topic";
+export { Topics, TopicList, TopicCreate } from "./topic";
 
 // unit components
-export { UnitGetOne, UnitCreate, UnitUpdate, UnitList } from "@components/unit";
+export { UnitGetOne, UnitCreate, UnitUpdate, UnitList } from "./unit";

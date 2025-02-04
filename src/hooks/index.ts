@@ -1,8 +1,8 @@
 // auth hooks
-export { useAdminRedirect, useLogout, useLoginAlert } from "@hooks/auth";
+export { useAdminRedirect, useLogout, useLoginAlert } from "./auth";
 
 // crud hooks
-export { usePost, useGet, usePut, remove } from "@hooks/crud";
+export { usePost, useGet, usePut, remove } from "./crud";
 
 // course hooks
 export {
@@ -10,23 +10,23 @@ export {
   useCourseEdit,
   useSelectedTopics,
   getPurchasedCourses,
-} from "@hooks/course";
+} from "./course";
 
 //level hooks
-export { deleteLevel, useLevelEdit } from "@hooks/level";
+export { deleteLevel, useLevelEdit } from "./level";
 
 //purchaseRecord hooks
 export {
   usePurchaseAlert,
   useFilteredPurchases,
   useSortList,
-} from "@hooks/purchaseRecord";
+} from "./purchaseRecord";
 
 //subscription hooks
-export { deleteSubscription, useSubscriptionEdit } from "@hooks/subscription";
+export { deleteSubscription, useSubscriptionEdit } from "./subscription";
 
 //topic hooks
-export { useCreateTopic, useDeleteTopic } from "@hooks/topic";
+export { useCreateTopic, useDeleteTopic } from "./topic";
 
 //unit hooks
-export { deleteUnit, useUnitEdit } from "@hooks/unit";
+export { deleteUnit, useUnitEdit } from "./unit";

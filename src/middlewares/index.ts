@@ -1,2 +1,2 @@
-export { PrivateRoute } from "@middlewares/privateRoute";
-export { AdminRoute } from "@middlewares/adminRoute";
+export { PrivateRoute } from "./privateRoute";
+export { AdminRoute } from "./adminRoute";
