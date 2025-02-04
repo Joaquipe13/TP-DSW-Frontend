@@ -1,6 +1,6 @@
-import { remove } from "@hooks/index";
+import remove from "@hooks/crud/useDelete";
 
-export const useDeleteTopic = (fetchData: () => void) => {
+const useDeleteTopic = (fetchData: () => void) => {
   const handleDeleteClick = async (topicId: number) => {
     const isConfirmed = window.confirm(
       "Are you sure you want to delete this topic?"
@@ -26,3 +26,4 @@ export const useDeleteTopic = (fetchData: () => void) => {
 
   return { handleDeleteClick };
 };
+export default useDeleteTopic;

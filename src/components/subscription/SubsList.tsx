@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import Container from "react-bootstrap/Container";
 import { Alert, Col, Row, Table } from "react-bootstrap";
-import { Loading, Error } from "@components/index";
-import { useGet } from "@hooks/index";
-import { Subscription } from "@utils/index";
+import Loading from "../common/loading";
+import Error from "../common/error";
+import useGet from "@hooks/crud/useGet";
+import { Subscription } from "@utils/types";
 import SubscriptionPreview from "./subscriptionPreview";
-export const SubscriptionList = () => {
+const SubscriptionList = () => {
   const {
     data: subscriptions,
     error,
@@ -57,3 +58,4 @@ export const SubscriptionList = () => {
     </Container>
   );
 };
+export default SubscriptionList;

@@ -1,17 +1,18 @@
 import { useEffect, useState } from "react";
 import { Container, Table } from "react-bootstrap";
 import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
-import { Loading, Error, NavigationButton } from "@components/index";
-import { useGet } from "@hooks/index";
-import { CoursePurchaseRecord } from "@utils/index";
-import { useSortList } from "@hooks/index";
-
+import Loading from "../common/loading";
+import Error from "../common/error";
+import NavigationButton from "../common/buttons/navigationButton";
+import useGet from "@hooks/crud/useGet";
+import useSortList from "@hooks/purchaseRecord/useSortList";
+import { CoursePurchaseRecord } from "@utils/types";
 interface MyPurchasesListProps {
   startDate?: Date;
   endDate?: Date;
   userId: string | null;
 }
-export const MyPurchasesList: React.FC<MyPurchasesListProps> = ({
+const MyPurchasesList: React.FC<MyPurchasesListProps> = ({
   startDate,
   endDate,
   userId,
@@ -201,3 +202,4 @@ export const MyPurchasesList: React.FC<MyPurchasesListProps> = ({
     </Container>
   );
 };
+export default MyPurchasesList;

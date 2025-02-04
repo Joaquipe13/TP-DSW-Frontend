@@ -1,16 +1,14 @@
 import { useEffect, useState } from "react";
 import Container from "react-bootstrap/Container";
 import { Card } from "react-bootstrap";
-import { userType } from "@utils/index";
-import {
-  Loading,
-  SearchBox,
-  NavigationButton,
-  CourseList,
-  CourseSelector,
-} from "@components/index";
+import userType from "@utils/auth/userType";
+import Loading from "@components/common/loading";
+import SearchBox from "@components/common/searchBox";
+import NavigationButton from "@components/common/buttons/navigationButton";
+import CourseList from "@components/course/courseList";
+import CourseSelector from "@components/course/courseSelector";
 
-export const CourseListPage = () => {
+const CourseListPage = () => {
   const [view, setView] = useState<number>(3);
   const [title, setTitle] = useState("");
   const [role, setRole] = useState<null | string>(null);
@@ -68,3 +66,4 @@ export const CourseListPage = () => {
     </Container>
   );
 };
+export default CourseListPage;

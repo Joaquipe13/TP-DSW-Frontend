@@ -2,9 +2,11 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import { useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
-import { Error, CourseGetOne, NavigationButton } from "@components/index";
+import Error from "@components/common/error";
+import CourseGetOne from "@components/course/course";
+import NavigationButton from "@components/common/buttons/navigationButton";
 
-export const CoursePage: React.FC = () => {
+const CoursePage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
 
   return (
@@ -27,3 +29,4 @@ export const CoursePage: React.FC = () => {
     </Card>
   );
 };
+export default CoursePage;

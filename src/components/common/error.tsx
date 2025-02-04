@@ -5,7 +5,7 @@ interface ErrorProps {
   message: string;
 }
 
-export const Error: React.FC<ErrorProps> = ({ message }) => {
+const Error: React.FC<ErrorProps> = ({ message }) => {
   return (
     <Container
       className="d-flex justify-content-center align-items-center"
@@ -15,3 +15,4 @@ export const Error: React.FC<ErrorProps> = ({ message }) => {
     </Container>
   );
 };
+export default Error;

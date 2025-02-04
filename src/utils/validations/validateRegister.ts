@@ -5,7 +5,7 @@ interface UserData {
   password: string;
   repeatPassword: string;
 }
-export function validateRegister(userData: UserData) {
+function validateRegister(userData: UserData) {
   const errors: any = {};
   if (!userData.name) {
     errors.name = ["Name is required"];
@@ -34,3 +34,4 @@ export function validateRegister(userData: UserData) {
 
   return errors;
 }
+export default validateRegister;

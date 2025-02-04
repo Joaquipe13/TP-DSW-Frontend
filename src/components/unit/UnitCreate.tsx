@@ -3,15 +3,20 @@ import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
-import { Loading, Error } from "@components/index.ts";
-import { usePost } from "@hooks/index.ts";
-import { validateUnitName, validateUnitContent, Unit } from "@utils/index.ts";
+import Loading from "../common/loading";
+import Error from "../common/error";
+import usePost from "@hooks/crud/usePost";
+import {
+  validateUnitName,
+  validateUnitContent,
+} from "@utils/validations/unitValidate";
+import { Unit } from "@utils/types";
 
 interface UnitCreateProps {
   level: string | undefined;
   course: string | undefined;
 }
-export const UnitCreate: React.FC<UnitCreateProps> = ({ level, course }) => {
+const UnitCreate: React.FC<UnitCreateProps> = ({ level, course }) => {
   const { loading, error, create } = usePost<Unit>("/api/units");
   const [name, setName] = useState<string>("");
   const [content, setContent] = useState<string>("");
@@ -123,3 +128,4 @@ export const UnitCreate: React.FC<UnitCreateProps> = ({ level, course }) => {
     </Card>
   );
 };
+export default UnitCreate;

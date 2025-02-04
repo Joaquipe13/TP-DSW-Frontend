@@ -1,5 +1,6 @@
-import { remove } from "@hooks/index";
+import remove from "../crud/useDelete";
 
-export const deleteCourse = async (courseId: string) => {
+const deleteCourse = async (courseId: string) => {
   return await remove(`/api/courses/${courseId}`);
 };
+export default deleteCourse;

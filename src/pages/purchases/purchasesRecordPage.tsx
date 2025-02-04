@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Card, Container } from "react-bootstrap";
-import {
-  MyPurchasesList,
-  PurchasesList,
-  DateRangePicker,
-  Loading,
-} from "@components/index";
-import { userType, getUser } from "@utils/index";
+import userType from "@utils/auth/userType";
+import getUser from "@utils/auth/getUser";
+import Loading from "@components/common/loading";
+import DateRangePicker from "@components/common/dateRangePicker";
+import PurchasesList from "@components/purchaseRecord/purchasesList";
+import MyPurchasesList from "@components/purchaseRecord/myPurchases";
 
-export const PurchasesRecordPage: React.FC = () => {
+const PurchasesRecordPage: React.FC = () => {
   const [startDate, setStartDate] = useState<Date | undefined>(undefined);
   const [endDate, setEndDate] = useState<Date | undefined>(undefined);
   const [role, setRole] = useState<string | null>(null);
@@ -72,3 +71,4 @@ export const PurchasesRecordPage: React.FC = () => {
     </Container>
   );
 };
+export default PurchasesRecordPage;

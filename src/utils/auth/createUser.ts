@@ -1,4 +1,4 @@
-import { porturl } from "@utils/index";
+import porturl from "@utils/route";
 import Cookies from "js-cookie";
 
 interface UserData {
@@ -8,7 +8,7 @@ interface UserData {
   password: string;
 }
 
-export async function createUser(userData: UserData) {
+async function createUser(userData: UserData) {
   const url = porturl + "/api/users";
   try {
     const response = await fetch(url, {
@@ -40,3 +40,5 @@ export async function createUser(userData: UserData) {
     return null;
   }
 }
+
+export default createUser;

@@ -1,18 +1,20 @@
 import React, { useEffect, useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Subscription } from "@utils/index";
+
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import { Loading, Error } from "@components/index";
-import { usePost } from "@hooks/index";
+import Loading from "../common/loading";
+import Error from "../common/error";
+import usePost from "@hooks/crud/usePost";
 import {
   validateSubsDescription,
   validateSubsPrice,
   validateSubsDuration,
-} from "@utils/index";
+} from "@utils/validations/subsValidate";
+import { Subscription } from "@utils/types";
 
-export const SubscriptionCreate = () => {
+const SubscriptionCreate = () => {
   const { loading, error, create } = usePost<Subscription>(
     "/api/subscriptions/"
   );
@@ -135,3 +137,4 @@ export const SubscriptionCreate = () => {
     </Card>
   );
 };
+export default SubscriptionCreate;

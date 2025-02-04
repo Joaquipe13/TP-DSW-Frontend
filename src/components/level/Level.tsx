@@ -1,16 +1,20 @@
 import React, { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
-import { Loading, Error, NavigationButton, UnitList } from "@components/index";
-import { useGet } from "@hooks/index";
-import { userType, Level } from "@utils/index";
+import Loading from "../common/loading";
+import Error from "../common/error";
+import NavigationButton from "../common/buttons/navigationButton";
+import UnitList from "../unit/unitList";
+import useGet from "@hooks/crud/useGet";
+import userType from "@utils/auth/userType";
+import { Level } from "@utils/types";
 
 interface LevelGetOneProps {
   id: string;
   courseId: string;
 }
 
-export const LevelGetOne: React.FC<LevelGetOneProps> = ({ id, courseId }) => {
+const LevelGetOne: React.FC<LevelGetOneProps> = ({ id, courseId }) => {
   const [role, setRole] = useState<null | string>(null);
   const [loadingButton, setLoading] = useState(true);
   useEffect(() => {
@@ -84,3 +88,4 @@ export const LevelGetOne: React.FC<LevelGetOneProps> = ({ id, courseId }) => {
     </Container>
   );
 };
+export default LevelGetOne;

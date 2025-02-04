@@ -3,18 +3,19 @@ import { useNavigate } from "react-router-dom";
 import Button from "react-bootstrap/Button";
 import Form from "react-bootstrap/Form";
 import Card from "react-bootstrap/Card";
-import { Loading, Error } from "@components/index";
-import { usePost } from "@hooks/index";
+import Loading from "../common/loading";
+import Error from "../common/error";
+import usePost from "@hooks/crud/usePost";
 import {
-  Level,
   validateLevelName,
   validateLevelDescription,
-} from "@utils/index";
+} from "@utils/validations/levelValidate";
+import { Level } from "@utils/types";
 
 interface LevelCreateProps {
   course: string | undefined;
 }
-export const LevelCreate: React.FC<LevelCreateProps> = ({ course }) => {
+const LevelCreate: React.FC<LevelCreateProps> = ({ course }) => {
   const { loading, error, create } = usePost<Level>("/api/levels");
   const [name, setName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
@@ -130,3 +131,4 @@ export const LevelCreate: React.FC<LevelCreateProps> = ({ course }) => {
     </Card>
   );
 };
+export default LevelCreate;

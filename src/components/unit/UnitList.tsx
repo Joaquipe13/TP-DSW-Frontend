@@ -1,17 +1,20 @@
 import Container from "react-bootstrap/Container";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useEffect, useState } from "react";
-import { Loading, Error, NavigationButton } from "@components/index";
-import { useGet } from "@hooks/index";
-import { userType, Unit } from "@utils/index";
+import Loading from "../common/loading";
+import Error from "../common/error";
+import NavigationButton from "../common/buttons/navigationButton";
+import useGet from "@hooks/crud/useGet";
+import userType from "@utils/auth/userType";
 import UnitPreview from "./unitPreview";
+import { Unit } from "@utils/types";
 
 interface UnitListProps {
   level: string;
   course: string;
 }
 
-export const UnitList: React.FC<UnitListProps> = ({ level, course }) => {
+const UnitList: React.FC<UnitListProps> = ({ level, course }) => {
   const [role, setRole] = useState<string | null>(null);
 
   const {
@@ -65,3 +68,4 @@ export const UnitList: React.FC<UnitListProps> = ({ level, course }) => {
     </Container>
   );
 };
+export default UnitList;

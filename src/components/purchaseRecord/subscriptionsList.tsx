@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import { Container, Table } from "react-bootstrap";
 import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
-import { Loading, Error } from "@components/index";
-import { useGet, useSortList } from "@hooks/index";
-import { SubsPurchaseRecord } from "@utils/index";
+import Loading from "../common/loading";
+import Error from "../common/error";
+import useGet from "@hooks/crud/useGet";
+import useSortList from "@hooks/purchaseRecord/useSortList";
+import { SubsPurchaseRecord } from "@utils/types";
 
 interface SubscriptionsListProps {
   startDate?: Date;
   endDate?: Date;
 }
-export const SubscriptionsList: React.FC<SubscriptionsListProps> = ({
+const SubscriptionsList: React.FC<SubscriptionsListProps> = ({
   startDate,
   endDate,
 }) => {
@@ -219,3 +221,4 @@ export const SubscriptionsList: React.FC<SubscriptionsListProps> = ({
     <p>No purchase records available</p>
   );
 };
+export default SubscriptionsList;

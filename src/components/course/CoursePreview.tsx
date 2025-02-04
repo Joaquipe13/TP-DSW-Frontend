@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
+import { Container } from "react-bootstrap";
 import { Course } from "../../utils/types";
 import Card from "react-bootstrap/Card";
-import { Topics, Loading, Error, NavigationButton } from "@components/index";
-import { useGet } from "@hooks/index";
-import { userType, DateComponent } from "@utils/index";
-import { Container } from "react-bootstrap";
+import Topics from "../topic/topics";
+import Loading from "../common/loading";
+import Error from "../common/error";
+import NavigationButton from "../common/buttons/navigationButton";
+import useGet from "@hooks/crud/useGet";
+import userType from "@utils/auth/userType";
+import DateComponent from "@utils/date";
 
 interface CoursePreviewProps {
   id: number;

@@ -1,16 +1,19 @@
 import { useEffect, useState } from "react";
 import { Container, Table } from "react-bootstrap";
 import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
-import { Loading, Error, NavigationButton } from "@components/index";
-import { useGet, useSortList } from "@hooks/index";
-import { CoursePurchaseRecord } from "@utils/index";
+import Loading from "../common/loading";
+import Error from "../common/error";
+import NavigationButton from "../common/buttons/navigationButton";
+import useGet from "@hooks/crud/useGet";
+import useSortList from "@hooks/purchaseRecord/useSortList";
+import { CoursePurchaseRecord } from "@utils/types";
 
 interface PurchasesListProps {
   startDate?: Date;
   endDate?: Date;
 }
 
-export const PurchasesList: React.FC<PurchasesListProps> = ({
+const PurchasesList: React.FC<PurchasesListProps> = ({
   startDate,
   endDate,
 }) => {
@@ -84,7 +87,7 @@ export const PurchasesList: React.FC<PurchasesListProps> = ({
   const { sortList } = useSortList<CoursePurchaseRecord>();
   const handleSort = (key: keyof CoursePurchaseRecord) => {
     const sortedRecords = sortList(key, response?.coursePurchaseRecords);
-    setSortStarteDesc(key)
+    setSortStarteDesc(key);
     setPurchaseRecords(sortedRecords);
   };
   useEffect(() => {
@@ -195,3 +198,5 @@ export const PurchasesList: React.FC<PurchasesListProps> = ({
     <p>No purchase records available</p>
   );
 };
+
+export default PurchasesList;

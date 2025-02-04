@@ -2,9 +2,11 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import { useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
-import { SubscriptionUpdate, Error, NavigationButton } from "@components/index";
+import SubscriptionUpdate from "@components/subscription/subsUpdate";
+import Error from "@components/common/error";
+import NavigationButton from "@components/common/buttons/navigationButton";
 
-export const SubscriptionUpdatePage: React.FC = () => {
+const SubscriptionUpdatePage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
 
   return (
@@ -27,3 +29,4 @@ export const SubscriptionUpdatePage: React.FC = () => {
     </Card>
   );
 };
+export default SubscriptionUpdatePage;

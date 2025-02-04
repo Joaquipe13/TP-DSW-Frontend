@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export function useSortList<T extends object>() {
+function useSortList<T extends object>() {
   const [sortConfig, setSortConfig] = useState<{
     key: keyof T | null;
     direction: "asc" | "desc";
@@ -48,3 +48,5 @@ export function useSortList<T extends object>() {
 
   return { sortList };
 }
+
+export default useSortList;

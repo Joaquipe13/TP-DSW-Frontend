@@ -1,11 +1,14 @@
 import { useEffect, useState } from "react";
 import { Button, Card, ListGroup, Form } from "react-bootstrap";
 import { FaTrash, FaCheck } from "react-icons/fa";
-import { Loading, Error } from "@components/index";
-import { useDeleteTopic, useCreateTopic, useGet } from "@hooks/index";
-import { Topic } from "@utils/index";
+import Loading from "../common/loading";
+import Error from "../common/error";
+import useDeleteTopic from "@hooks/topic/useDeleteTopic";
+import useCreateTopic from "@hooks/topic/useCreateTopic";
+import useGet from "@hooks/crud/useGet";
+import { Topic } from "@utils/types";
 
-export const TopicList = () => {
+const TopicList = () => {
   const {
     data: topics,
     loading,
@@ -127,3 +130,4 @@ export const TopicList = () => {
     </ListGroup>
   );
 };
+export default TopicList;

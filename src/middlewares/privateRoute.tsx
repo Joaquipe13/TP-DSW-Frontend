@@ -1,9 +1,11 @@
 import { Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Loading } from "@components/index";
-import { User, getUser } from "@utils/index";
+import Loading from "@components/common/loading";
+import { User } from "@utils/types";
+import getUser from "@utils/auth/getUser";
+s;
 
-export const PrivateRoute = ({ element }: { element: JSX.Element }) => {
+const PrivateRoute = ({ element }: { element: JSX.Element }) => {
   const [user, setUser] = useState<null | User>(null);
   const [loading, setLoading] = useState(true);
 
@@ -32,3 +34,4 @@ export const PrivateRoute = ({ element }: { element: JSX.Element }) => {
 
   return element;
 };
+export default PrivateRoute;

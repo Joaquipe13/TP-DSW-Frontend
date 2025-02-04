@@ -1,7 +1,8 @@
 import Container from "react-bootstrap/Container";
-import { SubscriptionCreate, NavigationButton } from "@components/index";
+import SubscriptionCreate from "@components/subscription/subsCreate";
+import NavigationButton from "@components/common/buttons/navigationButton";
 
-export const SubscriptionCreatePage = () => {
+const SubscriptionCreatePage = () => {
   return (
     <Container fluid>
       <SubscriptionCreate />
@@ -18,3 +19,4 @@ export const SubscriptionCreatePage = () => {
     </Container>
   );
 };
+export default SubscriptionCreatePage;

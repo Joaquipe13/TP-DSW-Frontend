@@ -1,10 +1,8 @@
-import {
-  getCookieValue,
-  removeSessionCookies,
-  removeToken,
-} from "@utils/index";
+import getCookieValue from "@utils/auth/getCookieValue";
+import removeSessionCookies from "@utils/auth/removeSessionCookies";
+import removeToken from "@utils/auth/removeToken";
 
-export function useLogout() {
+function useLogout() {
   const handleLogout = async () => {
     const confirmLogout = window.confirm("Are you sure you want to log out?");
     if (confirmLogout) {
@@ -16,3 +14,4 @@ export function useLogout() {
   };
   return { handleLogout };
 }
+export default useLogout;

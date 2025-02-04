@@ -1,6 +1,6 @@
-import { porturl } from "@utils/index";
+import porturl from "@utils/route";
 
-export async function checkPurchase(
+async function checkPurchase(
   user: number | string,
   course: number | string
 ): Promise<boolean | null> {
@@ -33,3 +33,4 @@ export async function checkPurchase(
     return null;
   }
 }
+export default checkPurchase;

@@ -1,15 +1,19 @@
 import { useRef, useEffect } from "react";
 import { Container, Card, Form, Button, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { Loading, Error, UnitList } from "@components/index";
-import { useLevelEdit, deleteLevel } from "@hooks/index";
+
+import Loading from "../common/loading";
+import Error from "../common/error";
+import UnitList from "../unit/unitList";
+import useLevelEdit from "@hooks/level/useLevelEdit";
+import deleteLevel from "@hooks/level/useLevelDelete";
 
 interface LevelUpdateProps {
   courseId: string;
   id: string;
 }
 
-export const LevelUpdate: React.FC<LevelUpdateProps> = ({ courseId, id }) => {
+const LevelUpdate: React.FC<LevelUpdateProps> = ({ courseId, id }) => {
   const navigate = useNavigate();
   const {
     loading,
@@ -123,3 +127,4 @@ export const LevelUpdate: React.FC<LevelUpdateProps> = ({ courseId, id }) => {
     </Container>
   );
 };
+export default LevelUpdate;

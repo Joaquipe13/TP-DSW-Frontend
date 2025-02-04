@@ -8,9 +8,13 @@ import {
   Row,
   Col,
 } from "react-bootstrap";
-import { Loading, Error, LevelList, Topics } from "@components/index";
-import { useCourseEdit, deleteCourse } from "@hooks/index";
-import { Topic } from "@utils/index";
+import Loading from "../common/loading";
+import Error from "../common/error";
+import LevelList from "../level/levelList";
+import Topics from "../topic/topics";
+import useCourseEdit from "@hooks/course/useCourseEdit";
+import deleteCourse from "@hooks/course/useCourseDelete";
+import { Topic } from "@utils/types";
 
 interface CourseUpdateProps {
   courseId: string;

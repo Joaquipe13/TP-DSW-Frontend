@@ -4,16 +4,19 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Badge from "react-bootstrap/Badge";
-import { Topics, Loading, Error } from "@components/index";
-import { usePost, useSelectedTopics } from "@hooks/index";
+import Topics from "../topic/topics";
+import Loading from "../common/loading";
+import Error from "../common/error";
+import usePost from "@hooks/crud/usePost";
+import useSelectedTopics from "@hooks/course/useSelectedTopics";
+import { Course } from "@utils/types";
 import {
-  Course,
   validateCoursePrice,
   validateCourseTitle,
   validateCourseTopics,
-} from "@utils/index";
+} from "@utils/validations/courseValidate";
 
-export const CourseCreate = () => {
+const CourseCreate = () => {
   const { loading, error, create } = usePost<Course>("/api/courses/");
   const [title, setTitle] = useState<string>("");
   const [resume, setResume] = useState<string>("");
@@ -178,3 +181,4 @@ export const CourseCreate = () => {
     </Card>
   );
 };
+export default CourseCreate;

@@ -1,8 +1,8 @@
 import { useState } from "react";
-import { usePost } from "@hooks/index";
-import { Topic } from "@utils/index";
+import usePost from "@hooks/crud/usePost";
+import { Topic } from "@utils/types";
 
-export const useCreateTopic = (fetchData: () => void) => {
+const useCreateTopic = (fetchData: () => void) => {
   const [newTopicDescription, setNewTopicDescription] = useState<string>("");
   const { loading, error, create } = usePost<Topic>("/api/topics");
 
@@ -34,3 +34,4 @@ export const useCreateTopic = (fetchData: () => void) => {
     handleDescriptionChange,
   };
 };
+export default useCreateTopic;

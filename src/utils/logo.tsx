@@ -1,3 +1,4 @@
-export const Logo = () => {
+const Logo = () => {
   return <>LearnSphere</>;
 };
+export default Logo;

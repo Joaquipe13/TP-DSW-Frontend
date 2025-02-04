@@ -1,10 +1,10 @@
-import { porturl } from "@utils/index";
+import porturl from "@utils/route";
 
 interface RemoveOptions {
   headers?: Record<string, string>;
 }
 
-export const remove = async (baseUrl: string, options?: RemoveOptions) => {
+const remove = async (baseUrl: string, options?: RemoveOptions) => {
   const url = `${porturl}${baseUrl}`;
 
   try {
@@ -26,3 +26,5 @@ export const remove = async (baseUrl: string, options?: RemoveOptions) => {
     throw error;
   }
 };
+
+export default remove;

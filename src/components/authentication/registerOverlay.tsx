@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { Button, Form, Container } from "react-bootstrap";
-import { validateRegister, createUser } from "@utils/index";
+import validateRegister from "@utils/validations/validateRegister";
+import createUser from "@utils/auth/createUser";
 
 interface RegisterOverlayProps {
   show: boolean;
@@ -9,7 +10,7 @@ interface RegisterOverlayProps {
   hideLogin: () => void;
 }
 
-export const RegisterOverlay: React.FC<RegisterOverlayProps> = ({
+const RegisterOverlay: React.FC<RegisterOverlayProps> = ({
   show,
   setShow,
   onSwitchToLogin,
@@ -177,3 +178,4 @@ export const RegisterOverlay: React.FC<RegisterOverlayProps> = ({
     </>
   );
 };
+export default RegisterOverlay;

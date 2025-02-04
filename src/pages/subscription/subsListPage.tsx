@@ -1,10 +1,11 @@
 import Container from "react-bootstrap/Container";
 import { Card } from "react-bootstrap";
 import { useEffect, useState } from "react";
-import { SubscriptionList, NavigationButton } from "@components/index";
-import { userType } from "@utils/index";
+import SubscriptionList from "@components/subscription/subsList";
+import NavigationButton from "@components/common/buttons/navigationButton";
+import userType from "@utils/auth/userType";
 
-export const SubscriptionListPage = () => {
+const SubscriptionListPage = () => {
   const [role, setRole] = useState<string | null>(null);
   useEffect(() => {
     const fetchUserRole = async () => {
@@ -47,3 +48,4 @@ export const SubscriptionListPage = () => {
     </Container>
   );
 };
+export default SubscriptionListPage;

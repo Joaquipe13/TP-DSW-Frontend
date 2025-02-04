@@ -1,8 +1,10 @@
 import { useRef, useEffect } from "react";
 import { Container, Card, Form, Button, Row, Col } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
-import { Loading, Error } from "@components/index";
-import { useUnitEdit, deleteUnit } from "@hooks/index";
+import Loading from "../common/loading";
+import Error from "../common/error";
+import useUnitEdit from "@hooks/unit/useUnitEdit";
+import deleteUnit from "@hooks/unit/useUnitDelete";
 
 interface UnitUpdateProps {
   courseId: string;
@@ -10,11 +12,7 @@ interface UnitUpdateProps {
   id: string;
 }
 
-export const UnitUpdate: React.FC<UnitUpdateProps> = ({
-  courseId,
-  levelId,
-  id,
-}) => {
+const UnitUpdate: React.FC<UnitUpdateProps> = ({ courseId, levelId, id }) => {
   const navigate = useNavigate();
   const {
     loading,
@@ -133,3 +131,4 @@ export const UnitUpdate: React.FC<UnitUpdateProps> = ({
     </Container>
   );
 };
+export default UnitUpdate;

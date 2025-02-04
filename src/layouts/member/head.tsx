@@ -2,10 +2,10 @@ import React from "react";
 import Navbar from "react-bootstrap/Navbar";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
-import { UserMenu } from "@layouts/userMenu";
-import { Logo } from "@utils/logo";
+import UserMenu from "../userMenu";
+import Logo from "@utils/logo";
 
-export const MemberHead: React.FC = () => {
+const MemberHead: React.FC = () => {
   return (
     <Navbar
       className="py-3 fs-5 w-100"
@@ -65,3 +65,4 @@ export const MemberHead: React.FC = () => {
     </Navbar>
   );
 };
+export default MemberHead;

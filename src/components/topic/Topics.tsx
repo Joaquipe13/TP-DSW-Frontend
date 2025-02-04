@@ -1,17 +1,15 @@
 import { useEffect } from "react";
 import ListGroup from "react-bootstrap/ListGroup";
-import { Loading, Error } from "@components/index";
-import { useGet } from "@hooks/index";
-import { Topic } from "@utils/index";
+import Loading from "@components/common/loading";
+import Error from "@components/common/error";
+import useGet from "@hooks/crud/useGet";
+import { Topic } from "@utils/types";
 
 interface TopicsProps {
   selectedTopics: Topic[];
   onSelectTopic?: (topic: Topic) => void;
 }
-export const Topics: React.FC<TopicsProps> = ({
-  selectedTopics,
-  onSelectTopic,
-}) => {
+const Topics: React.FC<TopicsProps> = ({ selectedTopics, onSelectTopic }) => {
   const {
     data: topics,
     error,
@@ -68,3 +66,4 @@ export const Topics: React.FC<TopicsProps> = ({
     </div>
   );
 };
+export default Topics;

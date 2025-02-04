@@ -1,7 +1,7 @@
 import { useMemo } from "react";
-import { CoursePurchaseRecord } from "@utils/index";
+import { CoursePurchaseRecord } from "@utils/types";
 
-export function useFilteredPurchases(
+function useFilteredPurchases(
   purchaseRecords: CoursePurchaseRecord[] | undefined,
   startDate?: Date,
   endDate?: Date
@@ -31,3 +31,4 @@ export function useFilteredPurchases(
     });
   }, [records, startDate, endDate]);
 }
+export default useFilteredPurchases;

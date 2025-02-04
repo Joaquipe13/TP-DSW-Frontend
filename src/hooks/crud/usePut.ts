@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { porturl } from "@utils/index";
+import porturl from "@utils/route";
 
-export function usePut<T>(baseUrl: string) {
+function usePut<T>(baseUrl: string) {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   baseUrl = porturl + baseUrl;
@@ -28,3 +28,5 @@ export function usePut<T>(baseUrl: string) {
 
   return { loading, error, update };
 }
+
+export default usePut;

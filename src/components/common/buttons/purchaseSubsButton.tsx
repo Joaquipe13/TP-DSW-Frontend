@@ -1,16 +1,15 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
-import { PurchaseConfirmationModal } from "@components/index";
-import { useLoginAlert, usePost } from "@hooks/index";
-import { getUser } from "@utils/index";
+import PurchaseConfirmationModal from "@components/purchaseRecord/purchaseConfirmationModal";
+import useLoginAlert from "@hooks/auth/useLoginAlert";
+import usePost from "@hooks/crud/usePost";
+import getUser from "@utils/auth/getUser";
 
 interface SubscriptionButtonProps {
   subscriptionId: number;
 }
 
-export function SubscriptionButton({
-  subscriptionId,
-}: SubscriptionButtonProps) {
+function SubscriptionButton({ subscriptionId }: SubscriptionButtonProps) {
   const [isConfirming, setIsConfirming] = useState<boolean>(false);
   const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
   const { showLoginAlert, LoginAlert } = useLoginAlert();
@@ -84,3 +83,4 @@ export function SubscriptionButton({
     </div>
   );
 }
+export default SubscriptionButton;

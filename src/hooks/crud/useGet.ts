@@ -1,7 +1,7 @@
 import { useState, useEffect, useCallback } from "react";
-import { porturl } from "@utils/index";
+import porturl from "@utils/route";
 
-export function useGet<T>(baseUrl: string, expectArray: boolean = true) {
+function useGet<T>(baseUrl: string, expectArray: boolean = true) {
   const [data, setData] = useState<T[] | T | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
@@ -36,3 +36,5 @@ export function useGet<T>(baseUrl: string, expectArray: boolean = true) {
 
   return { data, loading, error, fetchData };
 }
+
+export default useGet;

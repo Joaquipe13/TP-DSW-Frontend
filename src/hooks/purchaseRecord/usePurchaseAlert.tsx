@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
 
-export const usePurchaseAlert = () => {
+const usePurchaseAlert = () => {
   const [show, setShow] = useState(false);
 
   const showPurchaseAlert = () => setShow(true);
@@ -31,3 +31,5 @@ export const usePurchaseAlert = () => {
 
   return { showPurchaseAlert, PurchaseAlert };
 };
+
+export default usePurchaseAlert;

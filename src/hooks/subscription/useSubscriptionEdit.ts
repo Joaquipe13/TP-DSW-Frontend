@@ -1,13 +1,14 @@
 import { useState, useEffect } from "react";
-import { useGet, usePut } from "@hooks/index";
+import useGet from "@hooks/crud/useGet";
+import usePut from "@hooks/crud/usePut";
 import {
   validateSubsDescription,
   validateSubsPrice,
   validateSubsDuration,
-  Subscription,
-} from "@utils/index";
+} from "@utils/validations/subsValidate";
+import { Subscription } from "@utils/types";
 
-export const useSubscriptionEdit = (subscriptionId: string) => {
+const useSubscriptionEdit = (subscriptionId: string) => {
   const {
     loading,
     error,
@@ -72,3 +73,4 @@ export const useSubscriptionEdit = (subscriptionId: string) => {
     handleSave,
   };
 };
+export default useSubscriptionEdit;

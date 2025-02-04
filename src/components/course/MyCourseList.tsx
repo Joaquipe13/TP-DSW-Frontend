@@ -1,15 +1,17 @@
 import { useEffect, useState } from "react";
 import Table from "react-bootstrap/Table";
 import { Col, Container, Row } from "react-bootstrap";
-import { Loading, Error } from "@components/index";
-import { getPurchasedCourses } from "@hooks/index";
-import { getUser } from "@utils/index";
+import Loading from "../common/loading";
+import Error from "../common/error";
 import CoursePreview from "./coursePreview";
+import getPurchasedCourses from "@hooks/course/getPurchasedCourses";
+import getUser from "@utils/auth/getUser";
+
 interface MyCourseListProps {
   title: string;
 }
 
-export const MyCourseList: React.FC<MyCourseListProps> = ({ title }) => {
+const MyCourseList: React.FC<MyCourseListProps> = ({ title }) => {
   const [state, setState] = useState({
     error: null as string | null,
     courses: [] as any[],
@@ -79,3 +81,4 @@ export const MyCourseList: React.FC<MyCourseListProps> = ({ title }) => {
     </Container>
   );
 };
+export default MyCourseList;

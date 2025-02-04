@@ -1,6 +1,6 @@
 import Cookies from "js-cookie";
 
-export function getCookieValue(name: string) {
+function getCookieValue(name: string) {
   const cookie = Cookies.get(name);
   let parsedCookie = null;
   if (cookie) {
@@ -8,3 +8,5 @@ export function getCookieValue(name: string) {
   }
   return parsedCookie;
 }
+
+export default getCookieValue;

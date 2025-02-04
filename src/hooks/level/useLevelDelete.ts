@@ -1,5 +1,6 @@
-import { remove } from "@hooks/index";
+import remove from "../crud/useDelete";
 
-export const deleteLevel = async (levelId: string) => {
+const deleteLevel = async (levelId: string) => {
   return await remove(`/api/levels/${levelId}`);
 };
+export default deleteLevel;

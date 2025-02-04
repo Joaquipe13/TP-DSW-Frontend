@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
-import { useGet, usePut } from "@hooks/index";
+import useGet from "../crud/useGet";
+import usePut from "../crud/usePut";
 import {
   validateCourseTitle,
   validateCourseResume,
   validateCoursePrice,
   validateCourseTopics,
-  Course,
-  Topic,
-} from "@utils/index";
+} from "@utils/validations/courseValidate";
+import { Course, Topic } from "@utils/types";
 
-export const useCourseEdit = (courseId: string) => {
+const useCourseEdit = (courseId: string) => {
   const {
     loading,
     error,
@@ -80,3 +80,4 @@ export const useCourseEdit = (courseId: string) => {
     handleSave,
   };
 };
+export default useCourseEdit;

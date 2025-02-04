@@ -11,7 +11,7 @@ interface NavigationButtonProps {
   className?: string;
 }
 
-export const NavigationButton: React.FC<NavigationButtonProps> = ({
+const NavigationButton: React.FC<NavigationButtonProps> = ({
   to,
   label,
   style,
@@ -30,3 +30,4 @@ export const NavigationButton: React.FC<NavigationButtonProps> = ({
     </LinkContainer>
   );
 };
+export default NavigationButton;

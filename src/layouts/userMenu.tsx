@@ -2,11 +2,12 @@ import React, { useEffect, useState } from "react";
 import Nav from "react-bootstrap/Nav";
 import NavDropdown from "react-bootstrap/NavDropdown";
 import { FaUserCircle } from "react-icons/fa";
-import { RegisterOverlay, LoginOverlay } from "@components/index";
-import { useLogout } from "@hooks/index";
-import { userType } from "@utils/index";
+import RegisterOverlay from "@components/authentication/registerOverlay";
+import LoginOverlay from "@components/authentication/loginOverlay";
+import useLogout from "@hooks/auth/useLogout";
+import userType from "@utils/auth/userType";
 
-export const UserMenu: React.FC = () => {
+const UserMenu: React.FC = () => {
   const { handleLogout } = useLogout();
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
@@ -85,3 +86,4 @@ export const UserMenu: React.FC = () => {
     </Nav>
   );
 };
+export default UserMenu;

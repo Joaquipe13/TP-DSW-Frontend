@@ -1,9 +1,12 @@
 import React, { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
-import { Loading, Error, NavigationButton } from "@components/index";
-import { useGet } from "@hooks/index";
-import { userType, Unit } from "@utils/index";
+import Loading from "../common/loading";
+import Error from "../common/error";
+import NavigationButton from "../common/buttons/navigationButton";
+import useGet from "@hooks/crud/useGet";
+import userType from "@utils/auth/userType";
+import { Unit } from "@utils/types";
 
 interface UnitGetOneProps {
   id: string;
@@ -11,11 +14,7 @@ interface UnitGetOneProps {
   levelId: string;
 }
 
-export const UnitGetOne: React.FC<UnitGetOneProps> = ({
-  id,
-  courseId,
-  levelId,
-}) => {
+const UnitGetOne: React.FC<UnitGetOneProps> = ({ id, courseId, levelId }) => {
   const [role, setRole] = useState<string | null>(null);
   const { data, loading, error, fetchData } = useGet<Unit>(`/api/units/${id}`);
   const unit = Array.isArray(data) ? data[0] : data;
@@ -60,3 +59,4 @@ export const UnitGetOne: React.FC<UnitGetOneProps> = ({
     </Container>
   );
 };
+export default UnitGetOne;

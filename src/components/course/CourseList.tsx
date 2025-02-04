@@ -4,17 +4,17 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Card from "react-bootstrap/Card";
-import { Loading, Error } from "@components/index";
-import { useGet } from "@hooks/index";
-import { Course } from "@utils/index";
+import Loading from "../common/loading";
+import Error from "../common/error";
+import useGet from "@hooks/crud/useGet";
 import CoursePreview from "./coursePreview";
-
+import { Course } from "@utils/types";
 interface CourseListProps {
   view: number;
   title: string;
 }
 
-export const CourseList: React.FC<CourseListProps> = ({ view, title }) => {
+const CourseList: React.FC<CourseListProps> = ({ view, title }) => {
   const {
     data: courses,
     error,
@@ -74,3 +74,4 @@ export const CourseList: React.FC<CourseListProps> = ({ view, title }) => {
     </Container>
   );
 };
+export default CourseList;

@@ -1,8 +1,8 @@
 import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
-import { userType } from "@utils/index";
+import userType from "@utils/auth/userType";
 
-export function useAdminRedirect(navigateTo: string) {
+function useAdminRedirect(navigateTo: string) {
   const navigate = useNavigate();
 
   useEffect(() => {
@@ -15,3 +15,4 @@ export function useAdminRedirect(navigateTo: string) {
     checkRole();
   }, [navigate]);
 }
+export default useAdminRedirect;

@@ -1,7 +1,7 @@
 import { Card, Container } from "react-bootstrap";
-import { TopicList } from "@components/index";
+import TopicList from "@components/topic/topicList";
 
-export const TopicListPage = () => {
+const TopicListPage = () => {
   return (
     <Container
       style={{ marginTop: "1rem", minHeight: "100vh", paddingBottom: "70px" }}
@@ -22,3 +22,4 @@ export const TopicListPage = () => {
     </Container>
   );
 };
+export default TopicListPage;

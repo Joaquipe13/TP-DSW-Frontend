@@ -3,22 +3,23 @@ import ListGroup from "react-bootstrap/ListGroup";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
-import { NavigationButton, Loading, Error } from "@components/index";
-import { usePurchaseAlert, useGet } from "@hooks/index";
-import {
-  checkSubscription,
-  checkPurchase,
-  userType,
-  getUser,
-  Level,
-} from "@utils/index";
+import NavigationButton from "@components/common/buttons/navigationButton";
+import Loading from "@components/common/loading";
+import Error from "@components/common/loading";
+import usePurchaseAlert from "@hooks/purchaseRecord/usePurchaseAlert";
+import useGet from "@hooks/crud/useGet";
+import checkSubscription from "@utils/auth/checkSubscription";
+import checkPurchase from "@utils/auth/checkPurchase";
+import userType from "@utils/auth/userType";
+import getUser from "@utils/auth/getUser";
+import { Level } from "@utils/types";
 import LevelPreview from "./levelPreview";
 
 interface LevelListProps {
   course: string | undefined;
 }
 
-export const LevelList: React.FC<LevelListProps> = ({ course }) => {
+const LevelList: React.FC<LevelListProps> = ({ course }) => {
   const {
     data: levels,
     error,
@@ -101,3 +102,4 @@ export const LevelList: React.FC<LevelListProps> = ({ course }) => {
     </Container>
   );
 };
+export default LevelList;

@@ -1,5 +1,5 @@
-import { porturl } from "@utils/index";
-export async function removeToken(token: string) {
+import porturl from "@utils/route";
+async function removeToken(token: string) {
   const url = porturl + "/api/login/revoke-token";
   try {
     const response = await fetch(url, {
@@ -23,3 +23,4 @@ export async function removeToken(token: string) {
     console.error("Error during logout:", error);
   }
 }
+export default removeToken;

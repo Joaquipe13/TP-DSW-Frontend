@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { porturl } from "@utils/index";
+import porturl from "@utils/route";
 
-export function usePost<T>(baseUrl: string) {
+function usePost<T>(baseUrl: string) {
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<string | null>(null);
   baseUrl = porturl + baseUrl;
@@ -40,3 +40,4 @@ export function usePost<T>(baseUrl: string) {
 
   return { loading, error, create };
 }
+export default usePost;

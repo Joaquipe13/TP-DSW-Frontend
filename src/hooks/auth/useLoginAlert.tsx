@@ -1,8 +1,9 @@
 import { useState } from "react";
 import { Modal, Button } from "react-bootstrap";
-import { LoginOverlay, RegisterOverlay } from "@components/index";
+import LoginOverlay from "@components/authentication/loginOverlay";
+import RegisterOverlay from "@components/authentication/registerOverlay";
 
-export const useLoginAlert = () => {
+const useLoginAlert = () => {
   const [show, setShow] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [showRegister, setShowRegister] = useState(false);
@@ -47,3 +48,4 @@ export const useLoginAlert = () => {
 
   return { showLoginAlert, LoginAlert };
 };
+export default useLoginAlert;

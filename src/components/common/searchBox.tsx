@@ -5,7 +5,7 @@ interface SearchBoxProps {
   onSearch: (title: string) => void;
 }
 
-export const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
+const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
   const [searchInput, setSearchInput] = useState("");
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -33,3 +33,4 @@ export const SearchBox: React.FC<SearchBoxProps> = ({ onSearch }) => {
     </Form>
   );
 };
+export default SearchBox;

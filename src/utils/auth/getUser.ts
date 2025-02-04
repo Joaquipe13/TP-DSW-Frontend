@@ -1,4 +1,6 @@
-import { getCookieValue, setCookieValue, porturl } from "@utils/index";
+import getCookieValue from "@utils/auth/getCookieValue";
+import setCookieValue from "@utils/auth/setCookieValue";
+import porturl from "@utils/route";
 
 function searchUser() {
   const userData = getCookieValue("user");
@@ -45,7 +47,7 @@ function storeUserData(user: any) {
   setCookieValue(user, "user", 1);
 }
 
-export async function getUser() {
+async function getUser() {
   const user = searchUser();
   if (user) {
     return user;
@@ -66,3 +68,4 @@ export async function getUser() {
     }
   }
 }
+export default getUser;

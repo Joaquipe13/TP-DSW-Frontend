@@ -1,21 +1,18 @@
 import React, { useState } from "react";
 import { Button, Form, Container, Row, Col } from "react-bootstrap";
 const RegisterOverlay = React.lazy(() =>
-  import("@components/index").then((module) => ({
+  import("./registerOverlay").then((module) => ({
     default: module.RegisterOverlay,
   }))
 );
-import { validateLogin } from "@utils/index";
+import validateLogin from "@utils/validations/validateLogin";
 
 interface LoginOverlayProps {
   show: boolean;
   setShow: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-export const LoginOverlay: React.FC<LoginOverlayProps> = ({
-  show,
-  setShow,
-}) => {
+const LoginOverlay: React.FC<LoginOverlayProps> = ({ show, setShow }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [showRegister, setShowRegister] = useState(false);
@@ -119,3 +116,4 @@ export const LoginOverlay: React.FC<LoginOverlayProps> = ({
     </>
   );
 };
+export default LoginOverlay;

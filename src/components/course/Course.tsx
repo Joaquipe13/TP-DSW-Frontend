@@ -1,29 +1,24 @@
 import React, { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
-import {
-  Loading,
-  LevelList,
-  Topics,
-  Error,
-  NavigationButton,
-  PurchaseButton,
-} from "@components/index";
-import { useGet } from "@hooks/index";
-import {
-  checkPurchase,
-  checkSubscription,
-  DateComponent,
-  getUser,
-  Course,
-  User,
-} from "@utils/index";
+import LevelList from "../level/levelList";
+import Topics from "../topic/topics";
+import Loading from "../common/loading";
+import Error from "../common/error";
+import NavigationButton from "../common/buttons/navigationButton";
+import PurchaseButton from "../common/buttons/purchaseCourseButton";
+import useGet from "@hooks/crud/useGet";
+import checkPurchase from "@utils/auth/checkPurchase";
+import getUser from "@utils/auth/getUser";
+import checkSubscription from "@utils/auth/checkSubscription";
+import DateComponent from "@utils/date";
+import { Course, User } from "@utils/types";
 
 interface CourseGetOneProps {
   id: string;
 }
 
-export const CourseGetOne: React.FC<CourseGetOneProps> = ({ id }) => {
+const CourseGetOne: React.FC<CourseGetOneProps> = ({ id }) => {
   const {
     data: course,
     loading,
@@ -124,3 +119,4 @@ export const CourseGetOne: React.FC<CourseGetOneProps> = ({ id }) => {
     </Container>
   );
 };
+export default CourseGetOne;

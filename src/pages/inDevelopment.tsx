@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
-import { NavigationButton } from "@components/index";
+import NavigationButton from "@components/common/buttons/navigationButton";
 
-export const InDevelopmentPage = () => {
+const InDevelopmentPage = () => {
   const { title } = useParams();
 
   return (
@@ -15,3 +15,4 @@ export const InDevelopmentPage = () => {
     </div>
   );
 };
+export default InDevelopmentPage;

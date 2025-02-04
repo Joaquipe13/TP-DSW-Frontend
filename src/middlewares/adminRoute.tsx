@@ -1,9 +1,9 @@
 import { Navigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import { Loading } from "@components/index";
-import { userType } from "@utils/index";
+import Loading from "@components/common/loading";
+import userType from "@utils/auth/userType";
 
-export const AdminRoute = ({ element }: { element: JSX.Element }) => {
+const AdminRoute = ({ element }: { element: JSX.Element }) => {
   const [role, setRole] = useState<null | {}>(null);
   const [loading, setLoading] = useState(true);
   useEffect(() => {
@@ -31,3 +31,4 @@ export const AdminRoute = ({ element }: { element: JSX.Element }) => {
 
   return element;
 };
+export default AdminRoute;

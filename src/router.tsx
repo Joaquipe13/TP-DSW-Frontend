@@ -1,27 +1,26 @@
 import { createBrowserRouter } from "react-router-dom";
-import { App } from "./App";
-import {
-  CoursePage,
-  CourseListPage,
-  CourseCreatePage,
-  CourseUpdatePage,
-  MyCourseListPage,
-  LevelPage,
-  LevelCreatePage,
-  LevelUpdatePage,
-  UnitPage,
-  UnitCreatePage,
-  UnitUpdatePage,
-  TopicListPage,
-  TopicCreatePage,
-  SubscriptionListPage,
-  SubscriptionCreatePage,
-  SubscriptionUpdatePage,
-  PurchasesRecordPage,
-  InDevelopmentPage,
-  SubscriptionsRecordPage,
-} from "@pages/index";
-import { PrivateRoute, AdminRoute } from "@middlewares/index";
+import App from "./App";
+import AdminRoute from "@middlewares/adminRoute.js";
+import TopicListPage from "@pages/topic/topicListPage.js";
+import TopicCreatePage from "@pages/topic/topicCreatePage.js";
+import CourseUpdatePage from "@pages/course/courseEditPage.js";
+import CourseCreatePage from "@pages/course/courseCreatePage.js";
+import LevelCreatePage from "@pages/level/levelCreatePage.js";
+import LevelUpdatePage from "@pages/level/levelEditPage.js";
+import UnitCreatePage from "@pages/unit/unitCreatePage.js";
+import UnitUpdatePage from "@pages/unit/unitEditPage.js";
+import SubscriptionsRecordPage from "@pages/purchases/subscriptionsRecordPage.js";
+import SubscriptionCreatePage from "@pages/subscription/subsCreatePage.js";
+import SubscriptionUpdatePage from "@pages/subscription/subsEditPage.js";
+import PurchasesRecordPage from "@pages/purchases/purchasesRecordPage.js";
+import PrivateRoute from "@middlewares/privateRoute.js";
+import MyCourseListPage from "@pages/course/myCoursePage.js";
+import UnitPage from "@pages/unit/unitPage.js";
+import LevelPage from "@pages/level/levelPage.js";
+import SubscriptionListPage from "@pages/subscription/subsListPage.js";
+import CourseListPage from "@pages/course/courseListPage.js";
+import CoursePage from "@pages/course/coursePage.js";
+import InDevelopmentPage from "@pages/inDevelopment.js";
 
 const router = createBrowserRouter([
   {

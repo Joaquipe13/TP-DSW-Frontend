@@ -11,7 +11,7 @@ interface DateRangePickerProps {
   setEndDate: React.Dispatch<React.SetStateAction<Date | undefined>>;
 }
 
-export const DateRangePicker: React.FC<DateRangePickerProps> = ({
+const DateRangePicker: React.FC<DateRangePickerProps> = ({
   startDate,
   setStartDate,
   endDate,
@@ -65,3 +65,4 @@ export const DateRangePicker: React.FC<DateRangePickerProps> = ({
     </Form>
   );
 };
+export default DateRangePicker;

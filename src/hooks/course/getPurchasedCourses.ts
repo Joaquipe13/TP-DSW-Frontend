@@ -1,6 +1,6 @@
-import { porturl } from "@utils/index";
+import porturl from "@utils/route";
 
-export async function getPurchasedCourses(
+async function getPurchasedCourses(
   user: number | null,
   title: string | undefined
 ) {
@@ -36,3 +36,5 @@ export async function getPurchasedCourses(
 
   return { loading, error, courses };
 }
+
+export default getPurchasedCourses;

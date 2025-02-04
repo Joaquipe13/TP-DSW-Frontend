@@ -1,10 +1,13 @@
 import Container from "react-bootstrap/Container";
 import { useEffect, useState } from "react";
 import { Card } from "react-bootstrap";
-import { MemberHead, AdminHead, PageBody, LoggedOutHead } from "@layouts/index";
-import { userType } from "@utils/index";
+import MemberHead from "@layouts/member/head";
+import AdminHead from "@layouts/admin/head";
+import LoggedOutHead from "@layouts/loggedOut/head";
+import PageBody from "@layouts/body";
+import userType from "@utils/auth/userType";
 
-export function MainPage() {
+function MainPage() {
   const [role, setRole] = useState<string | null>(null);
 
   useEffect(() => {
@@ -30,3 +33,4 @@ export function MainPage() {
     </Container>
   );
 }
+export default MainPage;

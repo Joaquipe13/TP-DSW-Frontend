@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Card, Container } from "react-bootstrap";
-import {
-  DateRangePicker,
-  Loading,
-  MySubscriptionsList,
-  SubscriptionsList,
-} from "@components/index";
-import { userType, getUser } from "@utils/index";
+import DateRangePicker from "@components/common/dateRangePicker";
+import Loading from "@components/common/loading";
+import MySubscriptionsList from "@components/purchaseRecord/mySubscriptions";
+import SubscriptionsList from "@components/purchaseRecord/subscriptionsList";
+import userType from "@utils/auth/userType";
+import getUser from "@utils/auth/getUser";
 
-export const SubscriptionsRecordPage: React.FC = () => {
+const SubscriptionsRecordPage: React.FC = () => {
   const [startDate, setStartDate] = useState<Date | undefined>(undefined);
   const [endDate, setEndDate] = useState<Date | undefined>(undefined);
   const [role, setRole] = useState<string | null>(null);
@@ -73,3 +72,4 @@ export const SubscriptionsRecordPage: React.FC = () => {
     </Container>
   );
 };
+export default SubscriptionsRecordPage;

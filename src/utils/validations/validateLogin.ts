@@ -1,6 +1,7 @@
-import { setCookieValue, porturl } from "@utils/index";
+import setCookieValue from "@utils/auth/setCookieValue";
+import porturl from "@utils/route";
 
-export async function validateLogin(email: string, password: string) {
+async function validateLogin(email: string, password: string) {
   const url = porturl + "/api/login";
   try {
     const response = await fetch(url, {
@@ -28,3 +29,4 @@ export async function validateLogin(email: string, password: string) {
     console.error("Error during login:", error);
   }
 }
+export default validateLogin;

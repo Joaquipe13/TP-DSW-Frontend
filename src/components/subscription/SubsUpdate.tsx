@@ -1,13 +1,15 @@
 import { useRef, useEffect } from "react";
 import { Container, Card, Form, Button, Row, Col } from "react-bootstrap";
-import { Loading, Error } from "@components/index";
-import { useSubscriptionEdit, deleteSubscription } from "@hooks/index";
+import Loading from "../common/loading";
+import Error from "../common/error";
+import useSubscriptionEdit from "@hooks/subscription/useSubscriptionEdit";
+import deleteSubscription from "@hooks/subscription/useSubscriptionDelete";
 
 interface SubscriptionUpdateProps {
   subscriptionId: string;
 }
 
-export const SubscriptionUpdate: React.FC<SubscriptionUpdateProps> = ({
+const SubscriptionUpdate: React.FC<SubscriptionUpdateProps> = ({
   subscriptionId,
 }) => {
   const {
@@ -159,3 +161,4 @@ export const SubscriptionUpdate: React.FC<SubscriptionUpdateProps> = ({
     </Container>
   );
 };
+export default SubscriptionUpdate;

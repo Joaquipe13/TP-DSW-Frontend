@@ -1,12 +1,12 @@
 import { useState, useEffect } from "react";
-import { useGet, usePut } from "@hooks/index";
+import useGet from "../crud/useGet";
+import usePut from "../crud/usePut";
 import {
   validateLevelName,
   validateLevelDescription,
-  Level,
-} from "@utils/index";
-
-export const useLevelEdit = (levelId: string | undefined) => {
+} from "@utils/validations/levelValidate";
+import { Level } from "@utils/types";
+const useLevelEdit = (levelId: string | undefined) => {
   const {
     loading,
     error,
@@ -61,3 +61,4 @@ export const useLevelEdit = (levelId: string | undefined) => {
     handleSave,
   };
 };
+export default useLevelEdit;

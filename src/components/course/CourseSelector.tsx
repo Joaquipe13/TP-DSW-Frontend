@@ -8,7 +8,7 @@ interface CourseSelectorProps {
   setView: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export const CourseSelector: React.FC<CourseSelectorProps> = ({ setView }) => {
+const CourseSelector: React.FC<CourseSelectorProps> = ({ setView }) => {
   const [finished, setFinished] = useState(true);
   const [unfinished, setUnfinished] = useState(true);
 
@@ -63,3 +63,4 @@ export const CourseSelector: React.FC<CourseSelectorProps> = ({ setView }) => {
     </Container>
   );
 };
+export default CourseSelector;

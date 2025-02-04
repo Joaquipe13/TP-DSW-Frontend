@@ -1,10 +1,12 @@
 import { useState } from "react";
 import Container from "react-bootstrap/Container";
 import { Card } from "react-bootstrap";
-import { SearchBox, MyCourseList, NavigationButton } from "@components/index";
-import { useAdminRedirect } from "@hooks/index";
+import SearchBox from "@components/common/searchBox";
+import MyCourseList from "@components/course/myCourseList";
+import useAdminRedirect from "@hooks/auth/useAdminRedirect";
+import NavigationButton from "@components/common/buttons/navigationButton";
 
-export const MyCourseListPage = () => {
+const MyCourseListPage = () => {
   useAdminRedirect("/course/list");
 
   const [title, setTitle] = useState("");
@@ -37,3 +39,4 @@ export const MyCourseListPage = () => {
     </Container>
   );
 };
+export default MyCourseListPage;

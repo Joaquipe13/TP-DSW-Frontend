@@ -1,14 +1,15 @@
 import { useState } from "react";
 import Button from "react-bootstrap/Button";
-import { PurchaseConfirmationModal } from "@components/index";
-import { useLoginAlert, usePost } from "@hooks/index";
-import { getUser } from "@utils/index";
+import PurchaseConfirmationModal from "@components/purchaseRecord/purchaseConfirmationModal";
+import useLoginAlert from "@hooks/auth/useLoginAlert";
+import usePost from "@hooks/crud/usePost";
+import getUser from "@utils/auth/getUser";
 
 interface PurchaseButtonProps {
   courseId: number | string;
 }
 
-export function PurchaseButton({ courseId }: PurchaseButtonProps) {
+function PurchaseButton({ courseId }: PurchaseButtonProps) {
   const [isConfirming, setIsConfirming] = useState<boolean>(false);
 
   const [showConfirmModal, setShowConfirmModal] = useState<boolean>(false);
@@ -85,3 +86,5 @@ export function PurchaseButton({ courseId }: PurchaseButtonProps) {
     </div>
   );
 }
+
+export default PurchaseButton;

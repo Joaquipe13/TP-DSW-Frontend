@@ -2,9 +2,10 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import { useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
-import { LevelUpdate, Error, NavigationButton } from "@components/index";
-
-export const LevelUpdatePage: React.FC = () => {
+import Error from "@components/common/error";
+import LevelUpdate from "@components/level/levelUpdate";
+import NavigationButton from "@components/common/buttons/navigationButton";
+const LevelUpdatePage: React.FC = () => {
   const { id, courseId } = useParams<{ id: string; courseId: string }>();
 
   return (
@@ -28,3 +29,4 @@ export const LevelUpdatePage: React.FC = () => {
     </Card>
   );
 };
+export default LevelUpdatePage;

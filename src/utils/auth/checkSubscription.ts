@@ -1,6 +1,6 @@
-import { porturl } from "@utils/index";
+import porturl  from "@utils/route";
 
-export async function checkSubscription(
+async function checkSubscription(
   user: number | string
 ): Promise<boolean | null> {
   if (!user) {
@@ -30,3 +30,5 @@ export async function checkSubscription(
     return null;
   }
 }
+
+export default checkSubscription;

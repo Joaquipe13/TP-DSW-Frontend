@@ -1,6 +1,6 @@
-import { getUser } from "@utils/index";
+import getUser from "./getUser";
 
-export async function userType() {
+async function userType() {
   const user = await getUser();
   if (user) {
     return user.admin === true ? "admin" : "member";
@@ -9,3 +9,4 @@ export async function userType() {
     return null;
   }
 }
+export default userType;

@@ -1,6 +1,7 @@
 import Cookies from "js-cookie";
 
-export function removeSessionCookies() {
+function removeSessionCookies() {
   Cookies.remove("token", { path: "/" });
   Cookies.remove("user", { path: "/" });
 }
+export default removeSessionCookies;

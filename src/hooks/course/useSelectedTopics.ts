@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { Topic } from "@utils/index";
+import { Topic } from "@utils/types";
 
-export const useSelectedTopics = () => {
+const useSelectedTopics = () => {
   const [selectedTopics, setSelectedTopics] = useState<Topic[]>([]);
   const [selectedTopicsIds, setSelectedTopicsIds] = useState<number[]>([]);
 
@@ -17,3 +17,5 @@ export const useSelectedTopics = () => {
 
   return { selectedTopics, selectedTopicsIds, handleSelectTopic };
 };
+
+export default useSelectedTopics;

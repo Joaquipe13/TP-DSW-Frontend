@@ -4,11 +4,11 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
-import { NavigationButton } from "@components/index";
-import { usePost } from "@hooks/index";
-import { Topic } from "@utils/index";
+import NavigationButton from "@components/common/buttons/navigationButton";
+import usePost from "@hooks/crud/usePost";
+import { Topic } from "@utils/types";
 
-export const TopicCreatePage = () => {
+const TopicCreatePage = () => {
   const { loading, error, create } = usePost<Topic>("/api/topics");
   const [description, setDescription] = React.useState<string>("");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -90,3 +90,4 @@ export const TopicCreatePage = () => {
     </Container>
   );
 };
+export default TopicCreatePage;

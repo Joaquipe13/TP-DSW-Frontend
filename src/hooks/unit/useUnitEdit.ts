@@ -1,8 +1,13 @@
 import { useState, useEffect } from "react";
-import { useGet, usePut } from "@hooks/index";
-import { validateUnitName, validateUnitContent, Unit } from "@utils/index";
+import useGet from "@hooks/crud/useGet";
+import usePut from "@hooks/crud/usePut";
+import {
+  validateUnitName,
+  validateUnitContent,
+} from "@utils/validations/unitValidate";
+import { Unit } from "@utils/types";
 
-export const useUnitEdit = (unitId: string | undefined) => {
+const useUnitEdit = (unitId: string | undefined) => {
   const {
     loading,
     error,
@@ -57,3 +62,4 @@ export const useUnitEdit = (unitId: string | undefined) => {
     handleSave,
   };
 };
+export default useUnitEdit;

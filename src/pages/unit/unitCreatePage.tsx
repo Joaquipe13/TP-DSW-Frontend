@@ -1,8 +1,10 @@
 import { useParams } from "react-router-dom";
 import Container from "react-bootstrap/Container";
-import { UnitCreate, Error, NavigationButton } from "@components/index";
+import UnitCreate from "@components/unit/unitCreate";
+import Error from "@components/common/error";
+import NavigationButton from "@components/common/buttons/navigationButton";
 
-export const UnitCreatePage: React.FC = () => {
+const UnitCreatePage: React.FC = () => {
   const { courseId, levelId } = useParams<{
     courseId: string | undefined;
     levelId: string | undefined;
@@ -33,3 +35,4 @@ export const UnitCreatePage: React.FC = () => {
     </Container>
   );
 };
+export default UnitCreatePage;

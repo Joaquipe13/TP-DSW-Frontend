@@ -2,9 +2,10 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import { useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
-import { Error, NavigationButton, CourseUpdate } from "@components/index";
-
-export const CourseUpdatePage: React.FC = () => {
+import Error from "@components/common/error";
+import NavigationButton from "@components/common/buttons/navigationButton";
+import CourseUpdate from "@components/course/courseUpdate";
+const CourseUpdatePage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
 
   return (
@@ -27,3 +28,4 @@ export const CourseUpdatePage: React.FC = () => {
     </Card>
   );
 };
+export default CourseUpdatePage;

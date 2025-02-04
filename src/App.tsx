@@ -1,9 +1,10 @@
-import { MainPage } from "@pages/index";
+import MainPage from "@pages/MainPage";
 
-export function App() {
+function App() {
   return (
     <>
       <MainPage />
     </>
   );
 }
+export default App;

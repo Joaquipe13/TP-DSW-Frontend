@@ -4,11 +4,13 @@ import Form from "react-bootstrap/Form";
 import Container from "react-bootstrap/Container";
 import InputGroup from "react-bootstrap/InputGroup";
 import Button from "react-bootstrap/Button";
-import { Loading, Error, NavigationButton } from "@components/index";
-import { usePost } from "@hooks/index";
-import { Topic } from "@utils/index";
+import Loading from "../common/loading";
+import Error from "../common/error";
+import NavigationButton from "../common/buttons/navigationButton";
+import usePost from "@hooks/crud/usePost";
+import { Topic } from "@utils/types";
 
-export const TopicCreate = () => {
+const TopicCreate = () => {
   const { loading, error, create } = usePost<Topic>("/api/topics");
   const [description, setDescription] = React.useState<string>("");
   const inputRef = useRef<HTMLInputElement>(null);
@@ -93,3 +95,4 @@ export const TopicCreate = () => {
     </Container>
   );
 };
+export default TopicCreate;

@@ -9,7 +9,7 @@ interface PurchaseConfirmationModalProps {
   purchaseType: string;
 }
 
-export function PurchaseConfirmationModal({
+function PurchaseConfirmationModal({
   show,
   onConfirm,
   onCancel,
@@ -35,3 +35,4 @@ export function PurchaseConfirmationModal({
     </Modal>
   );
 }
+export default PurchaseConfirmationModal;

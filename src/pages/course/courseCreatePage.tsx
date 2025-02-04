@@ -1,7 +1,8 @@
 import Container from "react-bootstrap/Container";
-import { CourseCreate, NavigationButton } from "@components/index";
+import CourseCreate from "@components/course/courseCreate";
+import NavigationButton from "@components/common/buttons/navigationButton";
 
-export const CourseCreatePage = () => {
+const CourseCreatePage = () => {
   return (
     <Container fluid>
       <CourseCreate />
@@ -15,3 +16,4 @@ export const CourseCreatePage = () => {
     </Container>
   );
 };
+export default CourseCreatePage;

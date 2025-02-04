@@ -5,10 +5,7 @@ interface DateComponentProps {
   style?: object | undefined;
 }
 
-export const DateComponent: React.FC<DateComponentProps> = ({
-  date,
-  style,
-}) => {
+const DateComponent: React.FC<DateComponentProps> = ({ date, style }) => {
   // Formatea la fecha
   const newDate = new Date(date);
   const formattedDate = newDate
@@ -20,3 +17,4 @@ export const DateComponent: React.FC<DateComponentProps> = ({
     : "Date not available";
   return <span style={style}>{formattedDate}</span>;
 };
+export default DateComponent;
