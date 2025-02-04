@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form, Container, Row, Col } from "react-bootstrap";
-const RegisterOverlay = React.lazy(() =>
-  import("@components/index").then((module) => ({
-    default: module.RegisterOverlay,
-  }))
-);
+import { RegisterOverlay } from "./registerOverlay";
 import { validateLogin } from "@utils/index";
 
 interface LoginOverlayProps {
@@ -24,9 +20,7 @@ export const LoginOverlay: React.FC<LoginOverlayProps> = ({
   const hideLogin = () => setShow(false);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Intento de login con:", { email, password });
     const token = await validateLogin(email, password);
-    console.log("Token:", token);
     if (token) {
       setShow(false);
       window.location.reload();

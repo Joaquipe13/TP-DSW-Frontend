@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { Container, Table } from "react-bootstrap";
+import { Button, Container, Table } from "react-bootstrap";
 import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
 import { Loading, Error, NavigationButton } from "@components/index";
 import { useGet, useSortList } from "@hooks/index";
 import { CoursePurchaseRecord } from "@utils/index";
+import { AiOutlineEye } from "react-icons/ai";
+import { purchaseDetailOverlay } from "./purchaseDetailOverlay";
 
 interface PurchasesListProps {
   startDate?: Date;
@@ -26,6 +28,12 @@ export const PurchasesList: React.FC<PurchasesListProps> = ({
     loading,
     fetchData,
   } = useGet<CoursePurchaseRecord>(`/api/CoursePurchaseRecords${queryString}`);
+  const [showDetail, setShowDetail] = useState(false);
+  const onHide = () => setShowDetail(false);
+  const handleShowDetail = (record: CoursePurchaseRecord) => {
+    setShowDetail(true);
+    purchaseDetailOverlay({ show: showDetail, onHide: onHide, record: record });
+  };
   const [isIdSortedDesc, setSortedDesc] = useState(false);
   const [isCourseSortedDesc, setCourseSortedDesc] = useState(false);
   const [isUserSortedDesc, setUserSortedDesc] = useState(false);
@@ -84,7 +92,7 @@ export const PurchasesList: React.FC<PurchasesListProps> = ({
   const { sortList } = useSortList<CoursePurchaseRecord>();
   const handleSort = (key: keyof CoursePurchaseRecord) => {
     const sortedRecords = sortList(key, response?.coursePurchaseRecords);
-    setSortStarteDesc(key)
+    setSortStarteDesc(key);
     setPurchaseRecords(sortedRecords);
   };
   useEffect(() => {
@@ -186,6 +194,15 @@ export const PurchasesList: React.FC<PurchasesListProps> = ({
                   : "N/A"}
               </td>
               <td>${record.totalAmount.toFixed(2)}</td>
+              <td>
+                <Button
+                  variant="outline-primary"
+                  onClick={handleShowDetail(record)}
+                >
+                  <AiOutlineEye size={20} />
+                </Button>
+                s
+              </td>
             </tr>
           ))}
         </tbody>

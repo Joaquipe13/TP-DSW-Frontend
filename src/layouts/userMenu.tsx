@@ -61,13 +61,13 @@ export const UserMenu: React.FC = () => {
         ) : (
           <>
             <NavDropdown.Item
-              style={{ color: "#FFFFFF" }}
+              style={{ color: "#000000" }}
               onClick={handleRegister}
             >
               Register
             </NavDropdown.Item>
             <NavDropdown.Item
-              style={{ color: "#FFFFFF" }}
+              style={{ color: "#000000" }}
               onClick={handleLogin}
             >
               Login
