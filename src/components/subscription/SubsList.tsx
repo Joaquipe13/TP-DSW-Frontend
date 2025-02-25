@@ -27,25 +27,17 @@ const SubscriptionList = () => {
       {Array.isArray(subscriptions) && subscriptions.length > 0 ? (
         <Table>
           <tbody>
-            {subscriptions
-              .reduce((acc, subscription, index) => {
-                if (index % 5 === 0) acc.push([]);
-                acc[acc.length - 1].push(subscription);
-                return acc;
-              }, [])
-              .map((rowSubscriptions, rowIndex) => (
-                <Row key={rowIndex} className="mb-3">
-                  {rowSubscriptions.map((subscription) => (
-                    <Col key={subscription.id} xs={12} sm={6} md={4} lg={3}>
-                      {!subscription.id ? (
-                        <Loading />
-                      ) : (
-                        <SubscriptionPreview id={subscription.id} />
-                      )}
-                    </Col>
-                  ))}
-                </Row>
+            <Row className="mb-3">
+              {subscriptions.map((subscription) => (
+                <Col key={subscription.id} xs={12} sm={6} md={4} lg={3}>
+                  {!subscription.id ? (
+                    <Loading />
+                  ) : (
+                    <SubscriptionPreview id={subscription.id} />
+                  )}
+                </Col>
               ))}
+            </Row>
           </tbody>
         </Table>
       ) : (

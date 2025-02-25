@@ -24,7 +24,8 @@ const CourseList: React.FC<CourseListProps> = ({ view, title }) => {
 
   useEffect(() => {
     fetchData();
-  }, [fetchData]);
+    console.log(courses);
+  }, [fetchData, title]);
 
   if (loading) return <Loading />;
   if (error) return <Error message={error} />;
@@ -43,33 +44,26 @@ const CourseList: React.FC<CourseListProps> = ({ view, title }) => {
       {Array.isArray(courses) && courses.length > 0 ? (
         <Table>
           <tbody>
-            {courses
-              .filter((course) => view === 3 || course.isActive === isActive)
-              .reduce((acc, course, index) => {
-                if (index % 2 === 0) acc.push([]);
-                acc[acc.length - 1].push(course);
-                return acc;
-              }, [])
-              .map((rowCourses, rowIndex) => (
-                <Row key={rowIndex} className="mb-3">
-                  {rowCourses.map((course) => (
-                    <Col
-                      key={course.id}
-                      xs={12}
-                      sm={12}
-                      md={12}
-                      lg={6}
-                      className="d-flex justify-content-center"
-                    >
-                      <CoursePreview id={course.id} />
-                    </Col>
-                  ))}
-                </Row>
-              ))}
+            <Row className="mb-3">
+              {courses
+                .filter((course) => view === 3 || course.isActive === isActive)
+                .map((course) => (
+                  <Col
+                    key={course.id}
+                    xs={12}
+                    sm={12}
+                    md={12}
+                    lg={6}
+                    className="d-flex justify-content-center"
+                  >
+                    <CoursePreview id={course.id} />
+                  </Col>
+                ))}
+            </Row>
           </tbody>
         </Table>
       ) : (
-        <Card>No courses available</Card>
+        <Card className="mb-3">No courses available</Card>
       )}
     </Container>
   );

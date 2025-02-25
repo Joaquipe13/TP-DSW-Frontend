@@ -43,7 +43,7 @@ const UserMenu: React.FC = () => {
             {role === "member" && (
               <>
                 <NavDropdown.Item
-                  style={{ color: "#FFFFFF" }}
+                  style={{ color: "#000000" }}
                   href="/coursePurchaseRecords"
                 >
                   My Purchases
@@ -52,7 +52,7 @@ const UserMenu: React.FC = () => {
               </>
             )}
             <NavDropdown.Item
-              style={{ color: "#FFFFFF" }}
+              style={{ color: "#000000" }}
               className="text-danger fw-bold"
               onClick={handleLogout}
             >
@@ -62,13 +62,13 @@ const UserMenu: React.FC = () => {
         ) : (
           <>
             <NavDropdown.Item
-              style={{ color: "#FFFFFF" }}
+              style={{ color: "#000000" }}
               onClick={handleRegister}
             >
               Register
             </NavDropdown.Item>
             <NavDropdown.Item
-              style={{ color: "#FFFFFF" }}
+              style={{ color: "#000000" }}
               onClick={handleLogin}
             >
               Login

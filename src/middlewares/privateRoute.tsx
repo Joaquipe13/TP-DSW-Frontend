@@ -3,7 +3,6 @@ import { useEffect, useState } from "react";
 import Loading from "@components/common/loading";
 import { User } from "@utils/types";
 import getUser from "@utils/auth/getUser";
-s;
 
 const PrivateRoute = ({ element }: { element: JSX.Element }) => {
   const [user, setUser] = useState<null | User>(null);

@@ -1,10 +1,6 @@
 import React, { useState } from "react";
 import { Button, Form, Container, Row, Col } from "react-bootstrap";
-const RegisterOverlay = React.lazy(() =>
-  import("./registerOverlay").then((module) => ({
-    default: module.RegisterOverlay,
-  }))
-);
+import RegisterOverlay from "./registerOverlay";
 import validateLogin from "@utils/validations/validateLogin";
 
 interface LoginOverlayProps {
