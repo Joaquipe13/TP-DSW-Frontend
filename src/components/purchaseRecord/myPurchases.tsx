@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import { Container, Table } from "react-bootstrap";
+import { Button, Container, Table } from "react-bootstrap";
 import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
 import { Loading, Error, NavigationButton } from "@components/index";
 import { useGet } from "@hooks/index";
 import { CoursePurchaseRecord } from "@utils/index";
 import { useSortList } from "@hooks/index";
+import { AiOutlineEye } from "react-icons/ai";
+import { PurchaseDetailOverlay } from "./purchaseDetailOverlay.js";
 
 interface MyPurchasesListProps {
   startDate?: Date;
@@ -59,7 +61,14 @@ export const MyPurchasesList: React.FC<MyPurchasesListProps> = ({
         break;
     }
   };
-
+  const [showDetail, setShowDetail] = useState(false);
+  const [purchaseRecord, setPurchaseRecord] =
+    useState<CoursePurchaseRecord | null>(null);
+  const onHide = () => setShowDetail(false);
+  const handleShowDetail = (record: CoursePurchaseRecord) => {
+    setPurchaseRecord(record);
+    setShowDetail(true);
+  };
   const {
     data: response,
     error,
@@ -191,6 +200,16 @@ export const MyPurchasesList: React.FC<MyPurchasesListProps> = ({
                     : "N/A"}
                 </td>
                 <td>${record.totalAmount.toFixed(2)}</td>
+                <td>
+                  <Button
+                    variant="outline-primary"
+                    onClick={() => {
+                      handleShowDetail(record);
+                    }}
+                  >
+                    <AiOutlineEye size={20} />
+                  </Button>
+                </td>
               </tr>
             ))}
           </tbody>
@@ -198,6 +217,11 @@ export const MyPurchasesList: React.FC<MyPurchasesListProps> = ({
       ) : (
         <p>No purchase records available</p>
       )}
+      <PurchaseDetailOverlay
+        show={showDetail}
+        onHide={onHide}
+        record={purchaseRecord}
+      />
     </Container>
   );
 };

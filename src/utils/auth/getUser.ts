@@ -17,6 +17,7 @@ function searchUser() {
 }
 function getToken() {
   const token = getCookieValue("token");
+  console.log("Token guardado recuperado:", token);
   return token;
 }
 

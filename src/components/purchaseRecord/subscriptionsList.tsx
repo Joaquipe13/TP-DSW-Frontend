@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
-import { Container, Table } from "react-bootstrap";
+import { Button, Container, Table } from "react-bootstrap";
 import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
 import { Loading, Error } from "@components/index";
 import { useGet, useSortList } from "@hooks/index";
 import { SubsPurchaseRecord } from "@utils/index";
+import { PurchaseDetailOverlay } from "./purchaseDetailOverlay.js";
+import { AiOutlineEye } from "react-icons/ai";
 
 interface SubscriptionsListProps {
   startDate?: Date;
@@ -25,6 +27,14 @@ export const SubscriptionsList: React.FC<SubscriptionsListProps> = ({
     loading,
     fetchData,
   } = useGet<SubsPurchaseRecord>(`/api/subsPurchaseRecords${queryString}`);
+  const [showDetail, setShowDetail] = useState(false);
+  const [purchaseRecord, setPurchaseRecord] =
+    useState<SubsPurchaseRecord | null>(null);
+  const onHide = () => setShowDetail(false);
+  const handleShowDetail = (record: SubsPurchaseRecord) => {
+    setPurchaseRecord(record);
+    setShowDetail(true);
+  };
   const [isIdSortedDesc, setIdSortedDesc] = useState(false);
   const [isDurationSortedDesc, setDurationSortedDesc] = useState(false);
   const [isUserSortedDesc, setUserSortedDesc] = useState(false);
@@ -210,10 +220,25 @@ export const SubscriptionsList: React.FC<SubscriptionsListProps> = ({
                   : "N/A"}
               </td>
               <td>${record.totalAmount.toFixed(2)}</td>
+              <td>
+                <Button
+                  variant="outline-primary"
+                  onClick={() => {
+                    handleShowDetail(record);
+                  }}
+                >
+                  <AiOutlineEye size={20} />
+                </Button>
+              </td>
             </tr>
           ))}
         </tbody>
       </Table>
+      <PurchaseDetailOverlay
+        show={showDetail}
+        onHide={onHide}
+        record={purchaseRecord}
+      />
     </Container>
   ) : (
     <p>No purchase records available</p>

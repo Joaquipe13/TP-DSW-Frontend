@@ -22,17 +22,25 @@ export function useGet<T>(baseUrl: string, expectArray: boolean = true) {
         throw new Error(`HTTP error! status: ${response.status}`);
       }
       const result = await response.json();
-      setData(expectArray ? (result.data as T[]) : (result.data as T));
+      console.log("antes de setData");
+      console.log("result", result);
+      console.log("result.data", result.data[0]);
+      console.log("data", data);
+      setData(expectArray ? result.data : result.data[0]);
+      console.log("despues de setData");
+      console.log("result", result);
+      console.log("result.data", result.data);
+      console.log("data", data);
     } catch (err: any) {
       setError(err.message);
     } finally {
-      setLoading(false);
+      if (data !== null) setLoading(false);
     }
   }, [baseUrl]);
 
   useEffect(() => {
     fetchData();
-  }, [baseUrl]);
+  }, [baseUrl, fetchData]);
 
   return { data, loading, error, fetchData };
 }

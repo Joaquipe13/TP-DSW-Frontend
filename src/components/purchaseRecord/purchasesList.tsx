@@ -5,7 +5,7 @@ import { Loading, Error, NavigationButton } from "@components/index";
 import { useGet, useSortList } from "@hooks/index";
 import { CoursePurchaseRecord } from "@utils/index";
 import { AiOutlineEye } from "react-icons/ai";
-import { purchaseDetailOverlay } from "./purchaseDetailOverlay";
+import { PurchaseDetailOverlay } from "./purchaseDetailOverlay";
 
 interface PurchasesListProps {
   startDate?: Date;
@@ -29,10 +29,12 @@ export const PurchasesList: React.FC<PurchasesListProps> = ({
     fetchData,
   } = useGet<CoursePurchaseRecord>(`/api/CoursePurchaseRecords${queryString}`);
   const [showDetail, setShowDetail] = useState(false);
+  const [purchaseRecord, setPurchaseRecord] =
+    useState<CoursePurchaseRecord | null>(null);
   const onHide = () => setShowDetail(false);
   const handleShowDetail = (record: CoursePurchaseRecord) => {
+    setPurchaseRecord(record);
     setShowDetail(true);
-    purchaseDetailOverlay({ show: showDetail, onHide: onHide, record: record });
   };
   const [isIdSortedDesc, setSortedDesc] = useState(false);
   const [isCourseSortedDesc, setCourseSortedDesc] = useState(false);
@@ -197,16 +199,22 @@ export const PurchasesList: React.FC<PurchasesListProps> = ({
               <td>
                 <Button
                   variant="outline-primary"
-                  onClick={handleShowDetail(record)}
+                  onClick={() => {
+                    handleShowDetail(record);
+                  }}
                 >
                   <AiOutlineEye size={20} />
                 </Button>
-                s
               </td>
             </tr>
           ))}
         </tbody>
       </Table>
+      <PurchaseDetailOverlay
+        show={showDetail}
+        onHide={onHide}
+        record={purchaseRecord}
+      />
     </Container>
   ) : (
     <p>No purchase records available</p>

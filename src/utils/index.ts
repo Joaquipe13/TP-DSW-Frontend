@@ -3,6 +3,7 @@ export {
   createUser,
   checkPurchase,
   checkSubscription,
+  confirmUser,
   getCookieValue,
   getUser,
   removeSessionCookies,

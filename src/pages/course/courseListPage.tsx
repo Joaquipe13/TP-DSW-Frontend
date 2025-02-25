@@ -47,7 +47,7 @@ export const CourseListPage = () => {
       </Card.Body>
       {role === "admin" && <CourseSelector setView={setView} />}
       <Card>
-        <CourseList view={role === "admin" ? view : 1} title={title} />
+        {/*  <CourseList view={role === "admin" ? view : 1} title={title} /> */}
       </Card>
       {role === "admin" && (
         <Card.Body className="bg-light text-center p-3">

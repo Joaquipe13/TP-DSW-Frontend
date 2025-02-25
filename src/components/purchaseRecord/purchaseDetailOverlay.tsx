@@ -1,54 +1,66 @@
-import React, { useState } from "react";
-import { Button, Container, Row, Col, Modal } from "react-bootstrap";
+import { Container, Row, Col, Modal } from "react-bootstrap";
 import type { SubsPurchaseRecord, CoursePurchaseRecord } from "@utils/index";
-import { DateComponent } from "@utils/date";
-import { Error } from "@components/common/error.js";
+import { DateComponent } from "@utils/index";
+import { Error } from "@components/index";
+import { useEffect, useState } from "react";
 interface purchaseDetailOverlayProps {
   show: boolean;
   onHide: () => void;
-  record: CoursePurchaseRecord | SubsPurchaseRecord;
+  record: CoursePurchaseRecord | SubsPurchaseRecord | null;
 }
 
-export const purchaseDetailOverlay: React.FC<purchaseDetailOverlayProps> = ({
+export function PurchaseDetailOverlay({
   show,
   onHide,
   record,
-}) => {
+}: purchaseDetailOverlayProps) {
   const [error, setError] = useState(false);
-  let purchase: string;
-  let description: string;
-  let completeName: string;
-  let purchaseAt: Date;
-  let effectiveAt: Date;
-  let totalAmount: number;
+  const [purchaseDetails, setPurchaseDetails] = useState({
+    id: 0,
+    purchase: "",
+    description: "",
+    completeName: "",
+    purchaseAt: new Date(),
+    effectiveAt: new Date(),
+    totalAmount: 0,
+  });
 
-  if (!record) {
-    setError(true);
-  } else if (record instanceof CoursePurchaseRecord) {
-    purchase = "CoursePurchaseRecord";
-    description = record.course?.title;
-    completeName = record.user?.surname + ", " + record.user?.name;
-    purchaseAt = record.purchaseAt || new Date();
-    totalAmount = record.totalAmount || 0;
-    effectiveAt = new Date();
-  } else if (record instanceof SubsPurchaseRecord) {
-    purchase = "SubsPurchaseRecord";
-    description = record.subscription?.description;
-    completeName = record.user?.surname + ", " + record.user?.name;
-    purchaseAt = record.purchaseAt || new Date();
-    totalAmount = record.totalAmount || 0;
-    effectiveAt = record.effectiveAt || new Date();
-  }
+  useEffect(() => {
+    if (!record) {
+      setError(true);
+      return;
+    }
+
+    const isCoursePurchase = "course" in record;
+    const isSubsPurchase = "subscription" in record;
+
+    if (isCoursePurchase || isSubsPurchase) {
+      setPurchaseDetails({
+        id: record.id || 0,
+        purchase: isCoursePurchase
+          ? "CoursePurchaseRecord"
+          : "SubsPurchaseRecord",
+        description: isCoursePurchase
+          ? record.course?.title || "No title"
+          : record.subscription?.description || "No description",
+        completeName: `${record.user?.surname || "N/A"}, ${
+          record.user?.name || "N/A"
+        }`,
+        purchaseAt: record.purchaseAt || new Date(),
+        effectiveAt: isSubsPurchase
+          ? record.effectiveAt || new Date()
+          : new Date(),
+        totalAmount: record.totalAmount || 0,
+      });
+      setError(false);
+    } else {
+      setError(true);
+    }
+  }, [record]);
+
   return (
     <>
-      <Modal
-        show={show}
-        onHide={onHide}
-        centered
-        size="lg"
-        backdrop="static"
-        keyboard={false}
-      >
+      <Modal show={show} onHide={onHide} centered>
         <Modal.Header closeButton>
           <Modal.Title>Purchase Details</Modal.Title>
         </Modal.Header>
@@ -57,37 +69,38 @@ export const purchaseDetailOverlay: React.FC<purchaseDetailOverlayProps> = ({
             <Error message="Purchase does not exist" />
           ) : (
             <Container>
-              <Row className="justify-content-center">
+              <Row>
                 <Col xs={12} md={8}>
-                  {/* Purchase details */}
-                  <div className="text-center">
+                  <div>
                     <p>
-                      <strong>Purchase ID:</strong> {record.id}
+                      <strong>Purchase ID:</strong> {purchaseDetails.id}
                     </p>
-                    {purchase === "SubsPurchaseRecord" ? (
+                    {purchaseDetails.purchase === "SubsPurchaseRecord" ? (
                       <p>
-                        <strong>Subscription:</strong> {description}
+                        <strong>Subscription:</strong>{" "}
+                        {purchaseDetails.description}
                       </p>
                     ) : (
                       <p>
-                        <strong>Course:</strong> {description}
+                        <strong>Course:</strong> {purchaseDetails.description}
                       </p>
                     )}
                     <p>
-                      <strong>Buyer:</strong> {completeName}
+                      <strong>User name:</strong> {purchaseDetails.completeName}
                     </p>
-                    {purchase === "SubsPurchaseRecord" && (
+                    {purchaseDetails.purchase === "SubsPurchaseRecord" && (
                       <p>
                         <strong>Effective Date:</strong>{" "}
-                        <DateComponent date={effectiveAt} />
+                        <DateComponent date={purchaseDetails.effectiveAt} />
                       </p>
                     )}
                     <p>
                       <strong>Purchase Date:</strong>{" "}
-                      <DateComponent date={purchaseAt} />
+                      <DateComponent date={purchaseDetails.purchaseAt} />
                     </p>
                     <p>
-                      <strong>Total Amount:</strong> ${totalAmount}
+                      <strong>Total Amount:</strong> $
+                      {purchaseDetails.totalAmount}
                     </p>
                   </div>
                 </Col>
@@ -95,12 +108,8 @@ export const purchaseDetailOverlay: React.FC<purchaseDetailOverlayProps> = ({
             </Container>
           )}
         </Modal.Body>
-        <Modal.Footer>
-          <Button variant="secondary" onClick={onHide}>
-            Close
-          </Button>
-        </Modal.Footer>
+        <Modal.Footer></Modal.Footer>
       </Modal>
     </>
   );
-};
+}

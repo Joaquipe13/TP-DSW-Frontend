@@ -21,7 +21,11 @@ import {
   InDevelopmentPage,
   SubscriptionsRecordPage,
 } from "@pages/index";
-import { PrivateRoute, AdminRoute } from "@middlewares/index";
+import {
+  PrivateRoute,
+  AdminRoute,
+  ConfirmRegistration,
+} from "@middlewares/index";
 
 const router = createBrowserRouter([
   {
@@ -118,6 +122,10 @@ const router = createBrowserRouter([
       {
         path: "course/:id",
         element: <CoursePage />,
+      },
+      {
+        path: "confirm/:token",
+        element: <ConfirmRegistration />,
       },
       {
         path: "inDevelopment/:title",

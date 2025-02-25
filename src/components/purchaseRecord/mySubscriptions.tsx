@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
-import { Container, Table } from "react-bootstrap";
+import { Button, Container, Table } from "react-bootstrap";
 import { Loading, Error } from "@components/index";
 import { useGet, useSortList } from "@hooks/index";
 import { SubsPurchaseRecord } from "@utils/index";
-
+import { AiOutlineEye } from "react-icons/ai";
+import { PurchaseDetailOverlay } from "./purchaseDetailOverlay";
 interface MySubscriptionsListProps {
   startDate?: Date;
   endDate?: Date;
@@ -22,6 +23,14 @@ export const MySubscriptionsList: React.FC<MySubscriptionsListProps> = ({
   const [isPurchDateSortedDesc, setPurchDateSortedDesc] = useState(false);
   const [isActDateSortedDesc, setActDateSortedDesc] = useState(false);
   const [isAmountSortedDesc, setAmountSortedDesc] = useState(false);
+  const [showDetail, setShowDetail] = useState(false);
+  const [purchaseRecord, setPurchaseRecord] =
+    useState<SubsPurchaseRecord | null>(null);
+  const onHide = () => setShowDetail(false);
+  const handleShowDetail = (record: SubsPurchaseRecord) => {
+    setPurchaseRecord(record);
+    setShowDetail(true);
+  };
   const setSortStarteDesc = (key: keyof SubsPurchaseRecord) => {
     switch (key) {
       case "id":
@@ -197,10 +206,25 @@ export const MySubscriptionsList: React.FC<MySubscriptionsListProps> = ({
                   : "N/A"}
               </td>
               <td>${record.totalAmount.toFixed(2)}</td>
+              <td>
+                <Button
+                  variant="outline-primary"
+                  onClick={() => {
+                    handleShowDetail(record);
+                  }}
+                >
+                  <AiOutlineEye size={20} />
+                </Button>
+              </td>
             </tr>
           ))}
         </tbody>
       </Table>
+      <PurchaseDetailOverlay
+        show={showDetail}
+        onHide={onHide}
+        record={purchaseRecord}
+      />
     </Container>
   ) : (
     <p>No purchase records available</p>

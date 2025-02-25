@@ -23,8 +23,12 @@ export const CourseList: React.FC<CourseListProps> = ({ view, title }) => {
   } = useGet<Course>(`/api/courses?title=${title}`);
 
   useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+    const fetchDataFromApi = async () => {
+      await fetchData();
+    };
+
+    fetchDataFromApi();
+  }, [fetchData, title]);
 
   if (loading) return <Loading />;
   if (error) return <Error message={error} />;
@@ -45,25 +49,17 @@ export const CourseList: React.FC<CourseListProps> = ({ view, title }) => {
           <tbody>
             {courses
               .filter((course) => view === 3 || course.isActive === isActive)
-              .reduce((acc, course, index) => {
-                if (index % 2 === 0) acc.push([]);
-                acc[acc.length - 1].push(course);
-                return acc;
-              }, [])
-              .map((rowCourses, rowIndex) => (
-                <Row key={rowIndex} className="mb-3">
-                  {rowCourses.map((course) => (
-                    <Col
-                      key={course.id}
-                      xs={12}
-                      sm={12}
-                      md={12}
-                      lg={6}
-                      className="d-flex justify-content-center"
-                    >
-                      <CoursePreview id={course.id} />
-                    </Col>
-                  ))}
+              .map((course) => (
+                <Row key={course.id} className="mb-3">
+                  <Col
+                    xs={12}
+                    sm={12}
+                    md={12}
+                    lg={6}
+                    className="d-flex justify-content-center"
+                  >
+                    <CoursePreview id={course.id} />
+                  </Col>
                 </Row>
               ))}
           </tbody>

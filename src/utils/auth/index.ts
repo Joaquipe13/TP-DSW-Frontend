@@ -7,3 +7,4 @@ export { removeSessionCookies } from "./removeSessionCookies";
 export { removeToken } from "./removeToken";
 export { setCookieValue } from "./setCookieValue";
 export { userType } from "./userType";
+export { confirmUser } from "./confirmUser";
