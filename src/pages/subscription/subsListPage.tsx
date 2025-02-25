@@ -1,7 +1,7 @@
 import Container from "react-bootstrap/Container";
 import { Card } from "react-bootstrap";
 import { useEffect, useState } from "react";
-import SubscriptionList from "../../components/subscription/subsList";
+import SubscriptionList from "@components/subscription/subsList";
 import NavigationButton from "@components/common/buttons/navigationButton";
 import userType from "@utils/auth/userType";
 

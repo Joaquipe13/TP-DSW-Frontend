@@ -1,5 +1,5 @@
 import Container from "react-bootstrap/Container";
-import CourseCreate from "../../components/course/courseCreate";
+import CourseCreate from "@components/course/courseCreate";
 import NavigationButton from "@components/common/buttons/navigationButton";
 
 const CourseCreatePage = () => {

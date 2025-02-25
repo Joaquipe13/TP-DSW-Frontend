@@ -1,5 +1,5 @@
 import Container from "react-bootstrap/Container";
-import SubscriptionCreate from "../../components/subscription/subsCreate";
+import SubscriptionCreate from "@components/subscription/subsCreate";
 import NavigationButton from "@components/common/buttons/navigationButton";
 
 const SubscriptionCreatePage = () => {

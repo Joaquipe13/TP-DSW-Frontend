@@ -5,8 +5,8 @@ import userType from "@utils/auth/userType";
 import Loading from "@components/common/loading";
 import SearchBox from "@components/common/searchBox";
 import NavigationButton from "@components/common/buttons/navigationButton";
-import CourseList from "../../components/course/courseList";
-import CourseSelector from "../../components/course/courseSelector";
+import CourseList from "@components/course/courseList";
+import CourseSelector from "@components/course/courseSelector";
 
 const CourseListPage = () => {
   const [view, setView] = useState<number>(3);

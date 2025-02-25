@@ -4,7 +4,7 @@ import { useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import Error from "@components/common/error";
 import NavigationButton from "@components/common/buttons/navigationButton";
-import CourseUpdate from "../../components/course/courseUpdate";
+import CourseUpdate from "@components/course/courseUpdate";
 const CourseUpdatePage: React.FC = () => {
   const { id } = useParams<{ id: string }>();
 
