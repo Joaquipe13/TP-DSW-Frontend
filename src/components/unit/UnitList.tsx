@@ -8,6 +8,7 @@ import useGet from "@hooks/crud/useGet";
 import userType from "@utils/auth/userType";
 import UnitPreview from "./unitPreview";
 import { Unit } from "@utils/types";
+import NotAvailableAlert from "@components/common/notAvailableAlert.js";
 
 interface UnitListProps {
   level: string;
@@ -53,7 +54,7 @@ const UnitList: React.FC<UnitListProps> = ({ level, course }) => {
             </ListGroup.Item>
           ))
         ) : (
-          <p>No units available</p>
+          <NotAvailableAlert object="units" />
         )}
       </ListGroup>
       {role === "admin" && (

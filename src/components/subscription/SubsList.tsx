@@ -1,11 +1,12 @@
 import { useEffect } from "react";
 import Container from "react-bootstrap/Container";
-import { Alert, Col, Row, Table } from "react-bootstrap";
+import { Col, Row, Table } from "react-bootstrap";
 import Loading from "../common/loading";
 import Error from "../common/error";
 import useGet from "@hooks/crud/useGet";
 import { Subscription } from "@utils/types";
 import SubscriptionPreview from "./subscriptionPreview";
+import NotAvailableAlert from "@components/common/notAvailableAlert.js";
 const SubscriptionList = () => {
   const {
     data: subscriptions,
@@ -41,11 +42,7 @@ const SubscriptionList = () => {
           </tbody>
         </Table>
       ) : (
-        <Col>
-          <Alert variant="info" className="text-center">
-            No subscriptions available
-          </Alert>
-        </Col>
+        <NotAvailableAlert object="subscriptions" />
       )}
     </Container>
   );

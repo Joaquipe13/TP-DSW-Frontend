@@ -118,10 +118,10 @@ const CourseCreate = () => {
             <Form.Control
               ref={inputRef}
               type="text"
-              placeholder="Course Title"
-              value={title}
+              placeholder="Course Resume"
+              value={resume}
               onChange={(e) => setResume(e.target.value)}
-              isInvalid={!!formErrors.title}
+              isInvalid={!!formErrors.resume}
             />
             <Form.Control.Feedback type="invalid">
               {formErrors.resume}

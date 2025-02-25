@@ -7,6 +7,7 @@ import useDeleteTopic from "@hooks/topic/useDeleteTopic";
 import useCreateTopic from "@hooks/topic/useCreateTopic";
 import useGet from "@hooks/crud/useGet";
 import { Topic } from "@utils/types";
+import NotAvailableAlert from "@components/common/notAvailableAlert.js";
 
 const TopicList = () => {
   const {
@@ -76,7 +77,7 @@ const TopicList = () => {
             marginTop: "1rem",
           }}
         >
-          No topics available
+          <NotAvailableAlert object="topics" />
         </Card.Body>
       )}
       {!isAdding && (

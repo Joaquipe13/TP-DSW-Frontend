@@ -7,6 +7,7 @@ import NavigationButton from "../common/buttons/navigationButton";
 import useGet from "@hooks/crud/useGet";
 import useSortList from "@hooks/purchaseRecord/useSortList";
 import { CoursePurchaseRecord } from "@utils/types";
+import NotAvailableAlert from "@components/common/notAvailableAlert.js";
 interface MyPurchasesListProps {
   startDate?: Date;
   endDate?: Date;
@@ -197,7 +198,7 @@ const MyPurchasesList: React.FC<MyPurchasesListProps> = ({
           </tbody>
         </Table>
       ) : (
-        <p>No purchase records available</p>
+        <NotAvailableAlert object="purchases" />
       )}
     </Container>
   );

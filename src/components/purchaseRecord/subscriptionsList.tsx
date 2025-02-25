@@ -6,6 +6,7 @@ import Error from "../common/error";
 import useGet from "@hooks/crud/useGet";
 import useSortList from "@hooks/purchaseRecord/useSortList";
 import { SubsPurchaseRecord } from "@utils/types";
+import NotAvailableAlert from "@components/common/notAvailableAlert.js";
 
 interface SubscriptionsListProps {
   startDate?: Date;
@@ -218,7 +219,7 @@ const SubscriptionsList: React.FC<SubscriptionsListProps> = ({
       </Table>
     </Container>
   ) : (
-    <p>No purchase records available</p>
+    <NotAvailableAlert object="purchases" />
   );
 };
 export default SubscriptionsList;

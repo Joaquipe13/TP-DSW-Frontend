@@ -14,6 +14,7 @@ import userType from "@utils/auth/userType";
 import getUser from "@utils/auth/getUser";
 import { Level } from "@utils/types";
 import LevelPreview from "./levelPreview";
+import NotAvailableAlert from "@components/common/notAvailableAlert";
 
 interface LevelListProps {
   course: string | undefined;
@@ -86,7 +87,7 @@ const LevelList: React.FC<LevelListProps> = ({ course }) => {
             </ListGroup.Item>
           ))
         ) : (
-          <p>No levels available</p>
+          <NotAvailableAlert object="levels" />
         )}
       </ListGroup>
       {role === "admin" && (

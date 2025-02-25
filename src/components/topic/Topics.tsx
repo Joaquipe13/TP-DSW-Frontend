@@ -4,6 +4,7 @@ import Loading from "@components/common/loading";
 import Error from "@components/common/error";
 import useGet from "@hooks/crud/useGet";
 import { Topic } from "@utils/types";
+import NotAvailableAlert from "@components/common/notAvailableAlert.js";
 
 interface TopicsProps {
   selectedTopics: Topic[];
@@ -60,7 +61,7 @@ const Topics: React.FC<TopicsProps> = ({ selectedTopics, onSelectTopic }) => {
             </ListGroup.Item>
           ))
         ) : (
-          <p>No more topics available</p>
+          <NotAvailableAlert object="topics" />
         )}
       </ListGroup>
     </div>

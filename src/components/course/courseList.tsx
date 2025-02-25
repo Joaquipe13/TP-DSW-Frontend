@@ -3,12 +3,12 @@ import Table from "react-bootstrap/Table";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
-import Card from "react-bootstrap/Card";
 import Loading from "../common/loading";
 import Error from "../common/error";
 import useGet from "@hooks/crud/useGet";
 import CoursePreview from "./coursePreview";
 import { Course } from "@utils/types";
+import NotAvailableAlert from "@components/common/notAvailableAlert.js";
 interface CourseListProps {
   view: number;
   title: string;
@@ -63,7 +63,7 @@ const CourseList: React.FC<CourseListProps> = ({ view, title }) => {
           </tbody>
         </Table>
       ) : (
-        <Card className="mb-3">No courses available</Card>
+        <NotAvailableAlert object="courses" />
       )}
     </Container>
   );
