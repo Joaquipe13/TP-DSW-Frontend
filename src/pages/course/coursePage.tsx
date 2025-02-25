@@ -3,7 +3,7 @@ import Card from "react-bootstrap/Card";
 import { useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
 import Error from "@components/common/error";
-import CourseGetOne from "@components/course/course";
+import CourseGetOne from "../../components/course/course";
 import NavigationButton from "@components/common/buttons/navigationButton";
 
 const CoursePage: React.FC = () => {

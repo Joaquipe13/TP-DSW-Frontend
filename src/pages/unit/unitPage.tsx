@@ -2,7 +2,7 @@ import React from "react";
 import Card from "react-bootstrap/Card";
 import { useParams } from "react-router-dom";
 import { Container } from "react-bootstrap";
-import UnitGetOne from "@components/unit/unit";
+import UnitGetOne from "../../components/unit/unit";
 import Error from "@components/common/error";
 import NavigationButton from "@components/common/buttons/navigationButton";
 

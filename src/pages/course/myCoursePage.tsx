@@ -2,7 +2,7 @@ import { useState } from "react";
 import Container from "react-bootstrap/Container";
 import { Card } from "react-bootstrap";
 import SearchBox from "@components/common/searchBox";
-import MyCourseList from "@components/course/myCourseList";
+import MyCourseList from "../../components/course/myCourseList";
 import useAdminRedirect from "@hooks/auth/useAdminRedirect";
 import NavigationButton from "@components/common/buttons/navigationButton";
 
