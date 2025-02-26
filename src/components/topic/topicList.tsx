@@ -40,46 +40,45 @@ const TopicList = () => {
 
   return (
     <ListGroup>
-      {topics && topics.length > 0 ? (
-        topics.map((topic) => (
-          <ListGroup.Item
-            key={topic.id}
-            className="d-flex justify-content-between align-items-center"
-            style={{
-              borderRadius: "8px",
-              backgroundColor: "#f8f9fa",
-              marginBottom: "8px",
-              boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
-              padding: "1rem",
-            }}
-          >
-            ({creatingError !== null} ? <Error message={creatingError} />:
-            {topic?.description}
-            <Button
-              variant="danger"
+      {topics && topics.length > 0
+        ? topics.map((topic) => (
+            <ListGroup.Item
+              key={topic.id}
+              className="d-flex justify-content-between align-items-center"
               style={{
-                borderRadius: "50%",
-                padding: "0.4rem 0.6rem",
+                borderRadius: "8px",
+                backgroundColor: "#f8f9fa",
+                marginBottom: "8px",
+                boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
+                padding: "1rem",
               }}
-              onClick={() => handleDeleteClick(topic.id)}
             >
-              <FaTrash />
-            </Button>
-            )
-          </ListGroup.Item>
-        ))
-      ) : (
-        <Card.Body
-          className="d-flex justify-content-center align-items-center"
-          style={{
-            fontSize: "1.5rem",
-            fontWeight: "bold",
-            marginTop: "1rem",
-          }}
-        >
-          <NotAvailableAlert object="topics" />
-        </Card.Body>
-      )}
+              {topic?.description}
+              <Button
+                variant="danger"
+                style={{
+                  borderRadius: "50%",
+                  padding: "0.4rem 0.6rem",
+                }}
+                onClick={() => handleDeleteClick(topic.id)}
+              >
+                <FaTrash />
+              </Button>
+              
+            </ListGroup.Item>
+          ))
+        : !isAdding && (
+            <Card.Body
+              className="d-flex justify-content-center align-items-center"
+              style={{
+                fontSize: "1.5rem",
+                fontWeight: "bold",
+                marginTop: "1rem",
+              }}
+            >
+              <NotAvailableAlert object="topics" />
+            </Card.Body>
+          )}
       {!isAdding && (
         <ListGroup.Item
           className="d-flex justify-content-center align-items-center"
