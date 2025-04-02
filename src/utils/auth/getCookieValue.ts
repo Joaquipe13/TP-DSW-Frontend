@@ -2,11 +2,16 @@ import Cookies from "js-cookie";
 
 function getCookieValue(name: string) {
   const cookie = Cookies.get(name);
-  let parsedCookie = null;
-  if (cookie) {
-    parsedCookie = JSON.parse(cookie);
+  if (cookie === undefined || cookie === "undefined") {
+    return null;
   }
-  return parsedCookie;
+
+  try {
+    return JSON.parse(cookie);
+  } catch (error) {
+    console.error("Error parsing cookie:", error);
+    return null;
+  }
 }
 
 export default getCookieValue;

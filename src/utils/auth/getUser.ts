@@ -4,7 +4,9 @@ import porturl from "@utils/route";
 
 function searchUser() {
   const userData = getCookieValue("user");
+  console.log("userData:", userData);
   if (!userData) {
+    console.log("userData:", userData);
     return null;
   }
   const user = {
@@ -32,7 +34,7 @@ function handleResponse(response: any) {
   }
 }
 
-async function fetchUserData(token: any) {
+async function fetchUserData(token: string) {
   return fetch(porturl + "/api/login/auth", {
     method: "GET",
     headers: {
@@ -50,21 +52,24 @@ function storeUserData(user: any) {
 async function getUser() {
   const user = searchUser();
   if (user) {
+    console.log("user found (getUser):", user);
     return user;
   } else {
     const token = getToken();
-    if (!token) {
+    if (!token || token === "undefined" || token === "null") {
+      console.log("No token found, returning null");
       return null;
-    }
-    try {
+    } else if (typeof token !== "string") {
+      return null;
+    } else {
+      console.log("Token found", token, " fetching user data...");
       const data = await fetchUserData(token);
+      console.log("data:", data);
       const user = data.user;
+      console.log("user:", user);
       storeUserData(user);
 
       return user;
-    } catch (error) {
-      console.error("Error:", error);
-      return null;
     }
   }
 }
