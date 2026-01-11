@@ -6,8 +6,9 @@ async function checkSubscription(
   try {
     const data = await apiFetch<any>(`/api/subsPurchaseRecords/check`, {
       method: "GET",
+      requiresAuth: true,
     });
-    return data.purchased ?? false;
+    return data.data ? data.data : false;
   } catch (error) {
     console.error("Error verifying subscription:", error);
     return null;

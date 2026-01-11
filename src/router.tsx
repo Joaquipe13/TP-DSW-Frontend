@@ -1,7 +1,6 @@
 import { createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import AdminRoute from "@middlewares/adminRoute.js";
-import ComfirmRegistration from "@middlewares/confirmRegistration.js";
 import TopicListPage from "@pages/topic/topicListPage.js";
 import TopicCreatePage from "@pages/topic/topicCreatePage.js";
 import CourseUpdatePage from "@pages/course/courseEditPage.js";
@@ -118,10 +117,6 @@ const router = createBrowserRouter([
       {
         path: "course/:id",
         element: <CoursePage />,
-      },
-      {
-        path: "confirm/:token",
-        element: <ComfirmRegistration />,
       },
       {
         path: "inDevelopment/:title",

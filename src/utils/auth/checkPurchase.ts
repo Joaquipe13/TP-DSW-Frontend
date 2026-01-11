@@ -13,9 +13,10 @@ async function checkPurchase(
       `/api/coursePurchaseRecords/check/${course}`,
       {
         method: "GET",
+        requiresAuth: true,
       }
     );
-    return data.purchased ?? false;
+    return data.data ? data.data : false;
   } catch (error) {
     console.error("Error verifying purchase:", error);
     return null;

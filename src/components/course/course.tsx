@@ -31,9 +31,8 @@ const CourseGetOne: React.FC<CourseGetOneProps> = ({ id }) => {
       if (user.admin) {
         view = 1;
       } else {
-        const purchaseStatus =
-          id ? await checkPurchase(id) : false;
-          console.log("id:",id," purchaseStatus:",purchaseStatus);
+        const purchaseStatus = await checkPurchase(id);
+        console.log("id:",id," purchaseStatus:",purchaseStatus);
         const subscriptionStatus = await checkSubscription();
         view = purchaseStatus || subscriptionStatus ? 2 : 3;
       }
