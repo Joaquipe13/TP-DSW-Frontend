@@ -5,31 +5,22 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "react-bootstrap";
 import NavigationButton from "@components/common/buttons/navigationButton";
 import Loading from "@components/common/loading";
-import Error from "@components/common/loading";
 import usePurchaseAlert from "@hooks/purchaseRecord/usePurchaseAlert";
-import useGet from "@hooks/crud/useGet";
 import checkSubscription from "@utils/auth/checkSubscription";
 import checkPurchase from "@utils/auth/checkPurchase";
 import userType from "@utils/auth/userType";
 import getUser from "@utils/auth/getUser";
-import { Level } from "@utils/types";
 import LevelPreview from "./levelPreview";
-import NotAvailableAlert from "@components/common/notAvailableAlert";
+import { Level } from "@utils/types";
+import Error from "@components/common/error";
 
 interface LevelListProps {
-  course: string | undefined;
+  course: string;
+  levels: any | Level[] ;
 }
 
-const LevelList: React.FC<LevelListProps> = ({ course }) => {
-  const {
-    data: levels,
-    error,
-    loading,
-    fetchData,
-  } = useGet<Level>(`/api/levels?course=${course}`);
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
+const LevelList: React.FC<LevelListProps> = ({ course, levels }) => {
+
   const { showPurchaseAlert, PurchaseAlert } = usePurchaseAlert();
   const [role, setRole] = useState<null | string>(null);
   const [loadingLevels, setLoading] = useState(true);
@@ -38,8 +29,8 @@ const LevelList: React.FC<LevelListProps> = ({ course }) => {
       try {
         const fetchedUser = await userType();
         setRole(fetchedUser);
-      } catch (error) {
-        console.error("Error fetching user:", error);
+      } catch (err) {
+        console.error("Error fetching user:", err);
       } finally {
         setLoading(false);
       }
@@ -50,8 +41,8 @@ const LevelList: React.FC<LevelListProps> = ({ course }) => {
   const handleLevel = async (id: number) => {
     const user = await getUser();
     if (user) {
-      const purchaseStatus = await checkPurchase(user.id, course);
-      const subscriptionStatus = await checkSubscription(user.id);
+      const purchaseStatus = await checkPurchase(course);
+      const subscriptionStatus = await checkSubscription();
       if (purchaseStatus || subscriptionStatus || user.admin) {
         navigate(`/level/${course}/${id}`);
       } else {
@@ -62,33 +53,30 @@ const LevelList: React.FC<LevelListProps> = ({ course }) => {
     }
   };
 
-  if (loading || loadingLevels) return <Loading />;
-  if (error) return <Error message={error} />;
+  if (loadingLevels) return <Loading />;
+
+
+
+  if (!Array.isArray(levels)) {
+    return (
+      <Error message="Error loading levels. Please try again later." />
+    );
+  }
 
   return (
     <Container>
       <ListGroup style={{ marginBottom: "1rem" }}>
-        {Array.isArray(levels) ? (
-          levels.map((level) => (
-            <ListGroup.Item key={level.id}>
-              {level.id === undefined ? (
-                <Button>
-                  <Loading />
-                </Button>
-              ) : (
-                <Button
-                  onClick={() => handleLevel(level.id)}
-                  style={{ width: "100%" }}
-                  variant="light"
-                >
-                  <LevelPreview id={level.id} />
-                </Button>
-              )}
-            </ListGroup.Item>
-          ))
-        ) : (
-          <NotAvailableAlert object="levels" />
-        )}
+        {levels.map((level: Level) => (
+          <ListGroup.Item key={level.id}>
+            <Button
+              onClick={() => handleLevel(level.id)}
+              style={{ width: "100%" }}
+              variant="light"
+            >
+              <LevelPreview order={level.order} name={level.name} />
+            </Button>
+          </ListGroup.Item>
+        ))}
       </ListGroup>
       {role === "admin" && (
         <Container className="d-flex justify-content-center">

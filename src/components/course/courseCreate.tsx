@@ -4,7 +4,6 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
 import Badge from "react-bootstrap/Badge";
-import Topics from "../topic/topics";
 import Loading from "../common/loading";
 import Error from "../common/error";
 import usePost from "@hooks/crud/usePost";
@@ -15,6 +14,7 @@ import {
   validateCourseTitle,
   validateCourseTopics,
 } from "@utils/validations/courseValidate";
+import EditCourseTopicList from "@components/topic/editCourseTopicList";
 
 const CourseCreate = () => {
   const { loading, error, create } = usePost<Course>("/api/courses/");
@@ -169,7 +169,7 @@ const CourseCreate = () => {
         Available Topics:
       </Card.Title>
 
-      <Topics
+      <EditCourseTopicList
         selectedTopics={selectedTopics}
         onSelectTopic={handleSelectTopic}
       />

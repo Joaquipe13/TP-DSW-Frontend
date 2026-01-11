@@ -15,8 +15,8 @@ async function validateLogin(email: string, password: string) {
 
     if (response.ok) {
       const res = await response.json();
-      const token = res.data.token;
-      console.log(token);
+      const token = res.data;
+      console.log("Received token:"+ token);
       setCookieValue(token, "token", 8);
       console.log("Login successful");
       return token;

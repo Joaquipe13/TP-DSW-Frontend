@@ -1,32 +1,15 @@
-import porturl  from "@utils/route";
+import apiFetch from "@utils/api/apiFetch";
 
 async function checkSubscription(
-  user: number | string
 ): Promise<boolean | null> {
-  if (!user) {
-    console.error("Invalid userId", user);
-    return false;
-  }
-  const url = `${porturl}/api/subsPurchaseRecords/check/${user}`;
 
   try {
-    const response = await fetch(url, {
+    const data = await apiFetch<any>(`/api/subsPurchaseRecords/check`, {
       method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
     });
-
-    if (response.ok) {
-      const data = await response.json();
-      return data.purchased ?? false;
-    } else {
-      const errorData = await response.json();
-      console.error("Error verifying purchase:", errorData.message);
-      return null;
-    }
+    return data.purchased ?? false;
   } catch (error) {
-    console.error("Error in the purchase verification request:", error);
+    console.error("Error verifying subscription:", error);
     return null;
   }
 }

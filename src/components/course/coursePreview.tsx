@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import { Course } from "../../utils/types";
 import Card from "react-bootstrap/Card";
-import Topics from "../topic/topics";
+import CourseTopicsList from "../topic/courseTopicsList";
 import Loading from "../common/loading";
 import Error from "../common/error";
 import NavigationButton from "../common/buttons/navigationButton";
@@ -19,8 +19,7 @@ const CoursePreview: React.FC<CoursePreviewProps> = ({ id }) => {
     data: course,
     loading,
     error,
-    fetchData,
-  } = useGet<Course>(`/api/courses/${id}`);
+  } = useGet<Course>(`/api/courses/preview/${id}`);
 
   const [role, setRole] = useState<null | string>(null);
   const [loadingButton, setLoading] = useState(true);
@@ -37,10 +36,7 @@ const CoursePreview: React.FC<CoursePreviewProps> = ({ id }) => {
     };
     fetchRole();
   }, []);
-  useEffect(() => {
-    fetchData();
-  }, [fetchData, id]);
-
+  
   if (loading) return <Loading />;
   if (loadingButton) return <Loading />;
   if (error) return <Error message={error} />;
@@ -65,7 +61,7 @@ const CoursePreview: React.FC<CoursePreviewProps> = ({ id }) => {
           >
             <strong>Topics:</strong>
           </Card.Subtitle>
-          <Topics selectedTopics={course?.topics} />
+          <CourseTopicsList selectedTopics={course?.topics} />
           <Card.Subtitle
             style={{ textAlign: "left", marginTop: "1rem" }}
             className="text-muted fw-light"
@@ -87,7 +83,7 @@ const CoursePreview: React.FC<CoursePreviewProps> = ({ id }) => {
             />
           ) : (
             <NavigationButton
-              to={`/Course/${course?.id}`}
+              to={`/course/${course?.id}`}
               label="View"
               variant="secondary"
             />

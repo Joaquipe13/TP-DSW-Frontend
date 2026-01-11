@@ -6,11 +6,15 @@ import useGet from "@hooks/crud/useGet";
 import { Topic } from "@utils/types";
 import NotAvailableAlert from "@components/common/notAvailableAlert.js";
 
-interface TopicsProps {
+interface EditCourseTopicListProps {
   selectedTopics: Topic[];
-  onSelectTopic?: (topic: Topic) => void;
+  onSelectTopic: (topic: Topic) => void;
 }
-const Topics: React.FC<TopicsProps> = ({ selectedTopics, onSelectTopic }) => {
+
+const EditCourseTopicList: React.FC<EditCourseTopicListProps> = ({
+  selectedTopics,
+  onSelectTopic,
+}) => {
   const {
     data: topics,
     error,
@@ -18,11 +22,11 @@ const Topics: React.FC<TopicsProps> = ({ selectedTopics, onSelectTopic }) => {
     fetchData,
   } = useGet<Topic>(`/api/topics`);
 
-  const availableTopics = onSelectTopic
-    ? topics?.filter(
+  const availableTopics = topics
+    ? (topics as Topic[]).filter(
         (topic) => !selectedTopics.some((selected) => selected.id === topic.id)
       )
-    : selectedTopics;
+    : [];
 
   useEffect(() => {
     fetchData();
@@ -53,7 +57,7 @@ const Topics: React.FC<TopicsProps> = ({ selectedTopics, onSelectTopic }) => {
                 textOverflow: "ellipsis",
                 whiteSpace: "nowrap",
               }}
-              onClick={() => onSelectTopic && onSelectTopic(topic)}
+              onClick={() => onSelectTopic(topic)}
             >
               {topic.description.length > 20
                 ? topic.description.slice(0, 20) + "..."
@@ -67,4 +71,5 @@ const Topics: React.FC<TopicsProps> = ({ selectedTopics, onSelectTopic }) => {
     </div>
   );
 };
-export default Topics;
+
+export default EditCourseTopicList;

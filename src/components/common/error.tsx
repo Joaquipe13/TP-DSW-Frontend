@@ -2,7 +2,7 @@ import Alert from "react-bootstrap/Alert";
 import Container from "react-bootstrap/Container";
 
 interface ErrorProps {
-  message: string;
+  message: string | null; 
 }
 
 const Error: React.FC<ErrorProps> = ({ message }) => {
@@ -11,7 +11,7 @@ const Error: React.FC<ErrorProps> = ({ message }) => {
       className="d-flex justify-content-center align-items-center"
       style={{ height: "100px" }}
     >
-      <Alert variant="danger">Error: {message}</Alert>
+      <Alert variant="danger">Error: {message ? message : "Unknown error"}</Alert>
     </Container>
   );
 };

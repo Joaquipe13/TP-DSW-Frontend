@@ -1,33 +1,19 @@
-import porturl from "@utils/route";
+import apiFetch from "@utils/api/client";
 
 async function getPurchasedCourses(
   user: number | null,
   title: string | undefined
 ) {
-  const url =
-    porturl + `/api/coursePurchaseRecords/courses?user=${user}&title=${title}`;
+  const url = `/api/coursePurchaseRecords/courses?user=${user}&title=${title}`;
   let loading = true;
   let error = null;
   let courses = null;
 
   try {
     console.log(url);
-    const response = await fetch(url, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
-
-    if (response.ok) {
-      const data = await response.json();
-      courses = data.data;
-      loading = false;
-    } else {
-      const errorData = await response.json();
-      error = errorData.message;
-      loading = false;
-    }
+    const data: any = await apiFetch(url, { method: "GET" });
+    courses = data.data;
+    loading = false;
   } catch (err) {
     console.error("Error en la solicitud para obtener cursos comprados:", err);
     error = "Error en la solicitud";

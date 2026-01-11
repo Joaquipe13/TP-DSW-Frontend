@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
 import LevelList from "../level/levelList";
-import Topics from "../topic/topics";
 import Loading from "../common/loading";
 import Error from "../common/error";
 import NavigationButton from "../common/buttons/navigationButton";
@@ -13,6 +12,7 @@ import getUser from "@utils/auth/getUser";
 import checkSubscription from "@utils/auth/checkSubscription";
 import DateComponent from "@utils/date";
 import { Course, User } from "@utils/types";
+import CourseTopicsList from "@components/topic/courseTopicsList";
 
 interface CourseGetOneProps {
   id: string;
@@ -23,45 +23,37 @@ const CourseGetOne: React.FC<CourseGetOneProps> = ({ id }) => {
     data: course,
     loading,
     error,
-    fetchData,
-  } = useGet<Course>(`/api/courses/${id}`, false);
-
+  } = useGet<Course>(`/api/courses/preview/${id}`, false);
   const [button, setButton] = useState<number>(2);
   async function determineView(user: User, id: string): Promise<number> {
-    let view = 1;
+    let view = 3;
     if (user) {
       if (user.admin) {
         view = 1;
       } else {
         const purchaseStatus =
-          id && user.id ? await checkPurchase(user.id, id) : false;
-        const subscriptionStatus = user.id
-          ? await checkSubscription(user.id)
-          : false;
+          id ? await checkPurchase(id) : false;
+          console.log("id:",id," purchaseStatus:",purchaseStatus);
+        const subscriptionStatus = await checkSubscription();
         view = purchaseStatus || subscriptionStatus ? 2 : 3;
       }
     }
 
     return view;
   }
+  
   useEffect(() => {
     const fetchData = async () => {
       const user = await getUser();
       if (user) {
         const currentButton = await determineView(user, id);
         setButton(currentButton);
-      } else {
-        console.log("User is not defined.");
-        setButton(3);
+      } else {setButton(3);
       }
     };
 
     fetchData();
   }, [id]);
-
-  useEffect(() => {
-    fetchData();
-  }, [fetchData, id]);
 
   if (loading) return <Loading />;
   if (error) return <Error message={error} />;
@@ -86,7 +78,7 @@ const CourseGetOne: React.FC<CourseGetOneProps> = ({ id }) => {
               <Card.Text className="fs-4">
                 <strong>Topics:</strong>
               </Card.Text>
-              <Topics selectedTopics={course.topics} />
+              <CourseTopicsList selectedTopics={course.topics} />
               <Card.Text
                 style={{ textAlign: "left" }}
                 className="text-muted fw-light"
@@ -101,7 +93,7 @@ const CourseGetOne: React.FC<CourseGetOneProps> = ({ id }) => {
                 <strong>Levels:</strong>
               </Card.Text>
 
-              <LevelList course={id} />
+              <LevelList course={id} levels={course?.levels as any}/>
             </div>
           )}
         </Card.Body>

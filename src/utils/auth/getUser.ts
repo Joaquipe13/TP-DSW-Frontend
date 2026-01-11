@@ -1,14 +1,15 @@
+import { apiFetch } from "@utils/api/client";
 import getCookieValue from "@utils/auth/getCookieValue";
 import setCookieValue from "@utils/auth/setCookieValue";
-import porturl from "@utils/route";
 
 function searchUser() {
   const userData = getCookieValue("user");
-  console.log("userData:", userData);
+  
   if (!userData) {
     console.log("userData:", userData);
     return null;
   }
+  console.log("userCookieData:", userData);
   const user = {
     id: userData.id,
     name: userData.name,
@@ -22,27 +23,6 @@ function searchUser() {
 function getToken() {
   const token = getCookieValue("token");
   return token;
-}
-
-function handleResponse(response: any) {
-  if (response.ok) {
-    return response.json();
-  } else {
-    return response.json().then((errorData: any) => {
-      throw new Error(`Error: ${errorData.message}`);
-    });
-  }
-}
-
-async function fetchUserData(token: string) {
-  return fetch(porturl + "/api/login/auth", {
-    method: "GET",
-    headers: {
-      Authorization: `Bearer ${token}`,
-      "Content-Type": "application/json",
-    },
-    credentials: "include",
-  }).then(handleResponse);
 }
 
 function storeUserData(user: any) {
@@ -63,12 +43,12 @@ async function getUser() {
       return null;
     } else {
       console.log("Token found", token, " fetching user data...");
-      const data = await fetchUserData(token);
-      console.log("data:", data);
-      const user = data.user;
-      console.log("user:", user);
+      const response = await apiFetch<any>("/api/login/auth", {
+        method: "GET",
+        //requiresAuth: true,
+      });
+      const user = response.data.user;
       storeUserData(user);
-
       return user;
     }
   }

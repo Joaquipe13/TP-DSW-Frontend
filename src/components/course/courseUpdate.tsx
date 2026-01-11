@@ -11,10 +11,10 @@ import {
 import Loading from "../common/loading";
 import Error from "../common/error";
 import LevelList from "../level/levelList";
-import Topics from "../topic/topics";
 import useCourseEdit from "@hooks/course/useCourseEdit";
 import deleteCourse from "@hooks/course/useCourseDelete";
 import { Topic } from "@utils/types";
+import EditCourseTopicList from "@components/topic/editCourseTopicList";
 
 interface CourseUpdateProps {
   courseId: string;
@@ -169,7 +169,7 @@ const CourseUpdate: React.FC<CourseUpdateProps> = ({ courseId }) => {
           <Card.Title as="h5" className="mb-3">
             Available Topics:
           </Card.Title>
-          <Topics
+          <EditCourseTopicList
             selectedTopics={selectedTopics}
             onSelectTopic={handleTopicSelection}
           />
@@ -177,7 +177,7 @@ const CourseUpdate: React.FC<CourseUpdateProps> = ({ courseId }) => {
           <Card.Title as="h5" className="mb-3">
             Levels:
           </Card.Title>
-          <LevelList course={courseId} />
+          <LevelList course={courseId} levels={oldCourse?.levels as any}/>
 
           <Row className="justify-content-center mt-4">
             <Col xs={10} md={3} className="d-flex justify-content-center">
