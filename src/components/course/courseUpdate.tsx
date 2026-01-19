@@ -4,7 +4,6 @@ import {
   Card,
   Form,
   Button,
-  Badge,
   Row,
   Col,
 } from "react-bootstrap";
@@ -13,8 +12,8 @@ import Error from "../common/error";
 import LevelList from "../level/levelList";
 import useCourseEdit from "@hooks/course/useCourseEdit";
 import deleteCourse from "@hooks/course/useCourseDelete";
-import { Topic } from "@utils/types";
 import EditCourseTopicList from "@components/topic/editCourseTopicList";
+import { useNavigate } from "react-router-dom";
 
 interface CourseUpdateProps {
   courseId: string;
@@ -28,16 +27,18 @@ const CourseUpdate: React.FC<CourseUpdateProps> = ({ courseId }) => {
     title,
     resume,
     price,
-    selectedTopics,
+    initialSelectedTopics,
+    selectedTopicsIds,
     formErrors,
     setTitle,
     setResume,
     setPrice,
-    setSelectedTopics,
+    setSelectedTopicsIds,
     handleSave,
   } = useCourseEdit(courseId);
   const inputRef = useRef<HTMLInputElement>(null);
   const textAreaRef = useRef<HTMLTextAreaElement>(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (inputRef.current) {
@@ -49,19 +50,12 @@ const CourseUpdate: React.FC<CourseUpdateProps> = ({ courseId }) => {
       textAreaRef.current.focus();
     }
   }, []);
-  const handleTopicSelection = (topic: Topic) => {
-    setSelectedTopics((prevTopics) =>
-      prevTopics.some((t) => t.id === topic.id)
-        ? prevTopics.filter((t) => t.id !== topic.id)
-        : [...prevTopics, topic]
-    );
-  };
 
   const handleSaveClick = async () => {
     try {
       await handleSave(oldCourse?.isActive);
       console.log(`Course ${title} updated with.`);
-      window.location.reload();
+      //window.location.reload();
     } catch {
       alert("Error publishing course.");
     }
@@ -80,7 +74,7 @@ const CourseUpdate: React.FC<CourseUpdateProps> = ({ courseId }) => {
       try {
         await deleteCourse(courseId!);
         alert("Course removed successfully.");
-        window.location.reload();
+        navigate(`/course/list`);
       } catch {
         alert("Error removing course.");
       }
@@ -103,8 +97,9 @@ const CourseUpdate: React.FC<CourseUpdateProps> = ({ courseId }) => {
                 value={title}
                 onChange={(e) => setTitle(e.target.value)}
                 isInvalid={!!formErrors.title}
+                data-testid="course-title"
               />
-              <Form.Control.Feedback type="invalid">
+              <Form.Control.Feedback type="invalid" data-testid="course-title-error">
                 {formErrors.title}
               </Form.Control.Feedback>
             </Form.Group>
@@ -118,6 +113,7 @@ const CourseUpdate: React.FC<CourseUpdateProps> = ({ courseId }) => {
                 value={resume}
                 onChange={(e) => setResume(e.target.value)}
                 isInvalid={!!formErrors.resume}
+                data-testid="course-resume"
                 style={{
                   textAlign: "left",
                   paddingTop: "10px",
@@ -130,11 +126,11 @@ const CourseUpdate: React.FC<CourseUpdateProps> = ({ courseId }) => {
                   alignItems: "flex-start",
                 }}
               />
-              <Form.Control.Feedback type="invalid">
+              <Form.Control.Feedback type="invalid" data-testid="course-resume-error">
                 {formErrors.resume}
               </Form.Control.Feedback>
             </Form.Group>
-            <Form.Group className="mb-3">
+            <Form.Group className="mb-3" >
               <Form.Label>Price</Form.Label>
               <Form.Control
                 type="text"
@@ -142,37 +138,25 @@ const CourseUpdate: React.FC<CourseUpdateProps> = ({ courseId }) => {
                 value={price}
                 onChange={(e) => setPrice(e.target.value)}
                 isInvalid={!!formErrors.price}
+                data-testid="course-price"
               />
-              <Form.Control.Feedback type="invalid">
+              <Form.Control.Feedback type="invalid" data-testid="course-price-error">
                 {formErrors.price}
               </Form.Control.Feedback>
             </Form.Group>
           </Form>
 
-          <Card.Title as="h5" className="mb-3">
-            Selected Topics:
-          </Card.Title>
-          <Container className="d-flex flex-wrap mb-4">
-            {selectedTopics.map((topic) => (
-              <Badge
-                key={topic.id}
-                pill
-                bg="primary"
-                className="me-2 mb-2"
-                onClick={() => handleTopicSelection(topic)}
-                style={{ cursor: "pointer", fontSize: "13px" }}
-              >
-                {topic.description}
-              </Badge>
-            ))}
-          </Container>
-          <Card.Title as="h5" className="mb-3">
-            Available Topics:
-          </Card.Title>
           <EditCourseTopicList
-            selectedTopics={selectedTopics}
-            onSelectTopic={handleTopicSelection}
+            initialSelectedTopics={initialSelectedTopics}
+            onTopicsChange={setSelectedTopicsIds}
           />
+          <Card.Body className="mb-3">
+            {formErrors.topics && (
+              <div className="text-danger" data-testid="course-topics-error">
+                {formErrors.topics}
+              </div>
+            )}
+          </Card.Body>
 
           <Card.Title as="h5" className="mb-3">
             Levels:
@@ -185,6 +169,7 @@ const CourseUpdate: React.FC<CourseUpdateProps> = ({ courseId }) => {
                 variant="success"
                 onClick={handleSaveClick}
                 disabled={loading}
+                data-testid="save-course-changes-button"
               >
                 {loading ? "Saving..." : "Save Changes"}
               </Button>
@@ -197,6 +182,7 @@ const CourseUpdate: React.FC<CourseUpdateProps> = ({ courseId }) => {
                     variant="danger"
                     onClick={handleRemoveClick}
                     disabled={loading}
+                    data-testid="delete-course-button"
                   >
                     {loading ? "Deleting..." : "Delete Course"}
                   </Button>
@@ -205,6 +191,7 @@ const CourseUpdate: React.FC<CourseUpdateProps> = ({ courseId }) => {
                     variant="success"
                     onClick={handlePublicClick}
                     disabled={loading}
+                    data-testid="publish-course-button"
                   >
                     {loading ? "Publishing..." : "Publish Course"}
                   </Button>

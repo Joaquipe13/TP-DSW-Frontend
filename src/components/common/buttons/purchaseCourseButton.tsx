@@ -71,6 +71,7 @@ function PurchaseButton({ courseId }: PurchaseButtonProps) {
         variant="success"
         onClick={handlePurchase}
         disabled={loading || isConfirming}
+        data-testid="purchase-course-button"
       >
         {loading || isConfirming ? "Processing..." : "Buy Course"}
       </Button>

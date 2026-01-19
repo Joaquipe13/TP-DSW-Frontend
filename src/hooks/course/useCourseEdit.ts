@@ -20,7 +20,8 @@ const useCourseEdit = (courseId: string) => {
   const [title, setTitle] = useState<string>("");
   const [resume, setResume] = useState<string>("");
   const [price, setPrice] = useState<string>("");
-  const [selectedTopics, setSelectedTopics] = useState<Topic[]>([]);
+  const [selectedTopicsIds, setSelectedTopicsIds] = useState<string[]>([]);
+  const [initialSelectedTopics, setInitialSelectedTopics] = useState<Topic[]>([]);
   const [formErrors, setFormErrors] = useState<{
     title?: string;
     resume?: string;
@@ -35,17 +36,26 @@ const useCourseEdit = (courseId: string) => {
       setTitle(course.title || "");
       setResume(course.resume || "");
       setPrice(course.price?.toString() || "");
-      setSelectedTopics(course.topics || []);
+      const topics = course.topics || [];
+      setInitialSelectedTopics(topics);
+      const topicIds = topics.map((topic) => topic.id);
+      setSelectedTopicsIds(topicIds);
       setIsInitialized(true);
     }
   }, [course, isInitialized]);
+
+  useEffect(() => {
+    if (selectedTopicsIds.length > 0 && formErrors.topics) {
+      setFormErrors((prev) => ({ ...prev, topics: "" }));
+    }
+  }, [selectedTopicsIds, formErrors.topics]);
 
   const handleSave = async (publish?: boolean) => {
     console.log(publish);
     const titleError = validateCourseTitle(title);
     const resumeError = validateCourseResume(resume);
     const priceError = validateCoursePrice(price);
-    const topicsError = validateCourseTopics(selectedTopics);
+    const topicsError = validateCourseTopics(selectedTopicsIds);
     if (titleError || priceError || topicsError) {
       setFormErrors({
         title: titleError,
@@ -59,7 +69,7 @@ const useCourseEdit = (courseId: string) => {
       title,
       resume,
       price: parseFloat(price),
-      topics: selectedTopics.map((topic) => topic.id),
+      topics: selectedTopicsIds,
       isActive: publish ? true : false,
     };
     return await update(courseId, updatedCourse);
@@ -71,12 +81,13 @@ const useCourseEdit = (courseId: string) => {
     title,
     resume,
     price,
-    selectedTopics,
+    initialSelectedTopics,
+    selectedTopicsIds,
     formErrors,
     setTitle,
     setResume,
     setPrice,
-    setSelectedTopics,
+    setSelectedTopicsIds,
     handleSave,
   };
 };

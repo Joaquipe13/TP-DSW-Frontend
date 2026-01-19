@@ -53,6 +53,7 @@ const CourseListPage = () => {
             to={`/course/create`}
             label="Add Course"
             variant="success"
+            dataTestId="create-course-button"
           />
         </Card.Body>
       )}

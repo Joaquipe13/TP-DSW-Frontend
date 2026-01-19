@@ -11,7 +11,7 @@ const CourseCreatePage = () => {
         className="d-flex justify-content-center"
         style={{ marginBottom: "1rem" }}
       >
-        <NavigationButton to={`/course/list`} label={`Back to Courses`} />
+        <NavigationButton to={`/course/list`} label={`Back to Courses`} dataTestId="back-to-courses-button" />
       </Container>
     </Container>
   );

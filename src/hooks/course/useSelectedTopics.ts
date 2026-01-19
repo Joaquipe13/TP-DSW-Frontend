@@ -1,9 +1,21 @@
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Topic } from "@utils/types";
 
-const useSelectedTopics = () => {
-  const [selectedTopics, setSelectedTopics] = useState<Topic[]>([]);
-  const [selectedTopicsIds, setSelectedTopicsIds] = useState<number[]>([]);
+const useSelectedTopics = (initialSelectedTopics: Topic[] = []) => {
+  const [selectedTopics, setSelectedTopics] = useState<Topic[]>(initialSelectedTopics);
+  const [selectedTopicsIds, setSelectedTopicsIds] = useState<string[]>(
+    initialSelectedTopics.map(topic => topic.id)
+  );
+  const prevInitialRef = useRef<string>(JSON.stringify(initialSelectedTopics));
+
+  useEffect(() => {
+    const currentInitialStr = JSON.stringify(initialSelectedTopics);
+    if (prevInitialRef.current !== currentInitialStr) {
+      setSelectedTopics(initialSelectedTopics);
+      setSelectedTopicsIds(initialSelectedTopics.map(topic => topic.id));
+      prevInitialRef.current = currentInitialStr;
+    }
+  }, [initialSelectedTopics]);
 
   const handleSelectTopic = (topic: Topic) => {
     if (selectedTopics.some((t) => t.id === topic.id)) {
@@ -15,7 +27,17 @@ const useSelectedTopics = () => {
     }
   };
 
-  return { selectedTopics, selectedTopicsIds, handleSelectTopic };
+  const deselectTopic = (topicId: string) => {
+    setSelectedTopics(selectedTopics.filter((t) => t.id !== topicId));
+    setSelectedTopicsIds(selectedTopicsIds.filter((id) => id !== topicId));
+  };
+
+  const deselectAllTopics = () => {
+    setSelectedTopics([]);
+    setSelectedTopicsIds([]);
+  };
+
+  return { selectedTopics, selectedTopicsIds, handleSelectTopic, deselectTopic, deselectAllTopics };
 };
 
 export default useSelectedTopics;

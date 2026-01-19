@@ -84,6 +84,7 @@ const LevelList: React.FC<LevelListProps> = ({ course, levels }) => {
             to={`/level/create/${course}`}
             label="Add Level"
             variant="success"
+            dataTestId="add-level-button"
           />
         </Container>
       )}

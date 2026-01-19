@@ -3,11 +3,9 @@ import { useNavigate } from "react-router-dom";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Card from "react-bootstrap/Card";
-import Badge from "react-bootstrap/Badge";
 import Loading from "../common/loading";
 import Error from "../common/error";
 import usePost from "@hooks/crud/usePost";
-import useSelectedTopics from "@hooks/course/useSelectedTopics";
 import { Course } from "@utils/types";
 import {
   validateCoursePrice,
@@ -21,11 +19,9 @@ const CourseCreate = () => {
   const [title, setTitle] = useState<string>("");
   const [resume, setResume] = useState<string>("");
   const [price, setPrice] = useState<string>("");
+  const [selectedTopicsIds, setSelectedTopicsIds] = useState<string[]>([]);
   const inputRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
-
-  const { selectedTopics, selectedTopicsIds, handleSelectTopic } =
-    useSelectedTopics();
 
   const [formErrors, setFormErrors] = useState<{
     title?: string;
@@ -53,7 +49,7 @@ const CourseCreate = () => {
     const titleError = validateCourseTitle(title);
     const resumeError = validateCourseTitle(resume);
     const priceError = validateCoursePrice(price);
-    const topicsError = validateCourseTopics(selectedTopics);
+    const topicsError = validateCourseTopics(selectedTopicsIds);
 
     if (titleError || resumeError || priceError || topicsError) {
       setFormErrors({
@@ -76,11 +72,12 @@ const CourseCreate = () => {
         topics: selectedTopicsIds,
       };
       create(newCourse).then((data) => {
-        if (data.courseCreated.id) {
+        console.log(data);
+        if (data.id) {
           console.log(
-            `Course ${title} was created with ID ${data.courseCreated.id}.`
+            `Course ${title} was created with ID ${data.id}.`
           );
-          navigate(`/course/${data.courseCreated.id}`);
+          navigate(`/course/${data.id}`);
         } else {
           console.error("Error: No ID was received for the created course.");
           alert("There was an error creating the course. Please try again.");
@@ -108,8 +105,9 @@ const CourseCreate = () => {
               value={title}
               onChange={(e) => setTitle(e.target.value)}
               isInvalid={!!formErrors.title}
+              data-testid="course-title"
             />
-            <Form.Control.Feedback type="invalid">
+            <Form.Control.Feedback type="invalid" data-testid="course-title-error">
               {formErrors.title}
             </Form.Control.Feedback>
           </Form.Group>
@@ -122,8 +120,9 @@ const CourseCreate = () => {
               value={resume}
               onChange={(e) => setResume(e.target.value)}
               isInvalid={!!formErrors.resume}
+              data-testid="course-resume"
             />
-            <Form.Control.Feedback type="invalid">
+            <Form.Control.Feedback type="invalid" data-testid="course-resume-error">
               {formErrors.resume}
             </Form.Control.Feedback>
           </Form.Group>
@@ -136,45 +135,27 @@ const CourseCreate = () => {
               value={price}
               onChange={(e) => setPrice(e.target.value)}
               isInvalid={!!formErrors.price}
+              data-testid="course-price"
             />
-            <Form.Control.Feedback type="invalid">
+            <Form.Control.Feedback type="invalid" data-testid="course-price-error">
               {formErrors.price}
             </Form.Control.Feedback>
           </Form.Group>
         </Form>
       </Card.Body>
-      <Card.Title as="h5" style={{ textAlign: "left" }}>
-        Selected Topics:
-      </Card.Title>
-      <Card.Body className="d-flex flex-wrap mb-4">
-        {selectedTopics.map((topic) => (
-          <Badge
-            key={topic.id}
-            pill
-            bg="primary"
-            text="white"
-            className="me-2 mb-2"
-            style={{
-              cursor: "pointer",
-              borderRadius: "20px",
-              padding: "10px 15px",
-            }}
-            onClick={() => handleSelectTopic(topic)}
-          >
-            {topic.description}
-          </Badge>
-        ))}
-      </Card.Body>
-      <Card.Title as="h5" style={{ textAlign: "left" }}>
-        Available Topics:
-      </Card.Title>
 
       <EditCourseTopicList
-        selectedTopics={selectedTopics}
-        onSelectTopic={handleSelectTopic}
+        onTopicsChange={setSelectedTopicsIds}
       />
+      <Card.Body className="mb-3">
+        {formErrors.topics && (
+          <div className="text-danger" data-testid="course-topics-error">
+            {formErrors.topics}
+          </div>
+        )}
+      </Card.Body>
       <Card.Body className="d-flex justify-content-center">
-        <Button variant="success" onClick={handleClick} className="mt-4">
+        <Button variant="success" onClick={handleClick} className="mt-4" data-testid="create-course-button">
           Create Course
         </Button>
       </Card.Body>

@@ -9,6 +9,7 @@ interface NavigationButtonProps {
   variant?: string;
   children?: React.ReactNode;
   className?: string;
+  dataTestId?: string;
 }
 
 const NavigationButton: React.FC<NavigationButtonProps> = ({
@@ -18,11 +19,12 @@ const NavigationButton: React.FC<NavigationButtonProps> = ({
   variant,
   children,
   className,
+  dataTestId,
 }) => {
   return (
     <LinkContainer to={to} className={className}>
       <Nav.Link>
-        <Button style={style} variant={variant}>
+        <Button style={style} variant={variant} data-testid={dataTestId}>
           {label}
           {children}
         </Button>

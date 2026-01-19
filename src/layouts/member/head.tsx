@@ -10,8 +10,8 @@ const MemberHead: React.FC = () => {
     <Navbar
       className="py-3 fs-5 w-100"
       style={{
-        backgroundColor: "#1A73E8", // Color azul del logo
-        borderBottom: "3px solid #34A853", // Línea inferior verde para contraste
+        backgroundColor: "#ff0000", // Color azul del logo
+        borderBottom: "3px solid #ff0000", // Línea inferior verde para contraste
       }}
       expand="lg"
       fixed="top"

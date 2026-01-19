@@ -18,18 +18,29 @@ function MainPage() {
     };
     fetchUserRole();
   }, []);
-  return (
-    <Container fluid style={{ paddingTop: "70px" }}>
-      {role === "admin" ? (
-        <AdminHead />
-      ) : role === "member" ? (
-        <MemberHead />
-      ) : (
-        <LoggedOutHead />
-      )}
+
+  const renderHeader = () => {
+    if (role === "admin") {
+      return <AdminHead />;
+    } else if (role === "member") {
+      return <MemberHead />;
+    } else {
+      return <LoggedOutHead />;
+    }
+  };
+
+  const renderBody = () => {
+    return (
       <Card className="mt-6" style={{ marginTop: "70px" }}>
         <PageBody />
       </Card>
+    );
+  };
+
+  return (
+    <Container fluid style={{ paddingTop: "70px" }}>
+      {renderHeader()}
+      {renderBody()}
     </Container>
   );
 }

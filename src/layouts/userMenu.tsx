@@ -36,6 +36,7 @@ const UserMenu: React.FC = () => {
         align="end"
         title={<FaUserCircle size={35} />}
         id="user-nav-dropdown"
+        data-testid="navbar-user-menu"
         style={{ marginLeft: "1rem", color: "#34A853" }}
       >
         {role !== null ? (
@@ -55,6 +56,7 @@ const UserMenu: React.FC = () => {
               style={{ color: "#000000" }}
               className="text-danger fw-bold"
               onClick={handleLogout}
+              data-testid="navbar-logout-button"
             >
               Log Out
             </NavDropdown.Item>
@@ -64,12 +66,14 @@ const UserMenu: React.FC = () => {
             <NavDropdown.Item
               style={{ color: "#000000" }}
               onClick={handleRegister}
+              data-testid="navbar-register-button"
             >
               Register
             </NavDropdown.Item>
             <NavDropdown.Item
               style={{ color: "#000000" }}
               onClick={handleLogin}
+              data-testid="navbar-login-button"
             >
               Login
             </NavDropdown.Item>

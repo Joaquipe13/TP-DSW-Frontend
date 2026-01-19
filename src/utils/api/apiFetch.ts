@@ -1,9 +1,6 @@
 import getCookieValue from "@utils/auth/getCookieValue";
 import porturl from "@utils/route";
 
-
-
-
 interface FetchOptions extends RequestInit {
   requiresAuth?: boolean;
   skipRateLimit?: boolean;

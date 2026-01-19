@@ -80,12 +80,14 @@ const CoursePreview: React.FC<CoursePreviewProps> = ({ id }) => {
             <NavigationButton
               to={`/course/update/${course?.id}`}
               label="Edit"
+              dataTestId={`edit-course-${course?.title}-button`}
             />
           ) : (
             <NavigationButton
               to={`/course/${course?.id}`}
               label="View"
               variant="secondary"
+              dataTestId={`view-course-${course?.title}-button`}
             />
           )}
         </Card.Body>

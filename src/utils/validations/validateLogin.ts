@@ -1,32 +1,19 @@
 import setCookieValue from "@utils/auth/setCookieValue";
-import porturl from "@utils/route";
+import apiFetch from "@utils/api/apiFetch";
 
 async function validateLogin(email: string, password: string) {
-  const url = porturl + "/api/login";
   try {
-    const response = await fetch(url, {
+    const res = await apiFetch<{ data: string }>("/api/login", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      credentials: "include",
       body: JSON.stringify({ email, password }),
     });
 
-    if (response.ok) {
-      const res = await response.json();
-      const token = res.data;
-      console.log("Received token:"+ token);
-      setCookieValue(token, "token", 8);
-      console.log("Login successful");
-      return token;
-    } else {
-      const errorData = await response.json();
-      console.log("Login failed:", errorData.message);
-      return null;
-    }
+    const token = res.data;
+    setCookieValue(token, "token", 8);
+    return token;
   } catch (error) {
     console.error("Error during login:", error);
+    return null;
   }
 }
 export default validateLogin;

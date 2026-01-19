@@ -18,6 +18,7 @@ const TopicList = () => {
   } = useGet<Topic>(`/api/topics`);
 
   const [isAdding, setIsAdding] = useState(false);
+  const [selectedTopics, setSelectedTopics] = useState<Set<string>>(new Set());
   const { handleDeleteClick } = useDeleteTopic(fetchData);
   const {
     newTopicDescription,
@@ -26,6 +27,7 @@ const TopicList = () => {
     handleConfirmAdd,
     handleDescriptionChange,
   } = useCreateTopic(fetchData);
+
 
   const handleAddClick = () => {
     setIsAdding(true);
@@ -40,6 +42,7 @@ const TopicList = () => {
 
   return (
     <ListGroup>
+
       {topics && topics.length > 0
         ? topics.map((topic) => (
             <ListGroup.Item
@@ -51,9 +54,23 @@ const TopicList = () => {
                 marginBottom: "8px",
                 boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
                 padding: "1rem",
+                transition: "background-color 0.2s",
               }}
+              data-testid={`topic-item-${topic.description}`}
             >
-              {topic?.description}
+              <div className="d-flex align-items-center" style={{ flex: 1 }}>
+                <label
+                  style={{
+                    margin: 0,
+                    cursor: "pointer",
+                    fontWeight: selectedTopics.has(topic.id) ? "600" : "400",
+                    color: "inherit",
+                  }}
+
+                >
+                  {topic?.description}
+                </label>
+              </div>
               <Button
                 variant="danger"
                 style={{
@@ -75,6 +92,7 @@ const TopicList = () => {
                 fontWeight: "bold",
                 marginTop: "1rem",
               }}
+              
             >
               <NotAvailableAlert object="topics" />
             </Card.Body>
@@ -91,6 +109,7 @@ const TopicList = () => {
             variant="success"
             style={{ padding: "0.5rem 1.5rem" }}
             onClick={handleAddClick}
+            
           >
             Add Topic
           </Button>
@@ -113,6 +132,11 @@ const TopicList = () => {
             placeholder="Enter new topic"
             value={newTopicDescription}
             onChange={handleDescriptionChange}
+            onKeyDown={(e) => {
+              if (e.key === 'Enter') {
+                handleConfirmAdd();
+              }
+            }}
           />
           <Button
             variant="success"

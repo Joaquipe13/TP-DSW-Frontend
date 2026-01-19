@@ -23,6 +23,7 @@ const LevelPage: React.FC = () => {
           style={{ backgroundColor: "#444", color: "#fff" }}
           to={`/course/${courseId}`}
           label="Back to course"
+          dataTestId="back-to-course-button"
         />
       </Container>
     </Card>

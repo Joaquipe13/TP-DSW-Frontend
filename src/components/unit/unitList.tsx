@@ -59,10 +59,12 @@ const UnitList: React.FC<UnitListProps> = ({ level, course }) => {
       </ListGroup>
       {role === "admin" && (
         <Container className="d-flex justify-content-center">
+         
           <NavigationButton
             to={`/unit/create/${course}/${level}`}
-            label="Add Unit"
+            label={"Add Unit"}
             variant="success"
+            dataTestId="add-unit-button"
           />
         </Container>
       )}

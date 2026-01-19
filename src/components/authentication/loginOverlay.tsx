@@ -70,6 +70,7 @@ const LoginOverlay: React.FC<LoginOverlayProps> = ({ show, setShow }) => {
                       onChange={(e) => setEmail(e.target.value)}
                       required
                       autoFocus
+                      data-testid="login-email-input"
                     />
                   </Form.Group>
                   <Form.Group controlId="formBasicPassword" className="mb-3">
@@ -80,9 +81,10 @@ const LoginOverlay: React.FC<LoginOverlayProps> = ({ show, setShow }) => {
                       value={password}
                       onChange={(e) => setPassword(e.target.value)}
                       required
+                      data-testid="login-password-input"
                     />
                   </Form.Group>
-                  <Button variant="primary" type="submit" className="w-100">
+                  <Button variant="primary" type="submit" className="w-100" data-testid="login-submit-button">
                     Login
                   </Button>
                   <Button

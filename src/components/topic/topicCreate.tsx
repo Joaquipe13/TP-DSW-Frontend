@@ -81,9 +81,10 @@ const TopicCreate = () => {
             value={description}
             onChange={(e) => setDescription(e.target.value)}
             onKeyDown={handleKeyPress}
+            data-testid="topic-name"
           />
         </InputGroup>
-        <Button variant="primary" onClick={handleClick} className="w-100 mb-3">
+        <Button variant="primary" onClick={handleClick} className="w-100 mb-3" data-testid="create-topic-button">
           Create
         </Button>
         <NavigationButton

@@ -44,7 +44,7 @@ const UnitCreate: React.FC<UnitCreateProps> = ({ level, course }) => {
     }
   }, [loading, error]);
 
-  const handleClick = () => {
+  const handleCreate = () => {
     const nameError = validateUnitName(name);
     const contentError = validateUnitContent(content);
 
@@ -93,6 +93,7 @@ const UnitCreate: React.FC<UnitCreateProps> = ({ level, course }) => {
             value={name}
             onChange={(e) => setName(e.target.value)}
             isInvalid={!!formErrors.name}
+            data-testid="unit-name"
           />
           <Form.Control.Feedback type="invalid">
             {formErrors.name}
@@ -113,6 +114,7 @@ const UnitCreate: React.FC<UnitCreateProps> = ({ level, course }) => {
               paddingTop: "10px",
               minHeight: "120px",
             }}
+            data-testid="unit-content"
           />
           <Form.Control.Feedback type="invalid">
             {formErrors.content}
@@ -120,7 +122,7 @@ const UnitCreate: React.FC<UnitCreateProps> = ({ level, course }) => {
         </Form.Group>
 
         <div className="d-flex justify-content-center">
-          <Button variant="success" onClick={handleClick} className="mt-4">
+          <Button variant="success" onClick={handleCreate} className="mt-4" data-testid="create-unit-button">
             Create Unit
           </Button>
         </div>

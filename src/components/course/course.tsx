@@ -63,7 +63,7 @@ const CourseGetOne: React.FC<CourseGetOneProps> = ({ id }) => {
         {Array.isArray(course) || course == null ? (
           <Loading />
         ) : (
-          <Card.Header as="h3">{course.title}</Card.Header>
+          <Card.Header as="h3" data-testid="course-title-display">{course.title}</Card.Header>
         )}
         <Card.Body>
           {Array.isArray(course) || course == null ? (
@@ -101,6 +101,7 @@ const CourseGetOne: React.FC<CourseGetOneProps> = ({ id }) => {
             <NavigationButton
               to={`/course/update/${course?.id}`}
               label="Edit"
+              dataTestId="course-edit-button"
             />
           ) : button === 3 ? (
             <PurchaseButton courseId={id} />

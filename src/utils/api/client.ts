@@ -43,7 +43,6 @@ export async function apiFetch<T = any>(
     const url = buildUrl(path);
     const method = (options.method || "GET").toUpperCase();
 
-    // Auto-detect content type and serialize body
     let finalBody: BodyInit | null | undefined = options.body;
     const isFormData = typeof FormData !== "undefined" && options.body instanceof FormData;
     const needsJsonHeader = options.body && !isFormData && typeof options.body === "object";

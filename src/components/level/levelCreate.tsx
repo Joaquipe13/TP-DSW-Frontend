@@ -43,7 +43,7 @@ const LevelCreate: React.FC<LevelCreateProps> = ({ course }) => {
     }
   }, [loading, error]);
 
-  const handleClick = () => {
+  const handleCreate = () => {
     const nameError = validateLevelName(name);
     const descriptionError = validateLevelDescription(description);
 
@@ -66,11 +66,11 @@ const LevelCreate: React.FC<LevelCreateProps> = ({ course }) => {
       };
 
       create(newLevel).then((data) => {
-        if (data.createdLevel?.id) {
+        if (data.id) {
           console.log(
-            `Level "${name}" was created with ID ${data.createdLevel.id}.`
+            `Level "${name}" was created with ID ${data.id}.`
           );
-          navigate(`/course/${courseId}`);
+          navigate(`/level/update/${courseId}/${data.id}`);
         } else {
           console.error("Error: No ID was received for the created level.");
           alert("There was an error creating the level. Please try again.");
@@ -94,6 +94,7 @@ const LevelCreate: React.FC<LevelCreateProps> = ({ course }) => {
             value={name}
             onChange={(e) => setName(e.target.value)}
             isInvalid={!!formErrors.name}
+            data-testid="level-name"
           />
           <Form.Control.Feedback type="invalid">
             {formErrors.name}
@@ -116,6 +117,7 @@ const LevelCreate: React.FC<LevelCreateProps> = ({ course }) => {
               minHeight: "120px",
               overflow: "hidden",
             }}
+            data-testid="level-description"
           />
           <Form.Control.Feedback type="invalid">
             {formErrors.description}
@@ -123,7 +125,7 @@ const LevelCreate: React.FC<LevelCreateProps> = ({ course }) => {
         </Form.Group>
 
         <div className="d-flex justify-content-center">
-          <Button variant="success" onClick={handleClick} className="mt-4">
+          <Button variant="success" onClick={handleCreate} className="mt-4" data-testid="create-level-button">
             Create Level
           </Button>
         </div>
