@@ -9,7 +9,6 @@ function searchUser() {
     console.log("userData:", userData);
     return null;
   }
-  console.log("userCookieData:", userData);
   const user = {
     id: userData.id,
     name: userData.name,
@@ -32,7 +31,6 @@ function storeUserData(user: any) {
 async function getUser() {
   const user = searchUser();
   if (user) {
-    console.log("user found (getUser):", user);
     return user;
   } else {
     const token = getToken();
@@ -45,7 +43,6 @@ async function getUser() {
       console.log("Token found", token, " fetching user data...");
       const response = await apiFetch<any>("/api/login/auth", {
         method: "GET",
-        //requiresAuth: true,
       });
       const user = response.data.user;
       storeUserData(user);

@@ -56,7 +56,7 @@ const CourseList: React.FC<CourseListProps> = ({ view, title }) => {
                     lg={6}
                     className="d-flex justify-content-center"
                   >
-                    <CoursePreview id={course.id} />
+                    <CoursePreview course={course} />
                   </Col>
                 ))}
             </Row>

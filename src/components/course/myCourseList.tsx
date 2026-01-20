@@ -6,6 +6,7 @@ import Error from "../common/error";
 import CoursePreview from "./coursePreview";
 import getPurchasedCourses from "@hooks/course/getPurchasedCourses";
 import getUser from "@utils/auth/getUser";
+import { Course } from "@utils/types";
 
 interface MyCourseListProps {
   title: string;
@@ -13,29 +14,32 @@ interface MyCourseListProps {
 
 const MyCourseList: React.FC<MyCourseListProps> = ({ title }) => {
   const [state, setState] = useState({
+    loading: true,
     error: null as string | null,
-    courses: [] as any[],
+    courses: [] as Course[],
   });
-  const [userId, setUserId] = useState<number | null>(null);
   const [isLoading, setLoading] = useState(true);
 
   const fetchUserId = async () => {
     try {
-      setUserId(null);
       const fetchedUser = await getUser();
-      setUserId(fetchedUser.id);
+      return fetchedUser.id;
     } catch (error) {
       console.error("Error fetching user:", error);
-    } finally {
-      setLoading(false);
+      setState({ loading: false, error: "Error fetching user", courses: [] });
+      return null;
     }
   };
 
   useEffect(() => {
     async function fetchCourses() {
       setLoading(true);
-      await fetchUserId();
-      const result = await getPurchasedCourses(userId, title ? title : "");
+      const userId = await fetchUserId();
+      if (!userId) {
+        setLoading(false);
+        return;
+      }
+      const result = await getPurchasedCourses(title ? title : "");
       setState(result);
       setLoading(false);
     }
@@ -68,7 +72,7 @@ const MyCourseList: React.FC<MyCourseListProps> = ({ title }) => {
                       lg={6}
                       className="d-flex justify-content-center"
                     >
-                      <CoursePreview id={course.id} />
+                      <CoursePreview course={course}  />
                     </Col>
                   ))}
                 </Row>

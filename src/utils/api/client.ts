@@ -64,7 +64,6 @@ export async function apiFetch<T = any>(
         body: finalBody,
         credentials: options.credentials ?? "include",
     };
-    console.log("Fetching:", url, fetchOptions);
     const response = await fetch(url, fetchOptions);
     
     const contentType = response.headers.get("content-type") || "";

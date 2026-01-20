@@ -6,30 +6,27 @@ import CourseTopicsList from "../topic/courseTopicsList";
 import Loading from "../common/loading";
 import Error from "../common/error";
 import NavigationButton from "../common/buttons/navigationButton";
-import useGet from "@hooks/crud/useGet";
 import userType from "@utils/auth/userType";
 import DateComponent from "@utils/date";
 
 interface CoursePreviewProps {
-  id: number;
+  course: Course;
 }
 
-const CoursePreview: React.FC<CoursePreviewProps> = ({ id }) => {
-  const {
-    data: course,
-    loading,
-    error,
-  } = useGet<Course>(`/api/courses/preview/${id}`);
+const CoursePreview: React.FC<CoursePreviewProps> = ( {course} ) => {
 
   const [role, setRole] = useState<null | string>(null);
   const [loadingButton, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
   useEffect(() => {
     const fetchRole = async () => {
       try {
+        console.log("CoursePreview: ", course);
         const fetchedUser = await userType();
         setRole(fetchedUser);
-      } catch (error) {
-        console.error("Error fetching user:", error);
+      } catch (error:any) {
+          console.error("Error fetching user:", error?.message ? error.message : "We couldn't verify your role. Please refresh or sign in again.");
+          setError(error?.message ? error.message : "We couldn't verify your role. Please refresh or sign in again.");
       } finally {
         setLoading(false);
       }
@@ -37,7 +34,6 @@ const CoursePreview: React.FC<CoursePreviewProps> = ({ id }) => {
     fetchRole();
   }, []);
   
-  if (loading) return <Loading />;
   if (loadingButton) return <Loading />;
   if (error) return <Error message={error} />;
   return (

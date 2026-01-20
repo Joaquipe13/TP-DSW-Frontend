@@ -46,7 +46,6 @@ async function apiFetch<T>(
         errorData.message || `HTTP Error: ${response.status}`
       );
     }
-
     return await response.json();
   } catch (error) {
     console.error(`API Fetch Error [${endpoint}]:`, error);
