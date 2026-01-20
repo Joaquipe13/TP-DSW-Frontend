@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
 import { TiArrowSortedDown, TiArrowSortedUp } from "react-icons/ti";
-import { Container, Table } from "react-bootstrap";
-import Loading from "../common/loading";
-import Error from "../common/error";
+import Container from "react-bootstrap/Container";
+import Table from "react-bootstrap/Table";
+import NotAvailableAlert from "@components/common/notAvailableAlert.js";
 import useGet from "@hooks/crud/useGet";
 import useSortList from "@hooks/purchaseRecord/useSortList";
 import { SubsPurchaseRecord } from "@utils/types";
-import NotAvailableAlert from "@components/common/notAvailableAlert.js";
+import Error from "../common/error";
+import Loading from "../common/loading";
 
 interface MySubscriptionsListProps {
   startDate?: Date;

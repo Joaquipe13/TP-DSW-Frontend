@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import { Card, Container } from "react-bootstrap";
-import Loading from "../common/loading";
-import Error from "../common/error";
-import NavigationButton from "../common/buttons/navigationButton";
-import SubscriptionButton from "../common/buttons/purchaseSubsButton";
+import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/Container";
 import useGet from "@hooks/crud/useGet";
-import userType from "@utils/auth/userType";
 import { Subscription } from "@utils/types";
+import userType from "@utils/auth/userType";
+import SubscriptionButton from "../common/buttons/purchaseSubsButton";
+import Error from "../common/error";
+import Loading from "../common/loading";
+import NavigationButton from "../common/buttons/navigationButton";
 
 interface SubscriptionPreviewProps {
   id: number;

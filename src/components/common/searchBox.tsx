@@ -1,5 +1,6 @@
 import React, { useState } from "react";
-import { Form, FormControl } from "react-bootstrap";
+import Form from "react-bootstrap/Form";
+import FormControl from "react-bootstrap/FormControl";
 
 interface SearchBoxProps {
   onSearch: (title: string) => void;

@@ -1,10 +1,10 @@
 import React from "react";
-import Card from "react-bootstrap/Card";
 import { useParams } from "react-router-dom";
-import { Container } from "react-bootstrap";
+import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/Container";
+import NavigationButton from "@components/common/buttons/navigationButton";
 import Error from "@components/common/error";
 import CourseGetOne from "@components/course/course";
-import NavigationButton from "@components/common/buttons/navigationButton";
 
 const CoursePage: React.FC = () => {
   const { id } = useParams<{ id: string }>();

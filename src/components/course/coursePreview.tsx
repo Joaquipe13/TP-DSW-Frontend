@@ -21,7 +21,6 @@ const CoursePreview: React.FC<CoursePreviewProps> = ( {course} ) => {
   useEffect(() => {
     const fetchRole = async () => {
       try {
-        console.log("CoursePreview: ", course);
         const fetchedUser = await userType();
         setRole(fetchedUser);
       } catch (error:any) {

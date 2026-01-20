@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Modal, Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Modal from "react-bootstrap/Modal";
 import LoginOverlay from "@components/authentication/loginOverlay";
 import RegisterOverlay from "@components/authentication/registerOverlay";
 

@@ -1,12 +1,14 @@
 import { useEffect, useState } from "react";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Row from "react-bootstrap/Row";
 import Table from "react-bootstrap/Table";
-import { Col, Container, Row } from "react-bootstrap";
-import Loading from "../common/loading";
-import Error from "../common/error";
-import CoursePreview from "./coursePreview";
 import getPurchasedCourses from "@hooks/course/getPurchasedCourses";
-import getUser from "@utils/auth/getUser";
 import { Course } from "@utils/types";
+import getUser from "@utils/auth/getUser";
+import Error from "../common/error";
+import Loading from "../common/loading";
+import CoursePreview from "./coursePreview";
 
 interface MyCourseListProps {
   title: string;

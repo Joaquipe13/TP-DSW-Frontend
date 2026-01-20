@@ -1,7 +1,11 @@
 import React, { useState } from "react";
-import { Button, Form, Container, Row, Col } from "react-bootstrap";
-import RegisterOverlay from "./registerOverlay";
+import Button from "react-bootstrap/Button";
+import Col from "react-bootstrap/Col";
+import Container from "react-bootstrap/Container";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
 import validateLogin from "@utils/validations/validateLogin";
+import RegisterOverlay from "./registerOverlay";
 
 interface LoginOverlayProps {
   show: boolean;

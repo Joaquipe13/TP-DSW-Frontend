@@ -1,10 +1,10 @@
-import Container from "react-bootstrap/Container";
 import { useEffect, useState } from "react";
-import { Card } from "react-bootstrap";
-import MemberHead from "@layouts/member/head";
+import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/Container";
 import AdminHead from "@layouts/admin/head";
-import LoggedOutHead from "@layouts/loggedOut/head";
 import PageBody from "@layouts/body";
+import LoggedOutHead from "@layouts/loggedOut/head";
+import MemberHead from "@layouts/member/head";
 import userType from "@utils/auth/userType";
 
 function MainPage() {

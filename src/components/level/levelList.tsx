@@ -1,18 +1,18 @@
-import Container from "react-bootstrap/Container";
-import ListGroup from "react-bootstrap/ListGroup";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Button } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import ListGroup from "react-bootstrap/ListGroup";
 import NavigationButton from "@components/common/buttons/navigationButton";
+import Error from "@components/common/error";
 import Loading from "@components/common/loading";
 import usePurchaseAlert from "@hooks/purchaseRecord/usePurchaseAlert";
-import checkSubscription from "@utils/auth/checkSubscription";
-import checkPurchase from "@utils/auth/checkPurchase";
-import userType from "@utils/auth/userType";
-import getUser from "@utils/auth/getUser";
-import LevelPreview from "./levelPreview";
 import { Level } from "@utils/types";
-import Error from "@components/common/error";
+import checkPurchase from "@utils/auth/checkPurchase";
+import checkSubscription from "@utils/auth/checkSubscription";
+import getUser from "@utils/auth/getUser";
+import userType from "@utils/auth/userType";
+import LevelPreview from "./levelPreview";
 
 interface LevelListProps {
   course: string;

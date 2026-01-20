@@ -1,8 +1,8 @@
-import Container from "react-bootstrap/Container";
-import { Card } from "react-bootstrap";
 import { useEffect, useState } from "react";
-import SubscriptionList from "@components/subscription/subsList";
+import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/Container";
 import NavigationButton from "@components/common/buttons/navigationButton";
+import SubscriptionList from "@components/subscription/subsList";
 import userType from "@utils/auth/userType";
 
 const SubscriptionListPage = () => {

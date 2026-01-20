@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Card, Container } from "react-bootstrap";
-import userType from "@utils/auth/userType";
-import getUser from "@utils/auth/getUser";
-import Loading from "@components/common/loading";
+import Card from "react-bootstrap/Card";
+import Container from "react-bootstrap/Container";
 import DateRangePicker from "@components/common/dateRangePicker";
-import PurchasesList from "@components/purchaseRecord/purchasesList";
+import Loading from "@components/common/loading";
 import MyPurchasesList from "@components/purchaseRecord/myPurchases";
+import PurchasesList from "@components/purchaseRecord/purchasesList";
+import getUser from "@utils/auth/getUser";
+import userType from "@utils/auth/userType";
 
 const PurchasesRecordPage: React.FC = () => {
   const [startDate, setStartDate] = useState<Date | undefined>(undefined);
