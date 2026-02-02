@@ -68,7 +68,7 @@ const LevelGetOne: React.FC<LevelGetOneProps> = ({ id, courseId }) => {
               <Card.Text className="fs-4">
                 <strong>Units:</strong>
               </Card.Text>
-              <UnitList level={id} course={courseId} />
+              <UnitList level={id} course={courseId} units={level.units}/>
             </div>
           )}
           {loadingButton ? (

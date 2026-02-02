@@ -33,10 +33,10 @@ const SubscriptionList = () => {
             <Row className="mb-3">
               {subscriptions.map((subscription) => (
                 <Col key={subscription.id} xs={12} sm={6} md={4} lg={3}>
-                  {!subscription.id ? (
+                  {!subscription ? (
                     <Loading />
                   ) : (
-                    <SubscriptionPreview id={subscription.id} />
+                    <SubscriptionPreview subscription={subscription} />
                   )}
                 </Col>
               ))}

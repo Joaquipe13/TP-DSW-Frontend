@@ -97,7 +97,7 @@ const LevelUpdate: React.FC<LevelUpdateProps> = ({ courseId, id }) => {
           <Card.Title as="h5" className="mb-3">
             Units:
           </Card.Title>
-          <UnitList level={id} course={courseId} />
+          <UnitList level={id} course={courseId} units={oldLevel?.units}/>
 
           <Row className="justify-content-center mt-4">
             <Col xs={10} md={3} className="d-flex justify-content-center">

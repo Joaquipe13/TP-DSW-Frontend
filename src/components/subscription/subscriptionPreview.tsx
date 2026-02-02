@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import Card from "react-bootstrap/Card";
 import Container from "react-bootstrap/Container";
-import useGet from "@hooks/crud/useGet";
 import { Subscription } from "@utils/types";
 import userType from "@utils/auth/userType";
 import SubscriptionButton from "../common/buttons/purchaseSubsButton";
@@ -10,18 +9,12 @@ import Loading from "../common/loading";
 import NavigationButton from "../common/buttons/navigationButton";
 
 interface SubscriptionPreviewProps {
-  id: number;
+  subscription: Subscription;
 }
 
-const SubscriptionPreview: React.FC<SubscriptionPreviewProps> = ({ id }) => {
+const SubscriptionPreview: React.FC<SubscriptionPreviewProps> = ({ subscription }) => {
   const [role, setRole] = useState<string | null>(null);
   const [loadingButton, setLoading] = useState(true);
-  const {
-    data: subscription,
-    loading,
-    error,
-    fetchData,
-  } = useGet<Subscription>(`/api/subscriptions/${id}`, false);
 
   useEffect(() => {
     const fetchUserRole = async () => {
@@ -34,12 +27,7 @@ const SubscriptionPreview: React.FC<SubscriptionPreviewProps> = ({ id }) => {
     fetchUserRole();
   }, []);
 
-  useEffect(() => {
-    fetchData();
-  }, [fetchData, id]);
-
-  if (loading) return <Loading />;
-  if (error) return <Error message={error} />;
+  if (!subscription?.id) return <Error message="Subscription not found" />;
   return (
     <Container fluid>
       <Card>
@@ -63,7 +51,7 @@ const SubscriptionPreview: React.FC<SubscriptionPreviewProps> = ({ id }) => {
               label="Edit"
             />
           ) : (
-            <SubscriptionButton subscriptionId={id} />
+            <SubscriptionButton subscriptionId={subscription.id} />
           )}
         </Card.Body>
       </Card>

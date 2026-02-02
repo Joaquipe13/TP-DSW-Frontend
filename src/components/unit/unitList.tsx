@@ -1,10 +1,8 @@
 import Container from "react-bootstrap/Container";
 import ListGroup from "react-bootstrap/ListGroup";
 import { useEffect, useState } from "react";
-import Loading from "../common/loading";
 import Error from "../common/error";
 import NavigationButton from "../common/buttons/navigationButton";
-import useGet from "@hooks/crud/useGet";
 import userType from "@utils/auth/userType";
 import UnitPreview from "./unitPreview";
 import { Unit } from "@utils/types";
@@ -13,20 +11,12 @@ import NotAvailableAlert from "@components/common/notAvailableAlert.js";
 interface UnitListProps {
   level: string;
   course: string;
+  units?: Unit[];
 }
 
-const UnitList: React.FC<UnitListProps> = ({ level, course }) => {
+const UnitList: React.FC<UnitListProps> = ({ level, course, units }) => {
   const [role, setRole] = useState<string | null>(null);
 
-  const {
-    data: units,
-    error,
-    loading,
-    fetchData,
-  } = useGet<Unit>(`/api/units?level=${level}`);
-  useEffect(() => {
-    fetchData();
-  }, [fetchData]);
   useEffect(() => {
     const fetchUserRole = async () => {
       setRole(null);
@@ -35,8 +25,10 @@ const UnitList: React.FC<UnitListProps> = ({ level, course }) => {
     };
     fetchUserRole();
   }, []);
-  if (loading) return <Loading />;
-  if (error) return <Error message={error} />;
+  
+  if (!units) return <Error message="Units not found" />;
+  if (units.length === 0)
+    return <NotAvailableAlert object="units" />;
 
   return (
     <Container>
