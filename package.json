@@ -11,6 +11,8 @@
     "preview": "vite preview",
     "test:e2e": "cypress open",
     "test:e2e:headless": "cypress run",
+    "test:ct": "cypress open --component",
+    "test:ct:headless": "cypress run --component",
     "lint": "eslint ."
   },
   "dependencies": {
@@ -28,6 +30,8 @@
     "typescript": "^5.7.3"
   },
   "devDependencies": {
+    "@cypress/react": "^9.0.1",
+    "@cypress/webpack-dev-server": "^5.6.0",
     "@eslint/js": "^9.19.0",
     "@types/js-cookie": "^3.0.6",
     "@types/node": "^22.12.0",

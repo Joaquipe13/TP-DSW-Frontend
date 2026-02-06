@@ -1,5 +1,6 @@
 declare namespace Cypress {
   interface Chainable {
+    mount(component: React.ReactElement, options?: MountOptions): Chainable<void>;
     userMenuNavBar(): Chainable<void>;
     getAdminCredentials(): Chainable<{ email: string; password: string }>;
     loginAsAdmin(): Chainable<void>;

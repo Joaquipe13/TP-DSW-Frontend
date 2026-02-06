@@ -2,14 +2,6 @@ import { course, topic, level, unit } from './data';
 const apiUrl = Cypress.env('apiUrl');
 
 Cypress.Commands.add('userMenuNavBar', () => {
-  /*
-  cy.get('body').then($body => {
-    if ($body.find('[class="navbar-toggler collapsed"]').length > 0) {
-      console.log("Navbar is collapsed, clicking to expand.");
-      cy.get('[class="navbar-toggler collapsed"]').click();
-    } 
-  }); 
-  */
   cy.get('[data-testid="navbar-user-menu"]').click();
   cy.wait(500);    
 });
